@@ -1,4 +1,20 @@
-Project layout
+{% comment %}
+Howto
+=====
+
+Follow the steps below to use project template as your starting point::
+
+    $ mkdir <project_name>
+    $ cd <project_name>
+    $ virtualenv env
+    $ source env/bin/activate
+    $ pip install django
+    $ python env/bin/django-admin.py startproject --template=https://bitbucket.org/maykinmedia/default-project/get/tip.zip --extension=py,rst,rb,html <project_name> .
+
+The section above will not be included in your project's README. Below you'll
+see the project's README template.
+    
+{% endcomment %}Project layout
 ==============
 
 The project layout was made in such a way that code is seperated from non-code
