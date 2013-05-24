@@ -1,6 +1,6 @@
 {% comment %}
-Howto
-=====
+Get started
+===========
 
 Follow the steps below to use project template as your starting point::
 
