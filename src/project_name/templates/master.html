@@ -1,0 +1,53 @@
+{% templatetag openblock %} load compress {% templatetag closeblock %}<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% templatetag openblock %} block title {% templatetag closeblock %}{{ project_name|title }}{% templatetag openblock %} endblock {% templatetag closeblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/bootstrap-2.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet">
+        {% templatetag openblock %} compress css {% templatetag closeblock %}
+            <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+            <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/css/print.css" media="print" rel="stylesheet" type="text/css" />
+
+            {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+        {% templatetag openblock %} endcompress {% templatetag closeblock %}
+        <!--[if IE]>
+            <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <![endif]-->
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/jquery/js/jquery-1.9.1.min.js"></script>
+
+        <link rel="shortcut icon" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-57-precomposed.png">
+    </head>
+    <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h1>Welcome!</h1>
+                    <p>This is the default project page for {{ project_name|title }}.</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+
+        {% templatetag openblock %} compress js {% templatetag closeblock %}
+        <script src="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/js/global.js"></script>
+        {% templatetag openblock %} endcompress {% templatetag closeblock %}
+
+        {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+    </body>
+</html>
