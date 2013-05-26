@@ -55,17 +55,15 @@ below.
 
     hg clone ssh://hg@bitbucket.org/maykinmedia/{{ project_name|lower }}
 
-#. Setup the virtual environment and install all required libraries::
+#. Bootstrap the virtual environment and install all required libraries::
 
     $ cd {{ project_name|lower }}
-    $ virtualenv env
-    $ source env/bin/activate
-    $ pip install -r requirements/<production|staging|test|development>.txt
+    $ python bootstrap.py <production|staging|test|development>
     
-#. Create the statics and database::
+#. Activate your virtual environment and create the statics and database::
 
+    $ source env/bin/activate
     $ cd src
-    $ export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.settings_<production|staging|test|development>
     $ python manage.py collectstatic --link
     $ python manage.py syncdb --migrate
 
@@ -82,10 +80,10 @@ Optionally, you can load demo data and extract demo media files::
 You can now run your installation and point your browser to the address given
 by this command::
 
-    $ python manage.py runserver --settings={{ project_name|lower }}.conf.settings_development
+    $ python manage.py runserver
 
 If you are making local, machine specific, changes, add them to 
-``{{ project_name|lower }}/src/conf/settings_local.py``. You can base this file on
+``src/{{ project_name|lower }}/conf/settings_local.py``. You can base this file on
 the example file included in the same directory.
 
 Enable SASS/Compass::
@@ -99,6 +97,9 @@ Staging and production
 Configure your webserver and/or WSGI handler. See: 
 https://docs.djangoproject.com/en/dev/howto/deployment/
 
+Note that your wsgi script in ``src/{{ project_name|lower }}/wsgi.py already
+points to your staging|production settings.py file. This happens when
+bootstrapping your environment.
     
 Update installation
 ===================
