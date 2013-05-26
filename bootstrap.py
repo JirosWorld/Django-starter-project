@@ -32,7 +32,7 @@ def replace_wsgi_settings(target):
     old_file = open(path, 'r')
     for line in old_file:
         if line.startswith("os.environ.setdefault"):
-            new_file.write('os.environ.setdefault["DJANGO_SETTINGS_MODULE", "%s.settings_%s"]\n' % (project_name, target))
+            new_file.write('os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
         else:
             new_file.write(line)
     new_file.close()
