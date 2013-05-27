@@ -25,33 +25,44 @@ parser.add_argument('--env', default='env',
 
 args = parser.parse_args()
 
-def replace_wsgi_settings(target):
-    path = os.path.join('src', project_name, 'wsgi.py')
+def replace_or_append(file_path, search_val, replace_val):
     file_handle, abs_path = mkstemp()
     new_file = open(abs_path, 'w')
-    old_file = open(path, 'r')
+    old_file = open(file_path, 'r')
+    found = False
     for line in old_file:
-        if line.startswith('os.environ.setdefault'):
-            new_file.write('os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
+        if line.startswith(search_val):
+            new_file.write(replace_val)
+            found = True
         else:
             new_file.write(line)
+    if not found:
+        new_file.write("\n" + replace_val)
     new_file.close()
     os.close(file_handle)
     old_file.close()
-    os.remove(path)
-    move(abs_path, path)
+    os.remove(file_path)
+    move(abs_path, file_path)    
+
+def replace_wsgi_settings(target):
+    path = os.path.join('src', project_name, 'wsgi.py')
+    replace_or_append(path, 'os.environ.setdefault', 
+                      'os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
 
 def append_settings_activate(project, target, env):
     if os.name == 'posix':
-        f = open('%s/bin/activate' % env, 'a')
-        f.write('\nexport DJANGO_SETTINGS_MODULE=\'%s.conf.settings_%s\'\n' %
-                (project, target))
-        f.close()
+        path = '%s/bin/activate' % env
+        replace_or_append(path, 'export DJANGO_SETTINGS_MODULE=',
+                          'export DJANGO_SETTINGS_MODULE=\'%s.conf.settings_%s\'\n' %
+                          (project, target))
     if os.name == 'nt': # NOTE: Still to test in Windows
-        f = open('%s\\Scripts\\activate.bat' % env, 'a')
-        f.write('\nset DJANGO_SETTINGS_MODULE=%s.conf.settings_%s\n' %
-                (project, target))
-        f.close()
+        path = '%s\\Scripts\\activate.bat' % env
+        replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
+                          'set DJANGO_SETTINGS_MODULE=%s.conf.settings_%s\n' %
+                          (project, target))
+        path = '%s\\Scripts\\deactivate.bat' % env
+        replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
+                          'set DJANGO_SETTINGS_MODULE=\n')
 
 def main():
     virtualenv = args.env
