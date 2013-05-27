@@ -31,7 +31,7 @@ def replace_wsgi_settings(target):
     new_file = open(abs_path, 'w')
     old_file = open(path, 'r')
     for line in old_file:
-        if line.startswith("os.environ.setdefault"):
+        if line.startswith('os.environ.setdefault'):
             new_file.write('os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
         else:
             new_file.write(line)
@@ -44,27 +44,31 @@ def replace_wsgi_settings(target):
 def append_settings_activate(project, target, env):
     if os.name == 'posix':
         f = open('%s/bin/activate' % env, 'a')
-        f.write("\nexport DJANGO_SETTINGS_MODULE='%s.conf.settings_%s'\n" %
+        f.write('\nexport DJANGO_SETTINGS_MODULE=\'%s.conf.settings_%s\'\n' %
                 (project, target))
         f.close()
     if os.name == 'nt': # NOTE: Still to test in Windows
-        f = open('%s\Scripts\activate.bat', 'a')
-        f.write("\nset DJANGO_SETTINGS_MODULE='%s.conf.settings_%s'\n" %
+        f = open('%s\\Scripts\\activate.bat' % env, 'a')
+        f.write('\nset DJANGO_SETTINGS_MODULE=%s.conf.settings_%s\n' %
                 (project, target))
         f.close()
 
 def main():
     virtualenv = args.env
-    file_path = os.path.dirname(__file__)
-    print("\n== Building virtualenv ==\n")
-    call("virtualenv " + virtualenv, 
-         shell=True)
+    if not hasattr(sys, 'real_prefix'):
+        print('\n== Creating virtual environment ==\n')
+        call('virtualenv ' + virtualenv, 
+             shell=True)
 
-    print("\n== Ensuring the correct settings-file is used in activate and wsgi.py ==\n")
+    print('\n== Set "%s.conf.settings_%s" as default settings ==\n' % (args.project, args.target))
     append_settings_activate(args.project, args.target, args.env)
     replace_wsgi_settings(args.target)
 
-    call(os.path.join(virtualenv, "bin", "pip") + " install -r requirements/%s.txt" % args.target, shell=True)
+    print('\n== Installing %s requirements ==\n' % args.target)
+    if os.name == 'posix':
+        call(os.path.join(virtualenv, 'bin', 'pip') + ' install -r requirements/%s.txt' % args.target, shell=True)
+    elif os.name == 'nt':
+        call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install -r requirements\\%s.txt' % args.target, shell=True)
 
     print("""
 == Next steps ==
@@ -76,6 +80,6 @@ python src/manage.py runserver
 
 """ % args.env)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
     sys.exit(0)
