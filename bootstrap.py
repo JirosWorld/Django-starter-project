@@ -46,8 +46,14 @@ def replace_or_append(file_path, search_val, replace_val):
 
 def replace_wsgi_settings(target):
     path = os.path.join('src', project_name, 'wsgi.py')
-    replace_or_append(path, 'os.environ.setdefault', 
+    replace_or_append(path, 'os.environ.setdefault',
                       'os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
+
+def replace_manage_settings(target):
+    path = os.path.join('src', project_name, 'manage.py')
+    replace_or_append(path, '    os.environ.setdefault',
+                      '    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
+
 
 def append_settings_activate(project, target, env):
     if os.name == 'posix':
@@ -55,7 +61,7 @@ def append_settings_activate(project, target, env):
         replace_or_append(path, 'export DJANGO_SETTINGS_MODULE=',
                           'export DJANGO_SETTINGS_MODULE=\'%s.conf.settings_%s\'\n' %
                           (project, target))
-    if os.name == 'nt': # NOTE: Still to test in Windows
+    elif os.name == 'nt':
         path = '%s\\Scripts\\activate.bat' % env
         replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
                           'set DJANGO_SETTINGS_MODULE=%s.conf.settings_%s\n' %
@@ -74,22 +80,13 @@ def main():
     print('\n== Set "%s.conf.settings_%s" as default settings ==\n' % (args.project, args.target))
     append_settings_activate(args.project, args.target, args.env)
     replace_wsgi_settings(args.target)
+    replace_manage_settings(args.target)
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
         call(os.path.join(virtualenv, 'bin', 'pip') + ' install -r requirements/%s.txt' % args.target, shell=True)
     elif os.name == 'nt':
         call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install -r requirements\\%s.txt' % args.target, shell=True)
-
-    print("""
-== Next steps ==
-
-. %s/bin/activate
-python src/manage.py syncdb --migrate
-python src/manage.py collectstatic --link
-python src/manage.py runserver
-
-""" % args.env)
 
 if __name__ == '__main__':
     main()

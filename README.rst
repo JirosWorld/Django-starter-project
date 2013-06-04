@@ -3,17 +3,38 @@
 Get started
 ===========
 
-Follow the steps below to use project template as your starting point::
+Below you'll find the steps to create a Django project from scratch, using the
+Maykin Media starting template. The ``<project_root>`` is typically placed in
+your home directory or ``/srv/sites/``. It can be named anything but typical
+examples are ``corporate``, ``website`` or more specific like
+``acme-website``::
 
-    $ mkdir <project_name>
-    $ cd <project_name>
+    $ mkdir <project_root>
+    $ cd <project_root>
+
+Create the virtual environment that holds your copy of Python and relevant
+libraries::
+
     $ virtualenv env
     $ source env/bin/activate
+
+If you have a global Django installation (not recommended but can be present
+in development environments), you can skip the installation of Django at this
+time, if not::
+
     $ pip install django
+
+Finally, start a new Django project, named ``<project_name>``, using the
+template. It can be usefull to use a ``<project_name>`` that serves as
+namespace in your code, like ``maykinmedia``::
+
     $ python env/bin/django-admin.py startproject --template=https://bitbucket.org/maykinmedia/default-project/get/tip.zip --extension=py,rst,rb,html <project_name> .
 
-The section above will not be included in your project's README. Below you'll
-see the project's README template.
+You'll now have a starting point for your new project. Continue to the
+installation instructions below and start at step 3.
+
+**NOTE:** The section above will not be included in your project's README.
+Below you'll see the actual project README template.
     
 {% endcomment %}Project layout
 ==============
@@ -51,16 +72,20 @@ Installation
 New installations (for development or production) should follow the steps
 below.
 
-#. Get the code::
+1. Navigate to the location where you want to place your project.
 
-    hg clone ssh://hg@bitbucket.org/maykinmedia/{{ project_name|lower }}
+2. Get the code::
 
-#. Bootstrap the virtual environment and install all required libraries::
-
+    $ hg clone ssh://hg@bitbucket.org/maykinmedia/{{ project_name|lower }}
     $ cd {{ project_name|lower }}
+
+3. Bootstrap the virtual environment and install all required libraries. The
+   ``boostrap.py`` script basically sets the proper Django settings file to be
+   used::
+
     $ python bootstrap.py <production|staging|test|development>
     
-#. Activate your virtual environment and create the statics and database::
+4. Activate your virtual environment and create the statics and database::
 
     $ source env/bin/activate
     $ cd src
@@ -90,6 +115,8 @@ Enable SASS/Compass::
 
     $ compass watch
 
+For more information on SASS and Compass, see: http://compass-style.org/
+
 
 Staging and production
 ----------------------
@@ -106,17 +133,17 @@ Update installation
 
 When updating an existing installation::
 
-#. Activate the virtual environment.
+1. Activate the virtual environment.
 
     $ cd {{ project_name|lower }}
     $ source env/bin/activate
 
-#. Update the code and libraries::
+2. Update the code and libraries::
 
     $ hg pull --update
     $ pip install -r requirements/<production|staging|test|development>.txt
     
-#. Update the statics and database::
+3. Update the statics and database::
 
     $ cd src
     $ python manage.py collectstatic --link
