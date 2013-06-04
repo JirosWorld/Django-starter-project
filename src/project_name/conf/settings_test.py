@@ -6,7 +6,7 @@ from settings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_staging.application'
+WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_test.application'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

@@ -79,8 +79,9 @@ def main():
 
     print('\n== Set "%s.conf.settings_%s" as default settings ==\n' % (args.project, args.target))
     append_settings_activate(args.project, args.target, args.env)
-    replace_wsgi_settings(args.target)
-    replace_manage_settings(args.target)
+
+# Disabled: we have a separate wsgi script per target for now
+#    replace_wsgi_settings(args.target)
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
