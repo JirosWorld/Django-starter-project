@@ -202,6 +202,12 @@ LOGGING = {
             'filename': os.path.join(LOGGING_DIR, 'django.log'),
             'formatter': 'verbose'
         },
+        'project': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, '{{ project_name|lower }}.log'),
+            'formatter': 'verbose'
+        },
         'performance': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
@@ -210,6 +216,11 @@ LOGGING = {
         },
     },
     'loggers': {
+        '{{ project_name|lower }}': {
+            'handlers': ['project'],
+            'level': 'INFO',
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',

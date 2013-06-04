@@ -29,6 +29,11 @@ DATABASES = {
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 LOGGING['loggers'].update({
+    '{{ project_name|lower }}': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
     'django': {
         'handlers': ['django'],
         'level': 'DEBUG',

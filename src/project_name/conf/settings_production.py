@@ -28,6 +28,11 @@ DATABASES = {
 ALLOWED_HOSTS = []
 
 LOGGING['loggers'].update({
+    '{{ project_name|lower }}': {
+        'handlers': ['project'],
+        'level': 'WARNING',
+        'propagate': True,
+    },
     'django': {
         'handlers': ['django'],
         'level': 'WARNING',
