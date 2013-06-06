@@ -32,6 +32,12 @@ or keep in a different location (like the virtual environment)::
     |       |
     |       +-- conf        -- Django settings files.
     |       |
+    |       +-- templates   -- Project templates
+	|       |
+	|       +-- wsgi        -- Default location for wsgi deployment scripts
+	|       |
+	|       +-- static      -- Default location for project static files
+    |       |
     |       +-- ...         -- Project specific applications.
     |
     +-- static              -- Default location for collected static files.
