@@ -43,6 +43,7 @@ def replace_or_append(file_path, search_val, replace_val):
     old_file.close()
     os.remove(file_path)
     move(abs_path, file_path)    
+    os.chmod(file_path, 436)
 
 def replace_wsgi_settings(target):
     path = os.path.join('src', project_name, 'wsgi.py')
