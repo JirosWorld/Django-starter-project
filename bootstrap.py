@@ -85,6 +85,13 @@ def main():
 # Disabled: we have a separate wsgi script per target for now
 #    replace_wsgi_settings(args.target)
 
+    if os.name == 'posix':
+        # Make manage.py executable
+        st = os.stat('src/manage.py')
+        os.chmod('src/manage.py', st.st_mode | stat.S_IEXEC)
+        os.symlink('../../src/manage.py', 
+                   os.path.join(virtualenv, 'bin', 'django-admin'))
+
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
         call(os.path.join(virtualenv, 'bin', 'pip') + ' install -r requirements/%s.txt' % args.target, shell=True)
