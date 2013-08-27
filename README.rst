@@ -149,9 +149,9 @@ bootstrapping your environment.
 Update installation
 ===================
 
-When updating an existing installation::
+When updating an existing installation:
 
-1. Activate the virtual environment.
+1. Activate the virtual environment::
 
     $ cd {{ project_name|lower }}
     $ source env/bin/activate
