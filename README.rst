@@ -35,7 +35,19 @@ installation instructions below and start at step 3.
 
 **NOTE:** The section above will not be included in your project's README.
 Below you'll see the actual project README template.
+
+**Python 3 support!** 
+
+Steps you'll want to take for Python 3 projects:
+
+1. Replace `python` with `python3` calls in the documentation below.
+
+2. Add ` --python=python3 ` to line 78 of bootstrap.py
     
+3. Disable Sphinx in requirements/base.txt and django-debug-toolbar in requirements/development.txt (at least until their respective versions work properly in Python3). Remove the django-debug-toolbar settings in src/``<project_name>``/conf/settings_development.py.
+
+4. Disable django-axes in requirements/base.txt and remove the axes middleware in src/``<project_name>``/conf/settings.py.
+
 {% endcomment %}Project layout
 ==============
 

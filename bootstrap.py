@@ -74,6 +74,7 @@ def append_settings_activate(project, target, env):
 def main():
     virtualenv = args.env
     if not hasattr(sys, 'real_prefix'):
+	# Python 3.3 has the 'venv' module, allowing these to be created directly in python
         print('\n== Creating virtual environment ==\n')
         call('virtualenv ' + virtualenv, 
              shell=True)
