@@ -85,6 +85,8 @@ def main():
 # Disabled: we have a separate wsgi script per target for now
 #    replace_wsgi_settings(args.target)
 
+    os.mkdir('log')
+
     if os.name == 'posix':
         # Make manage.py executable
         st = os.stat('src/manage.py')
