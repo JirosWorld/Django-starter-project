@@ -2,6 +2,7 @@
 # bootstrap.py
 # Bootstrap and setup a virtualenv with the specified requirements.txt
 import os
+import stat
 import sys
 import shutil
 from subprocess import call
@@ -85,7 +86,10 @@ def main():
 # Disabled: we have a separate wsgi script per target for now
 #    replace_wsgi_settings(args.target)
 
-    os.mkdir('log')
+    try:
+        os.mkdir('log')
+    except:
+        pass
 
     if os.name == 'posix':
         # Make manage.py executable
