@@ -145,7 +145,7 @@ INSTALLED_APPS = [
     #'django.contrib.sitemaps',
 
     # External applications.
-    'axes',
+    # 'axes',
     'south',
     'compressor',
     
@@ -230,15 +230,15 @@ LOGGING = {
 }
 
 #
-# Additional Django settings
+# Additional Django security settings
 #
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY = True
+# CSRF_COOKIE_SECURE = True
+# X_FRAME_OPTIONS = 'DENY'
 
 #
-# Django-axes
+# Django-axes (disabled by default)
 #
 AXES_LOGIN_FAILURE_LIMIT = 3  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
