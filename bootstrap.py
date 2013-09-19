@@ -2,7 +2,6 @@
 # bootstrap.py
 # Bootstrap and setup a virtualenv with the specified requirements.txt
 import os
-import stat
 import sys
 import shutil
 from subprocess import call
@@ -75,7 +74,6 @@ def append_settings_activate(project, target, env):
 def main():
     virtualenv = args.env
     if not hasattr(sys, 'real_prefix'):
-	# Python 3.3 has the 'venv' module, allowing these to be created directly in python
         print('\n== Creating virtual environment ==\n')
         call('virtualenv ' + virtualenv, 
              shell=True)
@@ -85,18 +83,6 @@ def main():
 
 # Disabled: we have a separate wsgi script per target for now
 #    replace_wsgi_settings(args.target)
-
-    try:
-        os.mkdir('log')
-    except:
-        pass
-
-    if os.name == 'posix':
-        # Make manage.py executable
-        st = os.stat('src/manage.py')
-        os.chmod('src/manage.py', st.st_mode | stat.S_IEXEC)
-        os.symlink('../../src/manage.py', 
-                   os.path.join(virtualenv, 'bin', 'django-admin'))
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':

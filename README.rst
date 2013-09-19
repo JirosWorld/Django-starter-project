@@ -35,19 +35,7 @@ installation instructions below and start at step 3.
 
 **NOTE:** The section above will not be included in your project's README.
 Below you'll see the actual project README template.
-
-**Python 3 support!** 
-
-Steps you'll want to take for Python 3 projects:
-
-1. Replace `python` with `python3` for the bootstrap.py call in the documentation below.
-
-2. Add ` --python=python3 ` to line 78 of bootstrap.py
     
-3. Disable Sphinx in requirements/base.txt and django-debug-toolbar in requirements/development.txt (at least until their respective versions work properly in Python3). Remove the django-debug-toolbar settings in src/``<project_name>``/conf/settings_development.py.
-
-4. Disable django-axes in requirements/base.txt and remove the axes middleware in src/``<project_name>``/conf/settings.py.
-
 {% endcomment %}Project layout
 ==============
 
@@ -107,25 +95,23 @@ below.
 
     $ source env/bin/activate
     $ cd src
-    $ django-admin collectstatic --link
-    $ django-admin syncdb --migrate
+    $ python manage.py collectstatic --link
+    $ python manage.py syncdb --migrate
 
-Note that a django-admin symlink is automatically created, this points to 
-src/manage.py.
 
 Developers
 ----------
 
 Optionally, you can load demo data and extract demo media files::
 
-    $ django-admin loaddata demo
+    $ python manage.py loaddata demo
     $ cd ../media
     $ tar -xzf demo.tgz
 
 You can now run your installation and point your browser to the address given
 by this command::
 
-    $ django-admin runserver
+    $ python manage.py runserver
 
 If you are making local, machine specific, changes, add them to 
 ``src/{{ project_name|lower }}/conf/settings_local.py``. You can base this file on
@@ -166,5 +152,5 @@ When updating an existing installation:
 3. Update the statics and database::
 
     $ cd src
-    $ django-admin collectstatic --link
-    $ django-admin syncdb --migrate
+    $ python manage.py collectstatic --link
+    $ python manage.py syncdb --migrate
