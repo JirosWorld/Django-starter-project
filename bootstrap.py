@@ -81,6 +81,15 @@ def main():
     print('\n== Set "%s.conf.settings_%s" as default settings ==\n' % (args.project, args.target))
     append_settings_activate(args.project, args.target, args.env)
 
+    if os.name == 'posix':
+        # Make manage.py executable
+        st = os.stat('src/manage.py')
+        os.chmod('src/manage.py', st.st_mode | stat.S_IEXEC)
+        django_admin_symlink = os.path.join(virtualenv, 'bin', 'django')
+        if not os.path.exists(django_admin_symlink):
+            os.symlink('../../src/manage.py', 
+                       django_admin_symlink)
+
 # Disabled: we have a separate wsgi script per target for now
 #    replace_wsgi_settings(args.target)
 
