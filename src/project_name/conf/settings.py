@@ -90,7 +90,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
 # Make this unique, and don't share it with anybody.
@@ -100,7 +100,7 @@ SECRET_KEY = '{{ secret_key }}'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = [
@@ -110,7 +110,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
     # External middleware.
     'axes.middleware.FailedLoginMiddleware'
 ]
@@ -148,7 +148,7 @@ INSTALLED_APPS = [
     'axes',
     'south',
     'compressor',
-    
+
     # Project applications.
 ]
 
@@ -188,12 +188,12 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler'
         },
         'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
         },
         'console': {
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
             'formatter': 'timestamped'
         },
         'django': {
@@ -243,4 +243,3 @@ X_FRAME_OPTIONS = 'DENY'
 AXES_LOGIN_FAILURE_LIMIT = 3  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
-

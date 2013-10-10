@@ -24,11 +24,19 @@ time, if not::
 
     $ pip install django
 
-Finally, start a new Django project, named ``<project_name>``, using the
-template. It can be usefull to use a ``<project_name>`` that serves as
-namespace in your code, like ``maykinmedia``::
+Start a new Django project, named ``<project_name>``, using the template. It
+can be usefull to use a ``<project_name>`` that serves as namespace in your
+code, like ``maykinmedia``::
 
     $ python env/bin/django-admin.py startproject --template=https://bitbucket.org/maykinmedia/default-project/get/tip.zip --extension=py,rst,rb,html <project_name> .
+
+Once the project is ready, create a repository online and commit the files to
+the repository::
+
+    $ hg clone ssh://hg@bitbucket.org/maykinmedia/...
+    $ hg add
+    $ hg commit -m "Initial project layout."
+    $ hg push
 
 You'll now have a starting point for your new project. Continue to the
 installation instructions below and start at step 3.
@@ -54,10 +62,10 @@ or keep in a different location (like the virtual environment)::
     |       +-- conf        -- Django settings files.
     |       |
     |       +-- templates   -- Project templates
-	|       |
-	|       +-- wsgi        -- Default location for wsgi deployment scripts
-	|       |
-	|       +-- static      -- Default location for project static files
+    |       |
+    |       +-- wsgi        -- Default location for wsgi deployment scripts
+    |       |
+    |       +-- static      -- Default location for project static files
     |       |
     |       +-- ...         -- Project specific applications.
     |

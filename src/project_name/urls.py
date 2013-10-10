@@ -22,7 +22,5 @@ if settings.DEBUG:
     # Static files are handled by the staticfiles package. This section only
     # adds media files to be served as well.
     urlpatterns += patterns('',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
    )
