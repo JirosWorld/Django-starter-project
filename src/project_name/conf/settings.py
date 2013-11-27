@@ -132,8 +132,10 @@ FIXTURE_DIRS = (
 )
 
 INSTALLED_APPS = [
-    'django.contrib.auth',
+
+    # Note: contenttypes should be first, see Django ticket #10827
     'django.contrib.contenttypes',
+    'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
