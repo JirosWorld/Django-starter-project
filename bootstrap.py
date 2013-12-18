@@ -75,9 +75,10 @@ def main():
     virtualenv = args.env
     if not hasattr(sys, 'real_prefix'):
         print('\n== Creating virtual environment ==\n')
-        call('virtualenv ' + virtualenv, 
+        call('virtualenv {0} --prompt="({1}-{2}) "'.format(virtualenv,
+                                                           args.project,
+                                                           args.target),
              shell=True)
-
     print('\n== Set "%s.conf.settings_%s" as default settings ==\n' % (args.project, args.target))
     append_settings_activate(args.project, args.target, args.env)
 
@@ -87,7 +88,7 @@ def main():
         os.chmod('src/manage.py', st.st_mode | stat.S_IEXEC)
         django_admin_symlink = os.path.join(virtualenv, 'bin', 'django')
         if not os.path.exists(django_admin_symlink):
-            os.symlink('../../src/manage.py', 
+            os.symlink('../../src/manage.py',
                        django_admin_symlink)
 
 # Disabled: we have a separate wsgi script per target for now
