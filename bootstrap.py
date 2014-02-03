@@ -2,6 +2,7 @@
 # bootstrap.py
 # Bootstrap and setup a virtualenv with the specified requirements.txt
 import os
+import stat
 import sys
 import shutil
 from subprocess import call
