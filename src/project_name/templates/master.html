@@ -1,4 +1,4 @@
-{% templatetag openblock %} load compress {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load compress staticfiles {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,29 +7,29 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/bootstrap-3.1.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/bootstrap-3.1.0/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="{% templatetag openvariable %} static '{{ project_name|lower }}/lib/bootstrap-3.1.0/css/bootstrap.min.css' {% templatetag closevariable %}" rel="stylesheet">
+        <link href="{% templatetag openvariable %} static '{{ project_name|lower }}/lib/bootstrap-3.1.0/css/bootstrap-theme.min.css' {% templatetag closevariable %}" rel="stylesheet">
         {% templatetag openblock %} compress css {% templatetag closeblock %}
-            <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-            <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/css/print.css" media="print" rel="stylesheet" type="text/css" />
+            <link href="{% templatetag openvariable %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closevariable %}" media="screen, projection" rel="stylesheet" type="text/css" />
+            <link href="{% templatetag openvariable %} static '{{ project_name|lower }}/css/print.css' {% templatetag closevariable %}" media="print" rel="stylesheet" type="text/css" />
 
             {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endcompress {% templatetag closeblock %}
         <!--[if IE]>
-            <link href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+            <link href="{% templatetag openvariable %} static '{{ project_name|lower }}/css/ie.css' {% templatetag closevariable %}" media="screen, projection" rel="stylesheet" type="text/css" />
         <![endif]-->
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script src="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/jquery/js/jquery-1.9.1.min.js"></script>
+        <script src="{% templatetag openvariable %} static '{{ project_name|lower }}/lib/jquery/js/jquery-1.9.1.min.js' {% templatetag closevariable %}"></script>
 
-        <link rel="shortcut icon" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="{% templatetag openvariable %} static '{{ project_name|lower }}/ico/favicon.png' {% templatetag closevariable %}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openvariable %} static '{{ project_name|lower }}/ico/apple-touch-icon-144-precomposed.png' {% templatetag closevariable %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% templatetag openvariable %} static '{{ project_name|lower }}/ico/apple-touch-icon-114-precomposed.png' {% templatetag closevariable %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% templatetag openvariable %} static '{{ project_name|lower }}/ico/apple-touch-icon-72-precomposed.png' {% templatetag closevariable %}">
+        <link rel="apple-touch-icon-precomposed" href="{% templatetag openvariable %} static '{{ project_name|lower }}/ico/apple-touch-icon-57-precomposed.png' {% templatetag closevariable %}">
     </head>
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
 
@@ -46,10 +46,10 @@
             </div>
         </div>
 
-        <script src="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/lib/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+        <script src="{% templatetag openvariable %} static '{{ project_name|lower }}/lib/bootstrap-3.1.0/js/bootstrap.min.js' {% templatetag closevariable %}"></script>
 
         {% templatetag openblock %} compress js {% templatetag closeblock %}
-        <script src="{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}{{ project_name|lower }}/js/global.js"></script>
+        <script src="{% templatetag openvariable %} static '{{ project_name|lower }}/js/global.js' {% templatetag closevariable %}"></script>
         {% templatetag openblock %} endcompress {% templatetag closeblock %}
 
         {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
