@@ -2,6 +2,8 @@ syntax: regexp
 
 # Developers
 ^\.hg/
+^\.git/
+^\.svn/
 ^\.idea/
 ^\.sass-cache/
 \.db$
