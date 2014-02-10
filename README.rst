@@ -33,10 +33,19 @@ code, like ``maykinmedia``::
 Once the project is ready, create a repository online and commit the files to
 the repository::
 
+*Mercurial*
+
     $ hg clone ssh://hg@bitbucket.org/maykinmedia/...
     $ hg add
     $ hg commit -m "Initial project layout."
     $ hg push
+
+*Git*
+
+    $ git clone ssh://git@bitbucket.org/maykinmedia/...
+    $ git add --all
+    $ git commit -m "Initial project layout."
+    $ git push
 
 You'll now have a starting point for your new project. Continue to the
 installation instructions below and start at step 3.
@@ -102,9 +111,8 @@ below.
 4. Activate your virtual environment and create the statics and database::
 
     $ source env/bin/activate
-    $ cd src
-    $ python manage.py collectstatic --link
-    $ python manage.py syncdb --migrate
+    $ python src/manage.py collectstatic --link
+    $ python src/manage.py syncdb --migrate
 
 
 Developers
@@ -112,14 +120,14 @@ Developers
 
 Optionally, you can load demo data and extract demo media files::
 
-    $ python manage.py loaddata demo
-    $ cd ../media
+    $ python src/manage.py loaddata demo
+    $ cd media
     $ tar -xzf demo.tgz
 
 You can now run your installation and point your browser to the address given
 by this command::
 
-    $ python manage.py runserver
+    $ python src/manage.py runserver
 
 If you are making local, machine specific, changes, add them to 
 ``src/{{ project_name|lower }}/conf/settings_local.py``. You can base this file on
@@ -159,6 +167,5 @@ When updating an existing installation:
     
 3. Update the statics and database::
 
-    $ cd src
-    $ python manage.py collectstatic --link
-    $ python manage.py syncdb --migrate
+    $ python src/manage.py collectstatic --link
+    $ python src/manage.py syncdb --migrate
