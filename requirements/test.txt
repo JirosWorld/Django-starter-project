@@ -1,1 +1,4 @@
 -r base.txt
+django-jenkins==0.14.1
+pep8==1.4.6
+
