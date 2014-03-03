@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 
 from django.views.generic.base import TemplateView
@@ -15,12 +16,6 @@ urlpatterns = patterns('',
     (r'^$', TemplateView.as_view(template_name='master.html')),
 )
 
-
-# If settings.DEBUG is set to True, some URLs can be handled by Django.
-# Normally, these URLs should be covered by the webserver for optimization.
-if settings.DEBUG:
-    # Static files are handled by the staticfiles package. This section only
-    # adds media files to be served as well.
-    urlpatterns += patterns('',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-   )
+# NOTE: The staticfiles_urlpatterns also discovers static files (ie. no need to run collectstatic). Both the static
+# folder and the media folder are only served via Django if DEBUG = True.
+urlpatterns += staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

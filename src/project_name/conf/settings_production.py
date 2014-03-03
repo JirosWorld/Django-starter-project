@@ -50,3 +50,8 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
 RAVEN_CONFIG = {
     'dsn': 'udp://',
 }
+
+#
+# django-maintenancemode
+#
+MAINTENANCE_MODE = True

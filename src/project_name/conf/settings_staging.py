@@ -35,3 +35,8 @@ LOGGING['loggers'].update({
         'propagate': True,
     },
 })
+
+#
+# django-maintenancemode
+#
+MAINTENANCE_MODE = True
