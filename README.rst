@@ -33,16 +33,8 @@ code, like ``maykinmedia``::
 Once the project is ready, create a repository online and commit the files to
 the repository::
 
-*Mercurial*
-
-    $ hg clone ssh://hg@bitbucket.org/maykinmedia/...
-    $ hg add
-    $ hg commit -m "Initial project layout."
-    $ hg push
-
-*Git*
-
-    $ git clone ssh://git@bitbucket.org/maykinmedia/...
+    $ git init
+    $ git remote add origin git@bitbucket.org/maykinmedia/<repo>.git
     $ git add --all
     $ git commit -m "Initial project layout."
     $ git push
@@ -99,7 +91,7 @@ below.
 
 2. Get the code::
 
-    $ hg clone ssh://hg@bitbucket.org/maykinmedia/{{ project_name|lower }}
+    $ git clone ssh://git@bitbucket.org/maykinmedia/{{ project_name|lower }}
     $ cd {{ project_name|lower }}
 
 3. Bootstrap the virtual environment and install all required libraries. The
@@ -162,7 +154,7 @@ When updating an existing installation:
 
 2. Update the code and libraries::
 
-    $ hg pull --update
+    $ git pull
     $ pip install -r requirements/<production|staging|test|development>.txt
     
 3. Update the statics and database::

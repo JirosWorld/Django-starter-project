@@ -1,8 +1,8 @@
-Django==1.6.1
-Sphinx==1.2
-South==0.8.4
-Pillow==2.3.0
-django_compressor==1.3
-django-axes==1.3.6
+Django
+Sphinx
+South
+Pillow
+django_compressor
+django-axes
 raven
 git+git://github.com/maykinmedia/django-maintenancemode.git
