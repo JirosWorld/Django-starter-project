@@ -248,14 +248,3 @@ LOGGING = {
 AXES_LOGIN_FAILURE_LIMIT = 3  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
-
-#
-# Placeholder
-# Remove this app and middleware when appropriate.
-#
-INSTALLED_APPS += [
-    '{{ project_name|lower }}.placeholder',
-]
-MIDDLEWARE_CLASSES += [
-    '{{ project_name|lower }}.placeholder.middleware.PlaceholderMiddleware',
-]
