@@ -15,4 +15,4 @@ settings_local.py
 ^env/
 ^media/
 ^static/
-^log/
+
