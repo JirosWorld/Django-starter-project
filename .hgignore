@@ -8,6 +8,7 @@ syntax: regexp
 ^\.sass-cache/
 \.db$
 \.pyc$
+\.swp$
 ~$
 
 # Environment
