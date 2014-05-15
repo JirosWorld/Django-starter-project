@@ -44,6 +44,9 @@ TEMPLATE_LOADERS = (
     )),
 )
 
+# Caching sessions.
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
 # Production logging facility.
 LOGGING['loggers'].update({
     '{{ project_name|lower }}': {
