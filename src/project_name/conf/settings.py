@@ -112,7 +112,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     # External middleware.
-    'axes.middleware.FailedLoginMiddleware'
+    'maintenancemode.middleware.MaintenanceModeMiddleware',
+    'axes.middleware.FailedLoginMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name|lower }}.urls'
