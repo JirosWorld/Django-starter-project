@@ -11,6 +11,9 @@ syntax: regexp
 \.swp$
 ~$
 
+# Javascript libraries
+TODO
+
 # Environment
 settings_local.py
 ^env/
