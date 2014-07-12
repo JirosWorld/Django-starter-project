@@ -113,7 +113,7 @@ MIDDLEWARE_CLASSES = [
 
     # External middleware.
     'maintenancemode.middleware.MaintenanceModeMiddleware',
-    'axes.middleware.FailedLoginMiddleware'
+    'axes.middleware.FailedLoginMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name|lower }}.urls'

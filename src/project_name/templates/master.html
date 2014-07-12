@@ -7,8 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/lib/bootstrap-3.1.0/css/bootstrap.min.css' {% templatetag closeblock %}" rel="stylesheet">
-        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/lib/bootstrap-3.1.0/css/bootstrap-theme.min.css' {% templatetag closeblock %}" rel="stylesheet">
+        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/lib/bootstrap/dist/css/bootstrap.min.css' {% templatetag closeblock %}" rel="stylesheet">
         {% templatetag openblock %} compress css {% templatetag closeblock %}
             <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen, projection" rel="stylesheet" type="text/css" />
             <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" type="text/css" />
@@ -23,7 +22,7 @@
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/lib/jquery/js/jquery-1.11.1.min.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/lib/jquery/dist/jquery.min.js' {% templatetag closeblock %}"></script>
 
         <link rel="shortcut icon" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/favicon.png' {% templatetag closeblock %}">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/apple-touch-icon-144-precomposed.png' {% templatetag closeblock %}">
@@ -54,7 +53,7 @@
         </div>
         {% templatetag openblock %} endblock {% templatetag closeblock %}
 
-        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/lib/bootstrap-3.1.0/js/bootstrap.min.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/lib/bootstrap/dist/js/bootstrap.min.js' {% templatetag closeblock %}"></script>
 
         {% templatetag openblock %} compress js {% templatetag closeblock %}
         <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/global.js' {% templatetag closeblock %}"></script>
