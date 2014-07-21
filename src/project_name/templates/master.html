@@ -32,6 +32,7 @@
     </head>
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
 
+        {% templatetag openblock %} block content {% templatetag closeblock %}
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -50,6 +51,7 @@
                 </div>
             </div>
         </div>
+        {% templatetag openblock %} endblock {% templatetag closeblock %}
 
         <script src="{% templatetag openblock %} static '{{ project_name|lower }}/lib/bootstrap/dist/js/bootstrap.min.js' {% templatetag closeblock %}"></script>
 
