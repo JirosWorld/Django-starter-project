@@ -152,6 +152,12 @@ INSTALLED_APPS = [
     #'django.contrib.humanize',
     #'django.contrib.sitemaps',
 
+    # django-admin-tools
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+
     # External applications.
     'axes',
     'south',

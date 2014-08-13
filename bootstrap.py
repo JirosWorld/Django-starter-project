@@ -97,9 +97,9 @@ def main():
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
-        call(os.path.join(virtualenv, 'bin', 'pip') + ' install -r requirements/%s.txt' % args.target, shell=True)
+        call(os.path.join(virtualenv, 'bin', 'pip') + ' install --upgrade -r requirements/%s.txt' % args.target, shell=True)
     elif os.name == 'nt':
-        call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install -r requirements\\%s.txt' % args.target, shell=True)
+        call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install --upgrade -r requirements\\%s.txt' % args.target, shell=True)
 
 if __name__ == '__main__':
     main()
