@@ -1,0 +1,16 @@
+{% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n {% templatetag closeblock %}
+
+{% templatetag openblock %} block title {% templatetag closeblock %}{{ title }} | {% templatetag openblock %} trans 'Django site admin' {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block branding {% templatetag closeblock %}
+    <h1 id="site-name">{% templatetag openblock %} trans 'Django administration' {% templatetag closeblock %}</h1>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block nav-global {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block footer {% templatetag closeblock %}
+    {% templatetag openvariable %} block.super {% templatetag closevariable %}
+
+    {% templatetag openblock %} include "includes/debug_alert.html" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}

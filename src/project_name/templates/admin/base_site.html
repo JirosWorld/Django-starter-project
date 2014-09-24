@@ -1,16 +1,31 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
+{% load i18n admin_tools_menu_tags {% templatetag closeblock %}
 
-{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+{% templatetag openblock %} block title {% templatetag closeblock %}{% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openblock %} trans 'Django site admin' {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block branding %}
-    <h1 id="site-name">{% trans 'Django administration' %}</h1>
-{% endblock %}
+{% templatetag openblock %} block extrastyle {% templatetag closeblock %}
+{% templatetag openvariable %} block.super {% templatetag closevariable %}
+{% templatetag openblock %} if user.is_active and user.is_staff {% templatetag closeblock %}
+{% templatetag openblock %} if not is_popup {% templatetag closeblock %}
+{% templatetag openblock %} admin_tools_render_menu_css {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block nav-global %}{% endblock %}
+{% templatetag openblock %} block branding {% templatetag closeblock %}
+<h1 id="site-name">{% templatetag openblock %} trans 'Django administration' {% templatetag closeblock %}</h1>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block footer %}
-    {{ block.super }}
+{% templatetag openblock %} block nav-global {% templatetag closeblock %}
+{% templatetag openblock %} if user.is_active and user.is_staff {% templatetag closeblock %}
+{% templatetag openblock %} if not is_popup {% templatetag closeblock %}
+{% templatetag openblock %} admin_tools_render_menu {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-    {% include "includes/debug_alert.html" %}
-{% endblock %}
+{% templatetag openblock %} block footer {% templatetag closeblock %}
+    {% templatetag openvariable %} block.super {% templatetag closevariable %}
+
+    {% templatetag openblock %} include "includes/debug_alert.html" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}

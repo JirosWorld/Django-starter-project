@@ -48,5 +48,5 @@
 </style>
 
 <div id="debug-message">
-    <a class="debug-message" href="#" onclick="document.getElementById('debug-message').style.display = 'none';">{{ settings.ENVIRONMENT }}</a>
+    <a class="debug-message" href="#" onclick="document.getElementById('debug-message').style.display = 'none';">{% templatetag openvariable %} settings.ENVIRONMENT {% templatetag closevariable %}</a>
 </div>
