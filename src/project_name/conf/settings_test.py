@@ -49,8 +49,4 @@ LOGGING['loggers'].update({
 })
 
 
-#
-# South
-#
-SKIP_SOUTH_TESTS = True
-SOUTH_TESTS_MIGRATE = False
+# Skip migrations in Django 1.7, see: https://gist.github.com/nealtodd/2869341f38f5b1eeb86d

@@ -1,11 +1,9 @@
 Django
 Sphinx
-South
 Pillow
 django_compressor
 django-axes
 raven
 git+git://github.com/maykinmedia/django-maintenancemode.git
-
 hg+http://bitbucket.org/izi/django-admin-tools/
 

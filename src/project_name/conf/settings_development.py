@@ -68,9 +68,16 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 #
-# South
+# Skip migrations in Django 1.7
 #
-SKIP_SOUTH_TESTS = True
+def prevent_tests_migrate(db):
+    import django
+    from django.db import connections
+    from django.db.migrations.executor import MigrationExecutor
+    django.setup()
+    ma = MigrationExecutor(connections[db]).loader.migrated_apps
+    return dict(zip(ma, ['{a}.notmigrations'.format(a=a) for a in ma]))
+MIGRATION_MODULES = prevent_tests_migrate('default')
 
 # Override settings with local settings.
 try:

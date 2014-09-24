@@ -160,7 +160,6 @@ INSTALLED_APPS = [
 
     # External applications.
     'axes',
-    'south',
     'compressor',
 
     # Project applications.
