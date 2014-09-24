@@ -1,5 +1,5 @@
-{% extends "admin/base.html" %}
-{% load i18n admin_tools_menu_tags {% templatetag closeblock %}
+{% templatetag openblock %} extends "admin/base.html" {% templatetag closevariable %}
+{% templatetag openblock %} load i18n admin_tools_menu_tags {% templatetag closeblock %}
 
 {% templatetag openblock %} block title {% templatetag closeblock %}{% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openblock %} trans 'Django site admin' {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
