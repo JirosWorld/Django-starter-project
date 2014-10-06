@@ -4,7 +4,7 @@
 
 * { _noFocusLine: expression(this.hideFocus=true); } /* ie7 */
 ::-moz-focus-inner {border:0;}                       /* firefox */
-:focus, a:focus {outline:none;}                      /* ie8, chrome, etc */
+:focus, a:focus {outline:none !important;}           /* ie8, chrome, etc */
 
 /* Align cols to bottom of a row */
 .row.align-bottom > [class^=col]{ display: table-cell; vertical-align: bottom; float: none; }
