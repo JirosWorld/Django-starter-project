@@ -44,7 +44,7 @@ installation instructions below and start at step 3.
 
 **NOTE:** The section above will not be included in your project's README.
 Below you'll see the actual project README template.
-    
+
 {% endcomment %}Project layout
 ==============
 
@@ -99,7 +99,7 @@ below.
    used::
 
     $ python bootstrap.py <production|staging|test|development>
-    
+
 4. Activate your virtual environment and create the statics and database::
 
     $ source env/bin/activate
@@ -121,7 +121,7 @@ by this command::
 
     $ python src/manage.py runserver
 
-If you are making local, machine specific, changes, add them to 
+If you are making local, machine specific, changes, add them to
 ``src/{{ project_name|lower }}/conf/settings_local.py``. You can base this file on
 the example file included in the same directory.
 
@@ -141,13 +141,13 @@ For more information on Node.js, see: http://nodejs.org/
 Staging and production
 ----------------------
 
-Configure your webserver and/or WSGI handler. See: 
+Configure your webserver and/or WSGI handler. See:
 https://docs.djangoproject.com/en/dev/howto/deployment/
 
 Note that your wsgi script in ``src/{{ project_name|lower }}/wsgi.py already
 points to your staging|production settings.py file. This happens when
 bootstrapping your environment.
-    
+
 Update installation
 ===================
 
@@ -162,10 +162,21 @@ When updating an existing installation:
 
     $ git pull
     $ pip install -r requirements/<production|staging|test|development>.txt
-    
+
 3. Update the statics and database::
 
     $ python src/manage.py collectstatic --link
     $ python src/manage.py syncdb --migrate
 
 
+Custom management commands
+==========================
+
+Management commands are often run in a cronjob with stdout redirected to a log file.
+
+Make sure to use the 'maven' management command, so use::
+
+    $ python src/manage.py maven my_custom_management_command >> log/my_command.log 2>&1
+
+This ensures that uncaught exceptions end up in Sentry instead of being
+overlooked in the log files
