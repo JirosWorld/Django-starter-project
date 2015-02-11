@@ -101,6 +101,9 @@ def main():
     elif os.name == 'nt':
         call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install --upgrade -r requirements\\%s.txt' % args.target, shell=True)
 
+    if sys.platform.startswith('linux'):
+        call(os.path.join(virtualenv, 'bin', 'pip') + ' install pyinotify', shell=True)
+
 if __name__ == '__main__':
     main()
     sys.exit(0)
