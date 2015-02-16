@@ -14,9 +14,11 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Admin', '{{ project_name|lower }}@example.com'),
 )
 MANAGERS = ADMINS
+
+DEFAULT_FROM_EMAIL = '{{ project_name|lower }}@example.com'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts
