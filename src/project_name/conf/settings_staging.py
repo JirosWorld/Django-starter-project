@@ -42,4 +42,4 @@ LOGGING['loggers'].update({
 #
 # django-maintenancemode
 #
-MAINTENANCE_MODE = True
+MAINTENANCE_MODE = False
