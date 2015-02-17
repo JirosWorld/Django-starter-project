@@ -17,7 +17,7 @@ WSGIRestrictStdout Off
         Alias /media "/srv/sites/{{ project_name|lower }}/media/"
         Alias /static "/srv/sites/{{ project_name|lower }}/static/"
 
-        WSGIScriptAlias / "/srv/sites/{{ project_name|lower }}/src/teamq/wsgi/wsgi_<target>.py"
+        WSGIScriptAlias / "/srv/sites/{{ project_name|lower }}/src/{{ project_name|lower }}/wsgi/wsgi_<target>.py"
 
 </VirtualHost>
 
