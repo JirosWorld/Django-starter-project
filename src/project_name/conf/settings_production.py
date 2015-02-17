@@ -77,4 +77,4 @@ RAVEN_CONFIG = {
 #
 # django-maintenancemode
 #
-MAINTENANCE_MODE = True
+MAINTENANCE_MODE = False
