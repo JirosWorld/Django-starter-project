@@ -184,21 +184,27 @@ LOGGING = {
         },
         'django': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGGING_DIR, 'django.log'),
-            'formatter': 'verbose'
+            'formatter': 'verbose',
+            'maxBytes': 1024*1024*10,  # 10 MB
+            'backupCount': 10
         },
         'project': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGGING_DIR, '{{ project_name|lower }}.log'),
-            'formatter': 'verbose'
+            'formatter': 'verbose',
+            'maxBytes': 1024*1024*10,  # 10 MB
+            'backupCount': 10
         },
         'performance': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGGING_DIR, 'performance.log'),
-            'formatter': 'performance'
+            'formatter': 'performance',
+            'maxBytes': 1024*1024*10,  # 10 MB
+            'backupCount': 10
         },
     },
     'loggers': {
