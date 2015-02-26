@@ -1,6 +1,6 @@
 {
-  "name": "visity-metadatamanager",
-  "description": "Metadata Manager components for the Django project.",
+  "name": "{{ project_name|lower }}",
+  "description": "Django {{ project_name|capfirst }} project",
   "version": "0.0.0",
   "private": true,
   "ignore": [
