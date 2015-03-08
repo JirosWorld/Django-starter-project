@@ -1,6 +1,6 @@
 import time
 
-from settings import *
+from .settings import *
 
 #
 # Standard Django settings.
