@@ -180,3 +180,20 @@ Make sure to use the 'maven' management command, so use::
 
 This ensures that uncaught exceptions end up in Sentry instead of being
 overlooked in the log files
+
+
+Questions and Answers
+=====================
+
+1. Problems with having manage.py in a subdirectory when doing a runserver.
+
+If you're getting an error like:
+ OSError: [Errno 2] No such file or directory: ‘manage.py'
+
+there are two ways to solve this. Under linux, `pip install pyinotify` and runserver will work
+(although with a warning).
+
+Otherwise, provide the complete path to manage.py when doing a runserver:
+
+ python /home/user/project/src/manage.py runserver
+
