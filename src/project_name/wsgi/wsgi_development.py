@@ -29,12 +29,12 @@ def setupenv():
     pwd = os.getenv('VIRTUAL_ENV', None)
     if pwd is None:
         pwd = os.path.join(mydir, os.path.join('..', '..', '..', 'env'))
-    os.chdir(pwd)
+
     sys.path = [pwd, os.path.join(mydir, '..', '..')] + sys.path
 
     # find the site-packages within the local virtualenv
-    for python_dir in os.listdir('lib'):
-        site_packages_dir = os.path.join('lib', python_dir, 'site-packages')
+    for python_dir in os.listdir(os.path.join('env', 'lib')):
+        site_packages_dir = os.path.join('env', 'lib', python_dir, 'site-packages')
         if os.path.exists(site_packages_dir):
             site.addsitedir(os.path.abspath(site_packages_dir))
 
