@@ -1,5 +1,4 @@
 Django
-Sphinx
 Pillow
 django_compressor
 django-axes
@@ -7,3 +6,6 @@ raven
 django-maven
 git+git://github.com/maykinmedia/django-maintenancemode.git
 hg+http://bitbucket.org/izi/django-admin-tools/
+
+# Memcache is the default cache on production
+python-memcached
