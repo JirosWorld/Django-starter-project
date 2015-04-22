@@ -2,7 +2,8 @@ from django.conf import settings as django_settings
 
 
 def settings(request):
-    public_settings = ('GOOGLE_ANALYTICS_ID', 'ENVIRONMENT', 'SHOW_ALERT')
+    public_settings = ('GOOGLE_ANALYTICS_ID', 'ENVIRONMENT',
+                       'SHOW_ALERT', 'PROJECT_NAME')
 
     return {
         'settings': dict([
