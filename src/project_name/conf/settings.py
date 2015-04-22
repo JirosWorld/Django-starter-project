@@ -241,6 +241,8 @@ MESSAGE_TAGS = {
     message_constants.ERROR: 'danger'
 }
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 #
 # Django-axes
 #
