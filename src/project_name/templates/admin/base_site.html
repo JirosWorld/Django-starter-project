@@ -27,5 +27,7 @@
 {% templatetag openblock %} block footer {% templatetag closeblock %}
     {% templatetag openvariable %} block.super {% templatetag closevariable %}
 
-    {% templatetag openblock %} include "includes/debug_alert.html" {% templatetag closeblock %}
+    {% templatetag openblock %} if settings.ENVIRONMENT and settings.SHOW_ALERT {% templatetag closevariable %}
+      {% templatetag openblock %} include "includes/debug_alert.html" {% templatetag closeblock %}
+    {% templatetag openblock %} endif {% templatetag closevariable %}
 {% templatetag openblock %} endblock {% templatetag closeblock %}

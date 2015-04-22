@@ -9,6 +9,7 @@ from .settings import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_test.application'
+ENVIRONMENT = 'test'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

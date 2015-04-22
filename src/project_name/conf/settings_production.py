@@ -7,6 +7,8 @@ from .settings import *
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_production.application'
+ENVIRONMENT = 'production'
+SHOW_ALERT = False
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

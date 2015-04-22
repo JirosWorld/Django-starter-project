@@ -242,6 +242,8 @@ MESSAGE_TAGS = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+ENVIRONMENT = None
+SHOW_ALERT = True
 
 #
 # Django-axes

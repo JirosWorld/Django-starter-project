@@ -7,6 +7,7 @@ from .settings import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_staging.application'
+ENVIRONMENT = 'staging'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
