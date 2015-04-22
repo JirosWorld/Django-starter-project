@@ -1,5 +1,5 @@
 {% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
-{% templatetag openblock %} load i18n admin_tools_menu_tags {% templatetag closeblock %}
+{% templatetag openblock %} load i18n admin_tools_menu_tags staticfiles {% templatetag closeblock %}
 
 {% templatetag openblock %} block title {% templatetag closeblock %}{% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openvariable %} settings.PROJECT_NAME|capfirst {% templatetag closevariable %} {% templatetag openblock %} trans 'admin' {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -10,6 +10,7 @@
 {% templatetag openblock %} admin_tools_render_menu_css {% templatetag closeblock %}
 {% templatetag openblock %} endif {% templatetag closeblock %}
 {% templatetag openblock %} endif {% templatetag closeblock %}
+<link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/admin_overrides.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
 {% templatetag openblock %} block branding {% templatetag closeblock %}
