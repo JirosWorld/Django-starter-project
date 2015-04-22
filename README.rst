@@ -91,7 +91,7 @@ below.
 
 2. Get the code::
 
-    $ git clone ssh://git@bitbucket.org/maykinmedia/{{ project_name|lower }}
+    $ git clone ssh://git@bitbucket.org/maykinmedia/{{ project_name|lower }}.git
     $ cd {{ project_name|lower }}
 
 3. Bootstrap the virtual environment and install all required libraries. The
@@ -104,7 +104,7 @@ below.
 
     $ source env/bin/activate
     $ python src/manage.py collectstatic --link
-    $ python src/manage.py syncdb --migrate
+    $ python src/manage.py migrate
 
 
 Developers
@@ -166,7 +166,7 @@ When updating an existing installation:
 3. Update the statics and database::
 
     $ python src/manage.py collectstatic --link
-    $ python src/manage.py syncdb --migrate
+    $ python src/manage.py migrate
 
 
 Custom management commands
