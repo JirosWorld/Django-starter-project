@@ -18,6 +18,17 @@ libraries::
     $ virtualenv env
     $ source env/bin/activate
 
+In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/),
+you can create the virtual environment in this way::
+
+    $ mkvirtualenvwrapper <project_name>
+
+And in such case, you can set the default `DJANGO_SETTINGS_MODULE` environment
+variable to be available when you use `manage.py` commands::
+
+    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.settings_development'" >> $WORKON_HOME/<project_name>/bin/postactivate
+    $ workon <project_name>  # Reload virtualenv.
+
 If you have a global Django installation (not recommended but can be present
 in development environments), you can skip the installation of Django at this
 time, if not::
@@ -28,7 +39,7 @@ Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
 code, like ``maykinmedia``::
 
-    $ python env/bin/django-admin.py startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,bowerrc,json <project_name> .
+    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,bowerrc,json <project_name> .
 
 Once the project is ready, create a repository online and commit the files to
 the repository::
