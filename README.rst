@@ -18,8 +18,7 @@ libraries::
     $ virtualenv env
     $ source env/bin/activate
 
-In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) ,
-you can create the virtual environment in this way::
+In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) you can create the virtual environment in this way::
 
     $ mkvirtualenvwrapper <project_name>
 
