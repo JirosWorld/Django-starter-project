@@ -18,13 +18,13 @@ libraries::
     $ virtualenv env
     $ source env/bin/activate
 
-In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/),
+In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) ,
 you can create the virtual environment in this way::
 
     $ mkvirtualenvwrapper <project_name>
 
-And in such case, you can set the default `DJANGO_SETTINGS_MODULE` environment
-variable to be available when you use `manage.py` commands::
+And in such case, you can set the default ``DJANGO_SETTINGS_MODULE`` environment
+variable to be available when you use ``manage.py`` commands::
 
     $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.settings_development'" >> $WORKON_HOME/<project_name>/bin/postactivate
     $ workon <project_name>  # Reload virtualenv.
