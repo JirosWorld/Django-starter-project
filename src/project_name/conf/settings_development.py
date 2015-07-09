@@ -38,12 +38,12 @@ LOGGING['loggers'].update({
         'propagate': True,
     },
     'django': {
-        'handlers': ['django'],
+        'handlers': ['console'],
         'level': 'DEBUG',
         'propagate': True,
     },
     'performance': {
-        'handlers': ['performance'],
+        'handlers': ['console'],
         'level': 'INFO',
         'propagate': True,
     },
