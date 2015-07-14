@@ -42,6 +42,11 @@ LOGGING['loggers'].update({
         'level': 'DEBUG',
         'propagate': True,
     },
+    'django.db.backends': {
+        'handlers': ['django'],
+        'level': 'DEBUG',
+        'propagate': False,
+    },
     'performance': {
         'handlers': ['console'],
         'level': 'INFO',
