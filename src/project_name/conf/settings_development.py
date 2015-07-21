@@ -73,18 +73,6 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False
 }
 
-#
-# Skip migrations in Django 1.7
-#
-def prevent_tests_migrate(db):
-    import django
-    from django.db import connections
-    from django.db.migrations.executor import MigrationExecutor
-    django.setup()
-    ma = MigrationExecutor(connections[db]).loader.migrated_apps
-    return dict(zip(ma, ['{a}.notmigrations'.format(a=a) for a in ma]))
-MIGRATION_MODULES = prevent_tests_migrate('default')
-
 # Override settings with local settings.
 try:
     from settings_local import *
