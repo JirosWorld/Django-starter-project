@@ -4,6 +4,7 @@ django_compressor
 django-axes
 raven
 django-maven
+pytz
 git+git://github.com/maykinmedia/django-maintenancemode.git
 git+git://github.com/django-admin-tools/django-admin-tools.git
 
