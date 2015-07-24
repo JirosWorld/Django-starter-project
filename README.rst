@@ -44,10 +44,10 @@ Once the project is ready, create a repository online and commit the files to
 the repository::
 
     $ git init
-    $ git remote add origin git@bitbucket.org/maykinmedia/<repo>.git
+    $ git remote add origin git@bitbucket.org:maykinmedia/<repo>.git
     $ git add --all
     $ git commit -m "Initial project layout."
-    $ git push
+    $ git push origin master
 
 You'll now have a starting point for your new project. Continue to the
 installation instructions below and start at step 3.
