@@ -119,7 +119,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    
+    # Note: If enabled, at least one Site object is required
+    #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
