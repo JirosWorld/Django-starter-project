@@ -76,7 +76,7 @@ def main():
     virtualenv = args.env
     if not hasattr(sys, 'real_prefix'):
         print('\n== Creating virtual environment ==\n')
-        call('virtualenv {0} --python=python3 --prompt="({1}-{2}) "'.format(virtualenv,
+        call('virtualenv {0} --prompt="({1}-{2}) "'.format(virtualenv,
                                                            args.project,
                                                            args.target),
              shell=True)
