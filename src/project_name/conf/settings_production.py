@@ -76,7 +76,3 @@ RAVEN_CONFIG = {
     'dsn': 'http://',
 }
 
-#
-# django-maintenancemode
-#
-MAINTENANCE_MODE = False

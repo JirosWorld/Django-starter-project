@@ -59,6 +59,8 @@ SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
 
+COMPRESS_ENABLED = False
+
 #
 # Django debug toolbar
 #
