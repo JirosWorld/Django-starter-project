@@ -5,7 +5,7 @@ django-axes
 raven
 django-maven
 pytz
-git+git://github.com/django-admin-tools/django-admin-tools.git
+django-admin-tools
 
 # Memcache is the default cache on production
 python-memcached
