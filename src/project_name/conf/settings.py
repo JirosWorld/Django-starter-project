@@ -11,7 +11,6 @@ ROOT_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.p
 #
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 PROJECT_NAME = '{{ project_name|lower }}'
 
@@ -121,7 +120,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
-    
+
     # Note: If enabled, at least one Site object is required
     #'django.contrib.sites',
     'django.contrib.messages',
