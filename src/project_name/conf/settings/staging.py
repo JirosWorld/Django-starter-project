@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 ENVIRONMENT = 'staging'
 
 ADMINS = (
@@ -29,6 +28,10 @@ SECRET_KEY = '{{ secret_key }}'
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
+
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', RAW_TEMPLATE_LOADERS),
+]
 
 LOGGING['loggers'].update({
     'django': {

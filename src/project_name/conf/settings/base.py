@@ -72,20 +72,32 @@ MEDIA_URL = '/media/'
 SECRET_KEY = '{{ secret_key }}'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
+RAW_TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'admin_tools.template_loaders.Loader',
     # 'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-    '{{ project_name|lower }}.utils.context_processors.settings',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': False,  # conflicts with explicity specifying the loaders
+        'DIRS': [
+            os.path.join(DJANGO_PROJECT_DIR, 'templates'),
+        ],
+        'OPTIONS': {
+            'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + [
+                'django.core.context_processors.request',
+                '{{ project_name|lower }}.utils.context_processors.settings',
+            ],
+            'loaders': RAW_TEMPLATE_LOADERS
+        },
+    },
+]
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -97,20 +109,13 @@ MIDDLEWARE_CLASSES = [
 
     # External middleware.
     'axes.middleware.FailedLoginMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name|lower }}.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.application'
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(DJANGO_PROJECT_DIR, 'templates'),
-)
 
 FIXTURE_DIRS = (
     os.path.join(DJANGO_PROJECT_DIR, 'fixtures'),

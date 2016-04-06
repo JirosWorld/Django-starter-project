@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 ENVIRONMENT = 'production'
 SHOW_ALERT = False
 
@@ -40,12 +39,9 @@ ALLOWED_HOSTS = []
 # }
 
 # Caching templates.
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-)
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', RAW_TEMPLATE_LOADERS),
+]
 
 # Caching sessions.
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
