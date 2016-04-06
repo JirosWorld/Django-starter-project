@@ -101,13 +101,23 @@ def main():
 # Disabled: we have a separate wsgi script per target for now
 #    replace_wsgi_settings(args.target)
 
+    print('\n== Compiling base requirements ==\n')
+    if os.name == 'posix':
+        bin_dir = 'bin'
+    elif os.name == 'nt':
+        bin_dir = 'Scripts'
+    pip_compile = os.path.join(virtualenv, bin_dir, 'pip-compile')
+    os.chdir('requirements')
+    call('{0} main.in'.format(pip_compile), shell=True)
+    os.chdir('..')
+
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
         pip_path = os.path.join(virtualenv, 'bin', 'pip')
-        cmd_tpl = '{pip} install --upgrade -r requirements/{target}.txt'
+        cmd_tpl = '{pip} install -r requirements/{target}.txt'
     elif os.name == 'nt':
         pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
-        cmd_tpl = '{pip} install --upgrade -r requirements\\{target}.txt'
+        cmd_tpl = '{pip} install -r requirements\\{target}.txt'
     call(cmd_tpl.format(pip=pip_path, target=args.target), shell=True)
 
 if __name__ == '__main__':
