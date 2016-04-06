@@ -45,7 +45,7 @@ Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
 code, like ``maykinmedia``::
 
-    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,bowerrc,json,ini <project_name> .
+    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini <project_name> .
 
 Once the project is ready, create a repository online and commit the files to
 the repository::
@@ -148,11 +148,16 @@ Enable SASS/Compass::
 
 For more information on SASS and Compass, see: http://compass-style.org/
 
+Install the front-end CLI tools if you've never installed them before::
+
+    $ npm install -g jspm gulp
+
 Get all Javascript libraries::
 
-    $ bower install
+    $ npm install
+    $ jspm install
 
-For more information on Node.js, see: http://nodejs.org/
+For more information on Node.js, see: http://nodejs.org/ and http://jspm.io/
 
 
 Staging and production
