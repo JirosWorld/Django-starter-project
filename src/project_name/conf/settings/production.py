@@ -1,4 +1,4 @@
-from .settings import *
+from .base import *
 
 #
 # Standard Django settings.
@@ -15,13 +15,12 @@ ADMINS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '{{ project_name|lower }}',
+        'USER': '{{ project_name|lower }}',
+        'PASSWORD': '{{ project_name|lower }}',
+        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',  # Set to empty string for default.
     }
 }
 
@@ -33,12 +32,12 @@ SECRET_KEY = '{{ secret_key }}'
 ALLOWED_HOSTS = []
 
 # Memcached cache backend setup.
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
 
 # Caching templates.
 TEMPLATE_LOADERS = (
@@ -49,7 +48,7 @@ TEMPLATE_LOADERS = (
 )
 
 # Caching sessions.
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Production logging facility.
 LOGGING['loggers'].update({
@@ -66,12 +65,16 @@ LOGGING['loggers'].update({
 })
 
 #
+# django-maintenancemode
+#
+MAINTENANCE_MODE = False
+
+#
 # Raven
 #
-INSTALLED_APPS = list(INSTALLED_APPS) + [
+INSTALLED_APPS = INSTALLED_APPS + [
     'raven.contrib.django.raven_compat',
 ]
 RAVEN_CONFIG = {
     'dsn': 'http://',
 }
-

@@ -1,4 +1,4 @@
-from .settings import *
+from .base import *
 
 #
 # Standard Django settings.
@@ -8,9 +8,7 @@ DEBUG = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ENVIRONMENT = 'development'
 
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
+ADMINS = ()
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -20,8 +18,8 @@ DATABASES = {
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',  # Set to empty string for default.
     }
 }
 
@@ -58,6 +56,7 @@ SESSION_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
 
 COMPRESS_ENABLED = False
+SYSTEMJS_ENABLED = False
 
 #
 # Django debug toolbar
@@ -75,6 +74,6 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # Override settings with local settings.
 try:
-    from settings_local import *
+    from .local import *
 except ImportError:
     pass
