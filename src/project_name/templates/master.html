@@ -8,15 +8,15 @@
         <meta name="author" content="">
 
         {% templatetag openblock %} compress css {% templatetag closeblock %}
-            <link href="{% templatetag openblock %} static "normalize.css" {% templatetag closeblock %}" media="screen, projection, print" rel="stylesheet">
-            <link href="{% templatetag openblock %} static "css/font-awesome.min.css" {% templatetag closeblock %}" media="screen, projection, print" rel="stylesheet">
-            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen, projection" rel="stylesheet" />
+            <link href="{% templatetag openblock %} static "normalize.css" {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
+            <link href="{% templatetag openblock %} static "css/font-awesome.min.css" {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
+            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
             <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
 
             {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endcompress {% templatetag closeblock %}
         <!--[if IE]>
-            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/ie.css' {% templatetag closeblock %}" media="screen, projection" rel="stylesheet" />
+            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/ie.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
         <![endif]-->
 
         <link rel="shortcut icon" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/favicon.png' {% templatetag closeblock %}">
