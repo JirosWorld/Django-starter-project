@@ -56,7 +56,7 @@
 
         {% templatetag openblock %} compress js {% templatetag closeblock %}
 
-        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/js/main.js" {% templatetag closeblock %}"></script>
+        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/js/main.js" {% templatetag closeblock %}
 
         {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endcompress {% templatetag closeblock %}
