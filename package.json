@@ -26,5 +26,41 @@
     "bootstrap": "^4.0.0-alpha.2",
     "font-awesome": "^4.5.0",
     "normalize.css": "^4.0.0"
+  },
+  "jspm": {
+    "directories": {
+      "lib": "static/{{ project_name|lower }}/js",
+      "baseURL": "static"
+    },
+    "configFiles": {
+      "jspm:browser": "static/{{ project_name|lower }}/js/jspm.browser.js",
+      "jspm": "static/{{ project_name|lower }}/js/jspm.config.js"
+    },
+    "configFile": "static/{{ project_name|lower }}/js/jspm.config.js",
+    "dependencies": {
+      "jquery": "npm:jquery@^2.2.3"
+    },
+    "devDependencies": {
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.9"
+    },
+    "peerDependencies": {
+      "core-js": "npm:core-js@^1.1.4",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
+      "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
+    },
+    "overrides": {
+      "npm:babel-runtime@5.8.38": {
+        "main": false,
+        "dependencies": {},
+        "optionalDependencies": {
+          "core-js": "^1.2.0"
+        }
+      },
+      "npm:jquery@2.2.3": {
+        "format": "amd"
+      }
+    }
   }
 }
