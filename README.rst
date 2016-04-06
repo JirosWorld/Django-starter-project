@@ -34,6 +34,13 @@ time, if not::
 
     $ pip install django
 
+You'll need pip-compile to generate the pinned versions of the requirements::
+
+    $ pip install pip-tools
+    $ cd requirements
+    $ pip-compile base.in
+    $ cd ..
+
 Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
 code, like ``maykinmedia``::
