@@ -1,6 +1,7 @@
 import os
 
 import django.conf.global_settings as DEFAULT_SETTINGS
+from django.contrib.messages import constants as message_constants
 
 # Automatically figure out the ROOT_DIR and PROJECT_DIR.
 DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -122,14 +123,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
 
     # Note: If enabled, at least one Site object is required
-    #'django.contrib.sites',
+    # 'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
     # Optional applications.
     'django.contrib.admin',
-    #'django.contrib.humanize',
-    #'django.contrib.sitemaps',
+    # 'django.contrib.admindocs',
+    # 'django.contrib.humanize',
+    # 'django.contrib.sitemaps',
 
     # django-admin-tools
     'admin_tools',
@@ -140,6 +142,8 @@ INSTALLED_APPS = [
     # External applications.
     'axes',
     'compressor',
+    'sniplates',
+    'systemjs',
 
     # Project applications.
 ]
@@ -181,7 +185,7 @@ LOGGING = {
         },
         'null': {
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
         'console': {
             'level': 'DEBUG',
@@ -237,7 +241,6 @@ LOGGING = {
 # CSRF_COOKIE_SECURE = True
 # X_FRAME_OPTIONS = 'DENY'
 
-from django.contrib.messages import constants as message_constants
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'debug',
     message_constants.INFO: 'info',
@@ -265,4 +268,7 @@ AXES_COOLOFF_TIME = 1  # One hour
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
 COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
