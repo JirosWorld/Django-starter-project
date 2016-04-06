@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var bourbon = require('bourbon');
@@ -16,7 +17,7 @@ gulp.task('sass', function() {
             // sourceMap: true, // requires extra plugin
             outputStyle: 'expanded',
             includePaths: [
-                'bootstrap/scss'
+                path.join(__dirname, 'node_modules/bootstrap/scss')
             ].concat(bourbon.includePaths)
         }).on('error', sass.logError))
         .pipe(autoprefixer({
