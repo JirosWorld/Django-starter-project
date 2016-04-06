@@ -7,7 +7,7 @@ Development environment
 Quick start
 ===========
 
-.. note:: If you have some global utilities (like buildout, ipython, etc.) 
+.. note:: If you have some global utilities (like buildout, ipython, etc.)
    installed, you could pass the option ``--system-site-packages`` to the
    ``virtualenv`` command.
 
@@ -19,10 +19,10 @@ Quick start
     $ cd {{ project_name|lower }}
 
 #. Bootstrap the virtual environment and install all required libraries. The
-   ``boostrap.py`` script basically sets the proper Django settings file to be
+   ``bootstrap.py`` script basically sets the proper Django settings file to be
    used::
 
-    $ python bootstrap.py <production|staging|test|development>
+    $ python bootstrap.py <production|staging|test|dev>
 
 #. Activate your virtual environment and create the statics and database::
 
