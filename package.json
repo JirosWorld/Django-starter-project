@@ -1,0 +1,19 @@
+{
+  "name": "{{ project_name|lower }}",
+  "version": "1.0.0-alpha.0",
+  "description": "{{ project_name }} project",
+  "main": "src/static/{{ project_name|lower }}/js/main.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/maykinmedia/{{ project_name|lower }}.git"
+  },
+  "author": "Maykin Media",
+  "license": "UNLICENSED",
+  "homepage": "https://maykinmedia.nl"
+}
