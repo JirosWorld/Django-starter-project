@@ -8,6 +8,7 @@ from .base import *
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_test.application'
 ENVIRONMENT = 'test'
 
 ADMINS = ()
