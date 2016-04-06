@@ -53,6 +53,8 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(DJANGO_PROJECT_DIR, 'static'),
+    os.path.join(ROOT_DIR, 'node_modules', 'normalize.css'),
+    os.path.join(ROOT_DIR, 'node_modules', 'font-awesome'),
 )
 
 # List of finder classes that know how to find static files in
