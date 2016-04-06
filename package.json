@@ -34,10 +34,10 @@
       "baseURL": "static"
     },
     "configFiles": {
-      "jspm:browser": "static/{{ project_name|lower }}/js/jspm.browser.js",
-      "jspm": "static/{{ project_name|lower }}/js/jspm.config.js"
+      "jspm:browser": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.browser.js",
+      "jspm": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.config.js"
     },
-    "configFile": "static/{{ project_name|lower }}/js/jspm.config.js",
+    "configFile": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.config.js",
     "dependencies": {
       "jquery": "npm:jquery@^2.2.3"
     },

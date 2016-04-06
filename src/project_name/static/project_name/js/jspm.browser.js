@@ -3,6 +3,6 @@ SystemJS.config({
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*",
-    "{{ project_name|lower }}/": "js/"
+    "{{ project_name|lower }}/": "{{ project_name|lower }}/"
   }
 });

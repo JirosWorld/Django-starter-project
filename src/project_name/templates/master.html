@@ -56,6 +56,10 @@
 
         {% templatetag openblock %} compress js {% templatetag closeblock %}
 
+        <script src="{% templatetag openblock %} static "jspm_packages/system.js" {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static "{{ project_name|lower }}/js/jspm.browser.js" {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static "{{ project_name|lower }}/js/jspm.config.js" {% templatetag closeblock %}"></script>
+
         {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/js/main.js" {% templatetag closeblock %}
 
         {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
