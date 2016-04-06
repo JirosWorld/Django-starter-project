@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-// var bourbon = require('bourbon');
+var bourbon = require('bourbon');
 var autoprefixer = require('gulp-autoprefixer');
 
 
@@ -17,7 +17,7 @@ gulp.task('sass', function() {
             outputStyle: 'expanded',
             includePaths: [
                 'bootstrap/scss'
-            ]//.concat(bourbon.includePaths)
+            ].concat(bourbon.includePaths)
         }).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],

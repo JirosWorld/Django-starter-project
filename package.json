@@ -17,6 +17,7 @@
   "license": "UNLICENSED",
   "homepage": "https://maykinmedia.nl",
   "devDependencies": {
+    "bourbon": "^4.2.6",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-sass": "^2.2.0",

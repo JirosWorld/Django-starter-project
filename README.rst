@@ -139,18 +139,21 @@ by this command::
     $ python src/manage.py runserver
 
 If you are making local, machine specific, changes, add them to
-``src/{{ project_name|lower }}/conf/settings_local.py``. You can base this file on
+``src/{{ project_name|lower }}/conf/settings.local.py``. You can base this file on
 the example file included in the same directory.
-
-Enable SASS/Compass::
-
-    $ compass watch
-
-For more information on SASS and Compass, see: http://compass-style.org/
 
 Install the front-end CLI tools if you've never installed them before::
 
     $ npm install -g jspm gulp
+
+Enable watch tasks::
+
+    $ gulp
+
+By default this will compile the sass to css on every sass file save.
+
+For more information on SASS, see: http://sass-lang.com/. For the common mixins,
+Bourbon is used, see http://http://bourbon.io/.
 
 Get all Javascript libraries::
 
