@@ -15,7 +15,7 @@ Quick start
 
 #. Get the code::
 
-    $ hg clone ssh://hg@bitbucket.org/maykinmedia/{{ project_name|lower }}
+    $ git clone git@bitbucket.org:maykinmedia/{{ project_name|lower }}.git
     $ cd {{ project_name|lower }}
 
 #. Bootstrap the virtual environment and install all required libraries. The
@@ -26,10 +26,12 @@ Quick start
 
 #. Activate your virtual environment and create the statics and database::
 
-    $ source env/bin/activate
-    $ cd src
-    $ python manage.py collectstatic --link
-    $ python manage.py syncdb --migrate
+    $ source env/bin/activate  # or, workon <env> if you use virtualenvwrapper
+    $ npm install
+    $ jspm install
+    $ gulp sass
+    $ python src/manage.py collectstatic --link
+    $ python src/manage.py migrate
 
 
 Next steps
@@ -37,11 +39,11 @@ Next steps
 
 Optionally, you can load demo data and extract demo media files::
 
-    $ python manage.py loaddata demo
-    $ cd ../media
+    $ python src/manage.py loaddata demo
+    $ cd media
     $ tar -xzf demo.tgz
 
 You can now run your installation and point your browser to the address given
 by this command::
 
-    $ python manage.py runserver
+    $ python src/manage.py runserver
