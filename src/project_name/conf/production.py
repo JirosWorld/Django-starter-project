@@ -5,7 +5,7 @@ from .base import *
 #
 
 DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.wsgi_production.application'
+WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.production.application'
 ENVIRONMENT = 'production'
 SHOW_ALERT = False
 
