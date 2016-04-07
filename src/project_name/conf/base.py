@@ -4,7 +4,7 @@ import django.conf.global_settings as DEFAULT_SETTINGS
 from django.contrib.messages import constants as message_constants
 
 # Automatically figure out the ROOT_DIR and PROJECT_DIR.
-DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir))
+DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 ROOT_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.path.pardir))
 BASE_DIR = ROOT_DIR  # used for systemjs
 
@@ -130,7 +130,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
-    
+
     # Note: If enabled, at least one Site object is required
     # 'django.contrib.sites',
     'django.contrib.messages',

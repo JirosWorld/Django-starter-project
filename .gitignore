@@ -13,7 +13,7 @@ __pycache__
 /node_modules/
 
 # Environment
-settings/local.py
+conf/local.py
 /env/
 /media/
 /static/

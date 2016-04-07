@@ -25,7 +25,7 @@ In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.
 And in such case, you can set the default ``DJANGO_SETTINGS_MODULE`` environment
 variable to be available when you use ``manage.py`` commands::
 
-    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.settings.dev'" >> $WORKON_HOME/<project_name>/bin/postactivate
+    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> $WORKON_HOME/<project_name>/bin/postactivate
     $ workon <project_name>  # Reload virtualenv.
 
 If you have a global Django installation (not recommended but can be present
@@ -139,7 +139,7 @@ by this command::
     $ python src/manage.py runserver
 
 If you are making local, machine specific, changes, add them to
-``src/{{ project_name|lower }}/conf/settings.local.py``. You can base this file on
+``src/{{ project_name|lower }}/conf/local.py``. You can base this file on
 the example file included in the same directory.
 
 Install the front-end CLI tools if you've never installed them before::

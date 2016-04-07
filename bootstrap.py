@@ -52,7 +52,7 @@ def replace_wsgi_settings(target):
     path = os.path.join('src', project_name, 'wsgi.py')
     replace_or_append(
         path, 'os.environ.setdefault',
-        'os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings.%s")\n' % (project_name, target)
+        'os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.%s")\n' % (project_name, target)
     )
 
 
@@ -60,7 +60,7 @@ def replace_manage_settings(target):
     path = os.path.join('src', project_name, 'manage.py')
     replace_or_append(
         path, '    os.environ.setdefault',
-        '    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings.%s")\n' % (project_name, target)
+        '    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.%s")\n' % (project_name, target)
     )
 
 
@@ -68,12 +68,12 @@ def append_settings_activate(project, target, env):
     if os.name == 'posix':
         path = '%s/bin/activate' % env
         replace_or_append(path, 'export DJANGO_SETTINGS_MODULE=',
-                          'export DJANGO_SETTINGS_MODULE=\'%s.conf.settings.%s\'\n' %
+                          'export DJANGO_SETTINGS_MODULE=\'%s.conf.%s\'\n' %
                           (project, target))
     elif os.name == 'nt':
         path = '%s\\Scripts\\activate.bat' % env
         replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
-                          'set DJANGO_SETTINGS_MODULE=%s.conf.settings.%s\n' %
+                          'set DJANGO_SETTINGS_MODULE=%s.conf.%s\n' %
                           (project, target))
         path = '%s\\Scripts\\deactivate.bat' % env
         replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
@@ -87,7 +87,7 @@ def main():
         call('virtualenv {0} --python=python3 --prompt="({1}-{2}) "'.format(
             virtualenv, args.project, args.target
         ), shell=True)
-    print('\n== Set "%s.conf.settings.%s" as default settings ==\n' % (args.project, args.target))
+    print('\n== Set "%s.conf.%s" as default settings ==\n' % (args.project, args.target))
     append_settings_activate(args.project, args.target, args.env)
 
     if os.name == 'posix':
