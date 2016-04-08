@@ -3,7 +3,6 @@ Pillow
 django_compressor
 django-axes
 raven
-django-maven
 pytz
 django-admin-tools
 

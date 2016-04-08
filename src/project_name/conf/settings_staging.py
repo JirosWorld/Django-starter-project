@@ -33,6 +33,11 @@ SECRET_KEY = '{{ secret_key }}'
 ALLOWED_HOSTS = []
 
 LOGGING['loggers'].update({
+    '': {
+        'handlers': ['sentry'],
+        'level': 'WARNING',
+        'propagate': False,
+    },
     'django': {
         'handlers': ['django'],
         'level': 'WARNING',
@@ -44,3 +49,20 @@ LOGGING['loggers'].update({
 # django-maintenancemode
 #
 MAINTENANCE_MODE = False
+
+#
+# Raven
+#
+INSTALLED_APPS = list(INSTALLED_APPS) + [
+    'raven.contrib.django.raven_compat',
+]
+RAVEN_CONFIG = {
+    'dsn': 'http://',
+}
+LOGGING['handlers'].update({
+    'sentry': {
+        'level': 'WARNING',
+        'class': 'raven.handlers.logging.SentryHandler',
+        'dsn': RAVEN_CONFIG['dsn']
+    },
+})

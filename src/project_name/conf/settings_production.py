@@ -54,6 +54,11 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Production logging facility.
 LOGGING['loggers'].update({
+    '': {
+        'handlers': ['sentry'],
+        'level': 'ERROR',
+        'propagate': False,
+    },
     '{{ project_name|lower }}': {
         'handlers': ['project'],
         'level': 'WARNING',
@@ -75,4 +80,10 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
 RAVEN_CONFIG = {
     'dsn': 'http://',
 }
-
+LOGGING['handlers'].update({
+    'sentry': {
+        'level': 'WARNING',
+        'class': 'raven.handlers.logging.SentryHandler',
+        'dsn': RAVEN_CONFIG['dsn']
+    },
+})
