@@ -1,0 +1,15 @@
+Pillow
+pytz
+raven
+
+Django
+django-admin-tools
+django-autoslug
+django-axes
+django-choices
+django-compressor
+django-rosetta
+django-sniplates
+django-systemjs
+
+djangorestframework

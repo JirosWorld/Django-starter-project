@@ -25,7 +25,7 @@ In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.
 And in such case, you can set the default ``DJANGO_SETTINGS_MODULE`` environment
 variable to be available when you use ``manage.py`` commands::
 
-    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.settings_development'" >> $WORKON_HOME/<project_name>/bin/postactivate
+    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> $WORKON_HOME/<project_name>/bin/postactivate
     $ workon <project_name>  # Reload virtualenv.
 
 If you have a global Django installation (not recommended but can be present
@@ -34,11 +34,18 @@ time, if not::
 
     $ pip install django
 
+You'll need pip-compile to generate the pinned versions of the requirements::
+
+    $ pip install pip-tools
+    $ cd requirements
+    $ pip-compile base.in
+    $ cd ..
+
 Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
 code, like ``maykinmedia``::
 
-    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,bowerrc,json,ini <project_name> .
+    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js <project_name> .
 
 Once the project is ready, create a repository online and commit the files to
 the repository::
@@ -132,20 +139,28 @@ by this command::
     $ python src/manage.py runserver
 
 If you are making local, machine specific, changes, add them to
-``src/{{ project_name|lower }}/conf/settings_local.py``. You can base this file on
+``src/{{ project_name|lower }}/conf/local.py``. You can base this file on
 the example file included in the same directory.
 
-Enable SASS/Compass::
+Install the front-end CLI tools if you've never installed them before::
 
-    $ compass watch
+    $ npm install -g jspm gulp
 
-For more information on SASS and Compass, see: http://compass-style.org/
+Enable watch tasks::
+
+    $ gulp
+
+By default this will compile the sass to css on every sass file save.
+
+For more information on SASS, see: http://sass-lang.com/. For the common mixins,
+Bourbon is used, see http://http://bourbon.io/.
 
 Get all Javascript libraries::
 
-    $ bower install
+    $ npm install
+    $ jspm install
 
-For more information on Node.js, see: http://nodejs.org/
+For more information on Node.js, see: http://nodejs.org/ and http://jspm.io/
 
 
 Staging and production

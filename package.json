@@ -1,0 +1,67 @@
+{
+  "name": "{{ project_name|lower }}",
+  "version": "1.0.0-alpha.0",
+  "description": "{{ project_name }} project",
+  "main": "src/static/{{ project_name|lower }}/js/main.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/maykinmedia/{{ project_name|lower }}.git"
+  },
+  "author": "Maykin Media",
+  "license": "UNLICENSED",
+  "homepage": "https://maykinmedia.nl",
+  "devDependencies": {
+    "bourbon": "^4.2.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.2.0",
+    "jspm": "^0.17.0-beta.12"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.2",
+    "font-awesome": "^4.5.0",
+    "normalize.css": "^4.0.0"
+  },
+  "jspm": {
+    "directories": {
+      "lib": "static/{{ project_name|lower }}/js",
+      "baseURL": "static"
+    },
+    "configFiles": {
+      "jspm:browser": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.browser.js",
+      "jspm": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.config.js"
+    },
+    "configFile": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.config.js",
+    "dependencies": {
+      "jquery": "npm:jquery@^2.2.3"
+    },
+    "devDependencies": {
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.9"
+    },
+    "peerDependencies": {
+      "core-js": "npm:core-js@^1.1.4",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
+      "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
+    },
+    "overrides": {
+      "npm:babel-runtime@5.8.38": {
+        "main": false,
+        "dependencies": {},
+        "optionalDependencies": {
+          "core-js": "^1.2.0"
+        }
+      },
+      "npm:jquery@2.2.3": {
+        "format": "amd"
+      }
+    }
+  }
+}
