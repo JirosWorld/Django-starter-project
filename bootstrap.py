@@ -21,6 +21,8 @@ parser.add_argument('target', choices=['production', 'staging', 'test', 'dev'],
                     help='production/staging/dev')
 parser.add_argument('--project', default=project_name,
                     help='Name of the project in your src directory, "%s" by default' % project_name)
+parser.add_argument('--init', action='store_true',
+                    help='Initialize a fresh "startproject" by pinning the requirements using pip-tools compile. Automatically done if requirements/base.txt does not yet exist.')
 parser.add_argument('--env', default='env',
                     help='Directory name for virtualenv, "env" by default')
 
@@ -79,6 +81,30 @@ def append_settings_activate(project, target, env):
         replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
                           'set DJANGO_SETTINGS_MODULE=\n')
 
+def pip_compile_pin_requirements(virtualenv):
+    print('\n== Compiling base requirements ==\n')
+    if os.name == 'posix':
+        pip_path = os.path.join(virtualenv, 'bin', 'pip')
+    elif os.name == 'nt':
+        pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
+    cmd_tpl = '{pip} install pip-tools'.format(pip=pip_path)
+    call(cmd_tpl, shell=True)
+
+    if os.name == 'posix':
+        pip_path = os.path.join(virtualenv, 'bin', 'pip')
+    elif os.name == 'nt':
+        pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
+    cmd_tpl = '{pip} install --upgrade pip'.format(pip=pip_path)
+    call(cmd_tpl, shell=True)
+
+    if os.name == 'posix':
+        bin_dir = 'bin'
+    elif os.name == 'nt':
+        bin_dir = 'Scripts'
+    pip_compile = os.path.join(virtualenv, bin_dir, 'pip-compile')
+    os.chdir('requirements')
+    call('../{0} base.in'.format(pip_compile), shell=True)
+    os.chdir('..')
 
 def main():
     virtualenv = args.env
@@ -98,18 +124,8 @@ def main():
         if not os.path.exists(django_admin_symlink):
             os.symlink('../../src/manage.py', django_admin_symlink)
 
-# Disabled: we have a separate wsgi script per target for now
-#    replace_wsgi_settings(args.target)
-
-    print('\n== Compiling base requirements ==\n')
-    if os.name == 'posix':
-        bin_dir = 'bin'
-    elif os.name == 'nt':
-        bin_dir = 'Scripts'
-    pip_compile = os.path.join(virtualenv, bin_dir, 'pip-compile')
-    os.chdir('requirements')
-    call('{0} main.in'.format(pip_compile), shell=True)
-    os.chdir('..')
+    if args.init or not os.path.exists(os.path.join('requirements', 'base.txt')):
+        pip_compile_pin_requirements(virtualenv)
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
