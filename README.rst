@@ -17,29 +17,7 @@ libraries::
 
     $ virtualenv env
     $ source env/bin/activate
-
-In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) you can create the virtual environment in this way::
-
-    $ mkvirtualenvwrapper <project_name>
-
-And in such case, you can set the default ``DJANGO_SETTINGS_MODULE`` environment
-variable to be available when you use ``manage.py`` commands::
-
-    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> $WORKON_HOME/<project_name>/bin/postactivate
-    $ workon <project_name>  # Reload virtualenv.
-
-If you have a global Django installation (not recommended but can be present
-in development environments), you can skip the installation of Django at this
-time, if not::
-
     $ pip install django
-
-You'll need pip-compile to generate the pinned versions of the requirements::
-
-    $ pip install pip-tools
-    $ cd requirements
-    $ pip-compile base.in
-    $ cd ..
 
 Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
@@ -58,6 +36,27 @@ the repository::
 
 You'll now have a starting point for your new project. Continue to the
 installation instructions below and start at step 3.
+
+**Additions**
+
+If you want to configure your Django settings module automatically::
+
+    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> env/bin/activate
+    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> env/bin/deactivate
+
+In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) you can create the virtual environment in this way::
+
+    $ mkvirtualenvwrapper <project_name>
+    $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> $WORKON_HOME/<project_name>/bin/postactivate
+    $ workon <project_name>  # Reload virtualenv.
+
+You'll need pip-compile to generate the pinned versions of the requirements::
+
+    $ pip install pip-tools
+    $ cd requirements
+    $ pip-compile base.in
+    $ cd ..
+
 
 **NOTE:** The section above will not be included in your project's README.
 Below you'll see the actual project README template.
@@ -192,16 +191,3 @@ When updating an existing installation:
 
     $ python src/manage.py collectstatic --link
     $ python src/manage.py migrate
-
-
-Custom management commands
-==========================
-
-Management commands are often run in a cronjob with stdout redirected to a log file.
-
-Make sure to use the 'maven' management command, so use::
-
-    $ python src/manage.py maven my_custom_management_command >> log/my_command.log 2>&1
-
-This ensures that uncaught exceptions end up in Sentry instead of being
-overlooked in the log files
