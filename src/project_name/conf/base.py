@@ -1,12 +1,11 @@
 import os
 
-import django.conf.global_settings as DEFAULT_SETTINGS
+from django.conf import global_settings as DEFAULT_SETTINGS
 from django.contrib.messages import constants as message_constants
 
-# Automatically figure out the ROOT_DIR and PROJECT_DIR.
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-ROOT_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.path.pardir))
-BASE_DIR = ROOT_DIR  # used for systemjs
+BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.path.pardir))
 
 #
 # Standard Django settings.
@@ -29,7 +28,9 @@ DEFAULT_FROM_EMAIL = '{{ project_name|lower }}@example.com'
 ALLOWED_HOSTS = []
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+# https://docs.djangoproject.com/en/1.9/topics/i18n/
+LANGUAGE_CODE = 'nl-nl'
+
 TIME_ZONE = 'Europe/Amsterdam'
 
 LOCALE_PATHS = (
@@ -44,7 +45,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
@@ -54,8 +55,8 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(DJANGO_PROJECT_DIR, 'static'),
-    os.path.join(ROOT_DIR, 'node_modules', 'normalize.css'),
-    os.path.join(ROOT_DIR, 'node_modules', 'font-awesome'),
+    os.path.join(BASE_DIR, 'node_modules', 'normalize.css'),
+    os.path.join(BASE_DIR, 'node_modules', 'font-awesome'),
 )
 
 # List of finder classes that know how to find static files in
@@ -67,7 +68,7 @@ STATICFILES_FINDERS = [
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
-MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
@@ -91,7 +92,7 @@ TEMPLATES = [
         ],
         'OPTIONS': {
             'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + [
-                'django.core.context_processors.request',
+                'django.template.context_processors.request',
                 '{{ project_name|lower }}.utils.context_processors.settings',
             ],
             'loaders': RAW_TEMPLATE_LOADERS
@@ -100,7 +101,7 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    # 'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -112,13 +113,29 @@ MIDDLEWARE_CLASSES = [
 
     # External middleware.
     'axes.middleware.FailedLoginMiddleware',
-    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name|lower }}.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.application'
+
+# Password validation
+# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 FIXTURE_DIRS = (
     os.path.join(DJANGO_PROJECT_DIR, 'fixtures'),
@@ -157,7 +174,7 @@ INSTALLED_APPS = [
     # Project applications.
 ]
 
-LOGGING_DIR = os.path.join(ROOT_DIR, 'log')
+LOGGING_DIR = os.path.join(BASE_DIR, 'log')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
