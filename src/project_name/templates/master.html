@@ -8,8 +8,8 @@
         <meta name="author" content="">
 
         {% templatetag openblock %} compress css {% templatetag closeblock %}
-            <link href="{% templatetag openblock %} static "normalize.css" {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
-            <link href="{% templatetag openblock %} static "css/font-awesome.min.css" {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
+            <link href="{% templatetag openblock %} static 'normalize.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
+            <link href="{% templatetag openblock %} static 'css/font-awesome.min.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
             <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
             <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
 
@@ -28,24 +28,28 @@
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
 
         {% templatetag openblock %} block content {% templatetag closeblock %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <h1>Welcome!</h1>
-                    <p>This is the default project page for {{ project_name|title }}.</p>
-                </div>
-                <div class="col-md-4">
-                    <h2>What now?</h2>
-                    <p>How about:</p>
-                    <ul>
-                        <li>Looking around <a href='/admin/'>the admin</a></li>
-                        <li>Adding your apps for <em>{{ project_name|title }}</em></li>
-                        <li>Hooking them up to your <em>urls.py</em></li>
-                        <li>Styling this page using Bootstrap!</li>
-                    </ul>
-                </div>
+            <!-- Example content -->
+            <div id="summary">
+                <img id="logo" src="{% static 'analytics/img/maykinmedia_logo.png' %}">
+
+                <h1>It worked!</h1>
+                <h2>Congratulations on installing the Maykin Media default project for <strong>{{ project_name|title }}</strong>.</h2>
             </div>
-        </div>
+
+            <div id="instructions">
+                <p>
+                    Of course, you haven't actually done any work yet. Next, start your first app by running <code>python manage.py startapp [app_label]</code>.
+                </p>
+                <p>
+                    You can also checkout the <a href='/admin/'>admin</a>.
+                </p>
+            </div>
+
+            <div id="explanation">
+                <p>
+                    You're seeing this message because you have <code>DEBUG = True</code> in your Django settings file and you haven't configured any URLs. Get to work!
+                </p>
+            </div>
         {% templatetag openblock %} endblock {% templatetag closeblock %}
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,9 +60,9 @@
 
         {% templatetag openblock %} compress js {% templatetag closeblock %}
 
-        <script src="{% templatetag openblock %} static "jspm_packages/system.js" {% templatetag closeblock %}"></script>
-        <script src="{% templatetag openblock %} static "{{ project_name|lower }}/js/jspm.browser.js" {% templatetag closeblock %}"></script>
-        <script src="{% templatetag openblock %} static "{{ project_name|lower }}/js/jspm.config.js" {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static 'jspm_packages/system.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/jspm.browser.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/jspm.config.js' {% templatetag closeblock %}"></script>
 
         {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/js/main.js" {% templatetag closeblock %}
 
