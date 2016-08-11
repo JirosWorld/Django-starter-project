@@ -15,7 +15,7 @@ examples are ``corporate``, ``website`` or more specific like
 Create the virtual environment that holds your copy of Python and relevant
 libraries::
 
-    $ virtualenv env
+    $ virtualenv env or virtualenv --python=/usr/bin/python3.4 env
     $ source env/bin/activate
     $ pip install django
 
