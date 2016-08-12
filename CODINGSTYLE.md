@@ -187,6 +187,7 @@ h1 {  // Also bad, a marketeer may drop in and ask you to change it into an h2 (
 ```scss
 $article-color: $color;  // We copy the contents of a global variable into a private one
 $article-font: $font;    // This allow us easily "fix" the values and reuse our component
+
 .article {
   color: $article-color;  // We use private values here
   font-family: $article-font;
