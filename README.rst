@@ -114,7 +114,7 @@ below.
    ``boostrap.py`` script basically sets the proper Django settings file to be
    used::
 
-    $ python bootstrap.py <production|staging|test|development>
+    $ python bootstrap.py <production|staging|test|dev>
 
 4. Activate your virtual environment and create the statics and database::
 
@@ -185,7 +185,7 @@ When updating an existing installation:
 2. Update the code and libraries::
 
     $ git pull
-    $ pip install -r requirements/<production|staging|test|development>.txt
+    $ pip install -r requirements/<production|staging|test|dev>.txt
 
 3. Update the statics and database::
 
