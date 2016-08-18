@@ -262,13 +262,13 @@
 * Common: Annotate when useful.
     ```js
     /**
-    * Helper method to add an additional class name with a specific modifier (--modifier) to a BEM (Block Element Modifier) element
-    * A modifier class is created for each of the existing class names
-    * Class names containing "--" (modifier pattern) are discarded
-    * Double class names are prevented
-    * @param {HTMLElement} node The block/element to append the class name to (block, block__element)
-    * @param {String} modifier The name of the modifier (--name)
-    */
+     * Helper method to add an additional class name with a specific modifier (--modifier) to a BEM (Block Element Modifier) element
+     * A modifier class is created for each of the existing class names
+     * Class names containing "--" (modifier pattern) are discarded
+     * Double class names are prevented
+     * @param {HTMLElement} node The block/element to append the class name to (block, block__element)
+     * @param {String} modifier The name of the modifier (--name)
+     */
     function addModifier(node, modifier) {
     }
     ```
@@ -290,15 +290,15 @@
 * Event listener: Separate wiring from logic.
     ```js
     /**
-    * We separate "wiring" from the main logic so we can resure the logic
-    */
+     * We separate "wiring" from the main logic so we can resure the logic
+     */
     setUpOpen() {
         BUTTON_OPEN.addEventListener('click', this.open.bind(this));
     }
 
     /**
-    * We can now reuse this
-    */
+     * We can now reuse this
+     */
     open() {
     }
     ```
