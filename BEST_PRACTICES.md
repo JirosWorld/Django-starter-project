@@ -30,7 +30,11 @@ CSS/SASS
 
 JS
 ---
-* Consider these as deprecated: Bootstrap, Bower, Django Pipeline / Compressor, RequireJS.
+* Consider these as deprecated:
+  - Bootstrap
+  - Bower
+  - Django Pipeline/Compressor
+  - RequireJS
 * Match component (file)names to Django template blocks.
 * ES6! (http://es6-features.org/) or newer.
 * No dialects (typescript/coffeescript).
