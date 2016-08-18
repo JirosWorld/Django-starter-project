@@ -109,9 +109,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # External middleware.
-    'axes.middleware.FailedLoginMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name|lower }}.urls'
