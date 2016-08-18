@@ -54,5 +54,4 @@ Todo
 * Default gulp tasks. - Sven
 * Built sample structure. - Jorik
 * Make sample coding style file. - Sven (Jorik for Python)
-* ~~Editorconfig. - Jorik~~
 * Testing infrastructure. - Sergei
