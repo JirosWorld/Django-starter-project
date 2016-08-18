@@ -34,6 +34,7 @@ JS
   - Bootstrap
   - Bower
   - Django Pipeline/Compressor
+  - jQuery
   - RequireJS
 * Match component (file)names to Django template blocks.
 * ES6! (http://es6-features.org/) or newer.
