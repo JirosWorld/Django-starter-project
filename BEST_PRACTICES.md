@@ -16,7 +16,7 @@ HTML
 CSS/SASS
 ---
 * Don’t use bootstrap anymore, only for (real) prototyping.
-* BEM! (http://stackoverflow.com/...)
+* BEM! [(http://stackoverflow.com/...)](http://stackoverflow.com/documentation/css/5302/bem#t=201608181228046431355
 * Match component (file)names to Django template blocks.
 * Max 1 BEM block per file.
 * Only select using (BEM) class names (.block__element), not using tag/id (Matching id's breaks reusability, matching tags breaks flexibility).
@@ -30,14 +30,7 @@ CSS/SASS
 
 JS
 ---
-* Consider these as deprecated:
-
-- jQuery
-- Bower
-- Django Pipeline / Compressor
-- RequireJS
-- Paste driven development
-
+* Consider these as deprecated: Bootstrap, Bower, Django Pipeline / Compressor, RequireJS.
 * Match component (file)names to Django template blocks.
 * ES6! (http://es6-features.org/) or newer.
 * No dialects (typescript/coffeescript).
