@@ -36,6 +36,7 @@ JS
   - Django Pipeline/Compressor
   - jQuery
   - RequireJS
+* In older projects, it may be OK to continue using the current setup.
 * Match component (file)names to Django template blocks.
 * ES6! (http://es6-features.org/) or newer.
 * No dialects (typescript/coffeescript).
