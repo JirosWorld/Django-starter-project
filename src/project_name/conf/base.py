@@ -64,7 +64,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 ]
 
@@ -167,7 +166,6 @@ INSTALLED_APPS = [
 
     # External applications.
     'axes',
-    'compressor',
     'sniplates',
     'systemjs',
 
@@ -286,15 +284,3 @@ AXES_LOGIN_FAILURE_LIMIT = 3  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
-
-#
-# Django compressor
-#
-
-COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_URL = STATIC_URL
-COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
-]

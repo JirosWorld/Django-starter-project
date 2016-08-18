@@ -1,4 +1,4 @@
-{% templatetag openblock %} load compress staticfiles system_tags {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load staticfiles system_tags {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,17 +7,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        {% templatetag openblock %} compress css {% templatetag closeblock %}
-            <link href="{% templatetag openblock %} static 'normalize.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
-            <link href="{% templatetag openblock %} static 'css/font-awesome.min.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
-            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
-            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
+        <link href="{% templatetag openblock %} static 'normalize.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
+        <link href="{% templatetag openblock %} static 'css/font-awesome.min.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
+        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
+        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
 
-            {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        {% templatetag openblock %} endcompress {% templatetag closeblock %}
-        <!--[if IE]>
-            <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/ie.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
-        <![endif]-->
+        {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
         <link rel="shortcut icon" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/favicon.png' {% templatetag closeblock %}">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/apple-touch-icon-144-precomposed.png' {% templatetag closeblock %}">
@@ -52,22 +47,11 @@
             </div>
         {% templatetag openblock %} endblock {% templatetag closeblock %}
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        {% templatetag openblock %} compress js {% templatetag closeblock %}
-
         <script src="{% templatetag openblock %} static 'jspm_packages/system.js' {% templatetag closeblock %}"></script>
         <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/jspm.browser.js' {% templatetag closeblock %}"></script>
         <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/jspm.config.js' {% templatetag closeblock %}"></script>
 
         {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/js/main.js" {% templatetag closeblock %}
-
         {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        {% templatetag openblock %} endcompress {% templatetag closeblock %}
-
     </body>
 </html>
