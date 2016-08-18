@@ -38,7 +38,7 @@
     class Idea(models.Model):
         pass
 
-    
+
     class IdeaForm(forms.ModelForm):
         pass
 
@@ -180,10 +180,10 @@
     .block {  // .block is the basic element
       &.block--active {  // --active is the modifier for .block, and should be grouped with .block
       }
-      
+
       .block__element {  // __element is a child element dependent on .block
       }
-      
+
       .block__element--disabled {  // --disabled is the modifier for .block__element, and should be grouped with .block__element
       }
     }
@@ -191,9 +191,10 @@
 * Order: Mixins first at all times, aim for grouped attributes.
     ```scss
     .block {
-        @include text(18px, 40px);  // Mixins go first so we can overide it's side effects
-        background: #000;
-        color: #FFF;
+      @include text(18px, 40px);  // Mixins go first so we can overide it's side effects
+      background: #000;
+      color: #FFF;
+    }
     ```
 * Selector: Use BEM class naming.
     ```scss
@@ -201,13 +202,14 @@
     // A double underscore (__) separates the element from a block
     // A double dash (--) separates the modifier from the block or element
     // These fixed patters make it also possible to be parsed by (JavaScript) code
+
     .block {  // A block describes a standalone component
       &.block--modifier {  // A modifier describes a state or theme for eithe a block or an element
       }
-      
+
       .block__element {  // An element is a component that depends on a block
       }
-      
+
       .block__element--modifier {  // This modifier desrcibes the state or theme for an element
       }
     }
@@ -221,23 +223,23 @@
     ```scss
     div {  // Bad, tags may change an that would break our code
     }
-    
-    artice { // Also bad, event semantic (descriptive) tags may change
-    {
-    
+
+    article { // Also bad, event semantic (descriptive) tags may change
+    }
+
     h1 {  // Also bad, a marketeer may drop in and ask you to change it into an h2 (design will break and designer will be mad)
     }
-    
+
     #content {  // Bad, we can't repeat this anymore because id's must be unique
     }
-    
+
     .content {  // Better, content is our block
       .content__heading {  // Better, content__heading is a valid class name for an h1, or h2 in block content
       }
       .content__body {  // This could be a class name for a paragraph in block content
       }
     }
-    
+
     .wysiwyg-content {
       h1 {  // Accaptable exception, we don't expect customers to adhere to BEM
       }
@@ -249,8 +251,8 @@
     $article-font: $font;    // This allow us easily "fix" the values and reuse our component
 
     .article {
-    color: $article-color;  // We use private values here
-    font-family: $article-font;
+      color: $article-color;  // We use private values here
+      font-family: $article-font;
     }
     ```
 
@@ -291,7 +293,7 @@
     * We separate "wiring" from the main logic so we can resure the logic
     */
     setUpOpen() {
-        BUTTON_OPEN.onclick = this.open;
+        BUTTON_OPEN.addEventListener('click', this.open.bind(this));
     }
 
     /**
@@ -335,29 +337,30 @@
     const FOO = 'foo';
     const BAR = 'bar';
 
+
     function doFooBaz() {  // 2 Empty newlines after a block of constants
         console.log('foobaz');
     }
-    
-    
+
+
     class Foo {  // 2 Empty newlines after a top level function
         constructor() {
             super();
             this.doBar();
         }
-        
+
         doBar() {  // 1 Empty newline after method
             var bar = new Bar();
         }
     }
-    
-    
+
+
     class Bar {   // 2 Empty newlines after a class
         constructor() {
             super();
             this.doBar();
         }
-        
+
         doBar() {
             var bar = new Bar();
         }
@@ -365,6 +368,7 @@
     ```
 * Newline: Empty newline at the end of the file.
 * Variable: Use let keyword.
+* Variable: Group together.
 * Variable: Use camelCase names.
     ```js
     function doFooBar() {
