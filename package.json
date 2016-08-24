@@ -24,8 +24,7 @@
     "jspm": "^0.17.0-beta.12"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.2",
-    "font-awesome": "^4.5.0",
+    "material-design-icons": "2.2.3",
     "normalize.css": "^4.0.0"
   },
   "jspm": {
