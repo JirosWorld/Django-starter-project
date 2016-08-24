@@ -16,7 +16,7 @@ HTML
 CSS/SASS
 ---
 * Don’t use bootstrap anymore, only for (real) prototyping.
-* BEM! [(http://stackoverflow.com/...)](http://stackoverflow.com/documentation/css/5302/bem#t=201608181228046431355
+* BEM! [(http://stackoverflow.com/...)](http://stackoverflow.com/documentation/css/5302/bem#t=201608181228046431355)
 * Match component (file)names to Django template blocks.
 * Max 1 BEM block per file.
 * Only select using (BEM) class names (.block__element), not using tag/id (Matching id's breaks reusability, matching tags breaks flexibility).
@@ -52,8 +52,9 @@ Todo
 * Dummy components scaffolding in default project. - Jorik
 * Auto BEM component creator (script/gulp). - Sven
 * Make Django apps all inclusive. - Sergei
-* Look into alternatives for font-awesome. - Jorik
+* Look into alternatives for font-awesome. (SVG) - Jorik
 * Default gulp tasks. - Sven
 * Built sample structure. - Jorik
 * Make sample coding style file. - Sven (Jorik for Python)
 * Testing infrastructure. - Sergei
+* ~~Editorconfig. - Jorik~~
