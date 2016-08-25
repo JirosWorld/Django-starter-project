@@ -97,6 +97,7 @@ def main():
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
+        os.environ['TMPDIR'] = '/var/tmp/'
         call(os.path.join(virtualenv, 'bin', 'pip') + ' install --upgrade -r requirements/%s.txt' % args.target, shell=True)
     elif os.name == 'nt':
         call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install --upgrade -r requirements\\%s.txt' % args.target, shell=True)
