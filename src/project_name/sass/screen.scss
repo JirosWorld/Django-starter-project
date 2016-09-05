@@ -1,8 +1,4 @@
 // $visual-grid: true;
 @import "neat";
-
-@import "partials/fonts";
-@import "partials/colors";
-@import "partials/utils";
-
-@import "partials/base";
+@import "settings/all";
+@import "components/all";
