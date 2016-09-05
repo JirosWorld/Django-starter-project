@@ -17,11 +17,12 @@
   "license": "UNLICENSED",
   "homepage": "https://maykinmedia.nl",
   "devDependencies": {
-    "bourbon": "^4.2.6",
+    "bourbon-neat": "^1.8.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-sass": "^2.2.0",
-    "jspm": "^0.17.0-beta.12"
+    "gulp-watch": "^4.3.9",
+    "jspm": "^0.17.0-beta.28"
   },
   "dependencies": {
     "material-design-icons": "2.2.3",
