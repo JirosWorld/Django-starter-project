@@ -78,6 +78,8 @@ or keep in a different location (like the virtual environment)::
     |       |
     |       +-- conf        -- Django settings files.
     |       |
+    |       +-- sass        -- Sass (css pre-processor) source files
+    |       |
     |       +-- templates   -- Project templates
     |       |
     |       +-- wsgi        -- Default location for wsgi deployment scripts
@@ -114,7 +116,7 @@ below.
    ``boostrap.py`` script basically sets the proper Django settings file to be
    used::
 
-    $ python bootstrap.py <production|staging|test|development>
+    $ python bootstrap.py <production|staging|test|dev>
 
 4. Activate your virtual environment and create the statics and database::
 
@@ -151,26 +153,22 @@ Enable watch tasks::
 
 By default this will compile the sass to css on every sass file save.
 
-For more information on SASS, see: http://sass-lang.com/. For the common mixins,
-Bourbon is used, see http://http://bourbon.io/.
+For more information on SASS, see: http://sass-lang.com/.
 
 Get all Javascript libraries::
 
-    $ npm install
-    $ jspm install
+    $ npm install  # also runs `jspm install`
 
-For more information on Node.js, see: http://nodejs.org/ and http://jspm.io/
+For more information on Node.js, see: http://nodejs.org/.
+For more information on jspm, see: http://jspm.io/.
 
 
 Staging and production
 ----------------------
 
-Configure your webserver and/or WSGI handler. See:
-https://docs.djangoproject.com/en/dev/howto/deployment/
+See https://bitbucket.org/maykinmedia/maykin-deployment/ on how to enable
+Ansible deployments.
 
-Note that your wsgi script in ``src/{{ project_name|lower }}/wsgi.py already
-points to your staging|production settings.py file. This happens when
-bootstrapping your environment.
 
 Update installation
 ===================
@@ -185,7 +183,8 @@ When updating an existing installation:
 2. Update the code and libraries::
 
     $ git pull
-    $ pip install -r requirements/<production|staging|test|development>.txt
+    $ pip install -r requirements/<production|staging|test|dev>.txt
+    $ npm install
 
 3. Update the statics and database::
 
