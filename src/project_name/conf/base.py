@@ -12,7 +12,6 @@ BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.p
 #
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 PROJECT_NAME = '{{ project_name|lower }}'
 
