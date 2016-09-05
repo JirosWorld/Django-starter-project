@@ -2,7 +2,7 @@ SystemJS.config({
   nodeConfig: {
     "paths": {
       "npm:": "jspm_packages/npm/",
-      "{{ project_name|lower }}/": "{{ project_name|lower }}/"
+      "{{ project_name|lower }}/": "js/"
     }
   },
   devConfig: {

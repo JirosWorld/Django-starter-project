@@ -1,9 +1,3 @@
-import $ from 'jquery';
-// import $ from 'bootstrap';
+import {MESSAGE} from './components/message';
 
-
-$(() => {
-
-    // Execute code if the page is completely loaded...
-
-});
+console.log(MESSAGE);
