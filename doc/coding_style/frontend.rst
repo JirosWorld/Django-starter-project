@@ -71,20 +71,20 @@ Indentation
         </body>
     </html>
 
-* Indent HTML and template tags. (except ``{% block %}`` on root level).
+* Indent HTML and template tags. (except ``{% templatetag openblock %} block {% templatetag closeblock %}`` on root level).
 
   .. code-block:: django
 
-    {% block content %}
+    {% templatetag openblock %} block content {% templatetag closeblock %}
     <article>
-        {% if show_header %}
-            {% block article__header %}
+        {% templatetag openblock %} if show_header {% templatetag closeblock %}
+            {% templatetag openblock %} block article__header {% templatetag closeblock %}
                 <header>
                 </header>
-            {% endblock article__header %}
-        {% endif %}
+            {% templatetag openblock %} endblock article__header {% templatetag closeblock %}
+        {% templatetag openblock %} endif {% templatetag closeblock %}
     </article>
-    {% endblock content %}
+    {% templatetag openblock %} endblock content {% templatetag closeblock %}
 
 
 Data-attributes

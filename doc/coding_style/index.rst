@@ -16,7 +16,7 @@ HTML
 * Style your HTML, don’t HTML your style.
 * Don’t put content in ``master.html``, only put boilerplate/scaffolding here.
 * Use `inclusion tags`_ for reusable components and blocks otherwise.
-* Wrap components/logical page blocks/standalone sections in ``{% block %}`` tags.
+* Wrap components/logical page blocks/standalone sections in ``{% templatetag openblock %} block {% templatetag closeblock %}`` tags.
 * Respect the `coding style <coding_style_frontend>`.
 * If it makes sense to divert, divert.
 
