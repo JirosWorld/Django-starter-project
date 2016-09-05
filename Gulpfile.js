@@ -15,7 +15,7 @@ var neat = require('bourbon-neat');
  * Sass related tasks
  */
 var sass_src = 'src/{{ project_name|lower }}/sass/**/*.scss';
-var css_dir = 'src/{{ project_name|lower }}/static/{{ project_name|lower }}/css';
+var css_dir = 'src/{{ project_name|lower }}/static/css';
 
 
 gulp.task('sass', function() {
@@ -46,7 +46,7 @@ gulp.task('watch_sass', ['sass'], function() {
 var STATIC_ROOT = './static';
 var STATIC_APPDIRS = 'src/{{ project_name|lower }}/*/static/**/*.js';
 var STATICFILES_DIRS = [
-    'src/{{ project_name|lower }}/static/'
+    'src/{{ project_name|lower }}/static/**/*.js'
 ];
 
 gulp.task('watch_collectstatic', function() {
@@ -54,8 +54,8 @@ gulp.task('watch_collectstatic', function() {
     return watch(src, {verbose: true, base: 'src/{{ project_name|lower }}'})
         .pipe(rename(function(file) {
             var bits = file.dirname.split('/');
-            // strip off 'appname' and 'static', if present
-            file.dirname = bits.slice(2).join('/');
+            // strip off 'static' (and appname if present)
+            file.dirname = bits.slice(slice).join('/');
             return file;
         }))
         .pipe(gulp.dest(STATIC_ROOT));

@@ -21,6 +21,7 @@
     "bourbon-neat": "^1.8.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^4.3.9",
@@ -41,14 +42,11 @@
       "jspm:browser": "src/{{ project_name|lower }}/static/js/jspm.browser.js",
       "jspm": "src/{{ project_name|lower }}/static/js/jspm.config.js"
     },
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.13"
     },
-    "peerDependencies": {
-    },
-    "overrides": {
-    }
+    "peerDependencies": {},
+    "overrides": {}
   }
 }
