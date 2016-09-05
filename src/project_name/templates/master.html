@@ -9,16 +9,16 @@
 
         <link href="{% templatetag openblock %} static 'normalize.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
         <link href="{% templatetag openblock %} static 'css/font-awesome.min.css' {% templatetag closeblock %}" media="screen, print" rel="stylesheet">
-        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
-        <link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
+        <link href="{% templatetag openblock %} static 'css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
+        <link href="{% templatetag openblock %} static 'css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
 
         {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-        <link rel="shortcut icon" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/favicon.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/apple-touch-icon-144-precomposed.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/apple-touch-icon-114-precomposed.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/apple-touch-icon-72-precomposed.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" href="{% templatetag openblock %} static '{{ project_name|lower }}/ico/apple-touch-icon-57-precomposed.png' {% templatetag closeblock %}">
+        <link rel="shortcut icon" href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openblock %} static 'ico/apple-touch-icon-144-precomposed.png' {% templatetag closeblock %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% templatetag openblock %} static 'ico/apple-touch-icon-114-precomposed.png' {% templatetag closeblock %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% templatetag openblock %} static 'ico/apple-touch-icon-72-precomposed.png' {% templatetag closeblock %}">
+        <link rel="apple-touch-icon-precomposed" href="{% templatetag openblock %} static 'ico/apple-touch-icon-57-precomposed.png' {% templatetag closeblock %}">
     </head>
 
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
@@ -48,10 +48,10 @@
         {% templatetag openblock %} endblock {% templatetag closeblock %}
 
         <script src="{% templatetag openblock %} static 'jspm_packages/system.js' {% templatetag closeblock %}"></script>
-        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/jspm.browser.js' {% templatetag closeblock %}"></script>
-        <script src="{% templatetag openblock %} static '{{ project_name|lower }}/js/jspm.config.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static 'js/jspm.browser.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static 'js/jspm.config.js' {% templatetag closeblock %}"></script>
 
-        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/js/main.js" {% templatetag closeblock %}
+        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/main.js" {% templatetag closeblock %}
         {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
     </body>
 </html>

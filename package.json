@@ -31,39 +31,24 @@
     "normalize.css": "^4.0.0"
   },
   "jspm": {
+    "name": "{{ project_name|lower }}",
+    "main": "main.js",
     "directories": {
-      "lib": "static/{{ project_name|lower }}/js",
-      "baseURL": "static"
+      "baseURL": "static",
+      "lib": "static/js"
     },
     "configFiles": {
-      "jspm:browser": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.browser.js",
-      "jspm": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.config.js"
+      "jspm:browser": "src/{{ project_name|lower }}/static/js/jspm.browser.js",
+      "jspm": "src/{{ project_name|lower }}/static/js/jspm.config.js"
     },
-    "configFile": "src/{{ project_name|lower }}/static/{{ project_name|lower }}/js/jspm.config.js",
     "dependencies": {
-      "jquery": "npm:jquery@^2.2.3"
     },
     "devDependencies": {
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.9"
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.13"
     },
     "peerDependencies": {
-      "core-js": "npm:core-js@^1.1.4",
-      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
-      "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
-      "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
     },
     "overrides": {
-      "npm:babel-runtime@5.8.38": {
-        "main": false,
-        "dependencies": {},
-        "optionalDependencies": {
-          "core-js": "^1.2.0"
-        }
-      },
-      "npm:jquery@2.2.3": {
-        "format": "amd"
-      }
     }
   }
 }
