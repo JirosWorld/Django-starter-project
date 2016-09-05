@@ -1,51 +1,8 @@
 # Code styling
 
-1. [Python](#pythondjango-coding-style)
 1. [HTML](#html-coding-style)
 2. [SASS](#sass-coding-style)
 3. [JavaScript](#javascript-coding-style)
-
-## Python/Django coding style
-
-* Order and group your import
-    - Use relative imports for your django app
-    - Ordering:
-        - future
-        - standard libraries
-        - Django components
-        - third party libraries
-        - project imports
-        - local (app) imports
-    ```python
-    import future
-
-    import datetime
-
-    import django.contrib.admin
-
-    import import_export
-
-    import maykin.models
-
-    import .models
-    ```
-* Naming: Use plural form for apps
-    ```
-    accounts not account
-    ```
-* Naming: Use singular from for model, view and form class
-    ```python
-    class Idea(models.Model):
-        pass
-
-
-    class IdeaForm(forms.ModelForm):
-        pass
-
-
-    class IdeaDetailView(views.DetailView):
-        pass
-    ```
 
 
 ## HTML coding style
