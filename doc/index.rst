@@ -15,3 +15,4 @@ Documentation
 
     general/index
     coding_style/index
+    testing
