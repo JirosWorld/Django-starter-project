@@ -132,6 +132,7 @@ def main():
 
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
+        os.environ['TMPDIR'] = '/var/tmp/'
         pip_path = os.path.join(virtualenv, 'bin', 'pip')
         cmd_tpl = '{pip} install -r requirements/{target}.txt'
     elif os.name == 'nt':
