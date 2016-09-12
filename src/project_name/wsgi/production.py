@@ -17,7 +17,7 @@ import os
 import site
 import sys
 
-from .base import setupenv
+from .base import setupenv, init_newrelic
 
 
 setupenv()
@@ -27,6 +27,8 @@ setupenv()
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "{{ project_name }}.settings"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ project_name }}.conf.production")
+
+init_newrelic()
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
