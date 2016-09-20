@@ -23,7 +23,7 @@ Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
 code, like ``maykinmedia``::
 
-    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js <project_name> .
+    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js,sh <project_name> .
 
 Once the project is ready, create a repository online and commit the files to
 the repository::
