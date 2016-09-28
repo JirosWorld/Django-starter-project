@@ -1,7 +1,4 @@
-@import "bootstrap";
-
-@import "partials/fonts";
-@import "partials/colors";
-@import "partials/utils";
-
-@import "partials/base";
+// $visual-grid: true;
+@import "neat";
+@import "settings/all";
+@import "components/all";

@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # bootstrap.py
 # Bootstrap and setup a virtualenv with the specified requirements.txt
+import argparse
 import os
 import stat
 import sys
-import shutil
-from subprocess import call
-import argparse 
-from tempfile import mkstemp
 from shutil import move
+from subprocess import call
+from tempfile import mkstemp
+
 
 description = """
 Set up my development environment for me!
@@ -17,7 +17,7 @@ Set up my development environment for me!
 project_name = '{{ project_name|lower }}'
 
 parser = argparse.ArgumentParser(description=description)
-parser.add_argument('target', choices=['production','staging','test','development'],
+parser.add_argument('target', choices=['production', 'staging', 'test', 'development'],
                     help='production/staging/development')
 parser.add_argument('--project', default=project_name,
                     help='Name of the project in your src directory, "%s" by default' % project_name)
@@ -25,6 +25,7 @@ parser.add_argument('--env', default='env',
                     help='Directory name for virtualenv, "env" by default')
 
 args = parser.parse_args()
+
 
 def replace_or_append(file_path, search_val, replace_val):
     file_handle, abs_path = mkstemp()
@@ -43,18 +44,22 @@ def replace_or_append(file_path, search_val, replace_val):
     os.close(file_handle)
     old_file.close()
     os.remove(file_path)
-    move(abs_path, file_path)    
+    move(abs_path, file_path)
     os.chmod(file_path, 436)
+
 
 def replace_wsgi_settings(target):
     path = os.path.join('src', project_name, 'wsgi.py')
-    replace_or_append(path, 'os.environ.setdefault',
-                      'os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
+    replace_or_append(
+        path, 'os.environ.setdefault',
+        'os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
+
 
 def replace_manage_settings(target):
     path = os.path.join('src', project_name, 'manage.py')
-    replace_or_append(path, '    os.environ.setdefault',
-                      '    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
+    replace_or_append(
+        path, '    os.environ.setdefault',
+        '    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "%s.conf.settings_%s")\n' % (project_name, target))
 
 
 def append_settings_activate(project, target, env):
@@ -71,6 +76,7 @@ def append_settings_activate(project, target, env):
         path = '%s\\Scripts\\deactivate.bat' % env
         replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
                           'set DJANGO_SETTINGS_MODULE=\n')
+
 
 def main():
     virtualenv = args.env
@@ -98,9 +104,13 @@ def main():
     print('\n== Installing %s requirements ==\n' % args.target)
     if os.name == 'posix':
         os.environ['TMPDIR'] = '/var/tmp/'
-        call(os.path.join(virtualenv, 'bin', 'pip') + ' install --upgrade -r requirements/%s.txt' % args.target, shell=True)
+        pip_path = os.path.join(virtualenv, 'bin', 'pip')
+        cmd_tpl = '{pip} install --upgrade -r requirements/{target}.txt'
     elif os.name == 'nt':
-        call(os.path.join(virtualenv, 'Scripts', 'pip') + ' install --upgrade -r requirements\\%s.txt' % args.target, shell=True)
+        pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
+        cmd_tpl = '{pip} install --upgrade -r requirements\\{target}.txt'
+    call(cmd_tpl.format(pip=pip_path, target=args.target), shell=True)
+
 
 if __name__ == '__main__':
     main()

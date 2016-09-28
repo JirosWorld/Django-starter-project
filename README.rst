@@ -23,7 +23,7 @@ Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
 code, like ``maykinmedia``::
 
-    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js,sh <project_name> .
+    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js,sh,cfg <project_name> .
 
 Once the project is ready, create a repository online and commit the files to
 the repository::
@@ -77,6 +77,8 @@ or keep in a different location (like the virtual environment)::
     |   +-- {{ project_name|lower }}
     |       |
     |       +-- conf        -- Django settings files.
+    |       |
+    |       +-- sass        -- Sass (css pre-processor) source files
     |       |
     |       +-- templates   -- Project templates
     |       |
@@ -143,7 +145,7 @@ the example file included in the same directory.
 
 Install the front-end CLI tools if you've never installed them before::
 
-    $ npm install -g jspm gulp
+    $ npm install -g jspm gulp karma
 
 Enable watch tasks::
 
@@ -151,26 +153,22 @@ Enable watch tasks::
 
 By default this will compile the sass to css on every sass file save.
 
-For more information on SASS, see: http://sass-lang.com/. For the common mixins,
-Bourbon is used, see http://http://bourbon.io/.
+For more information on SASS, see: http://sass-lang.com/.
 
 Get all Javascript libraries::
 
-    $ npm install
-    $ jspm install
+    $ npm install  # also runs `jspm install`
 
-For more information on Node.js, see: http://nodejs.org/ and http://jspm.io/
+For more information on Node.js, see: http://nodejs.org/.
+For more information on jspm, see: http://jspm.io/.
 
 
 Staging and production
 ----------------------
 
-Configure your webserver and/or WSGI handler. See:
-https://docs.djangoproject.com/en/dev/howto/deployment/
+See https://bitbucket.org/maykinmedia/maykin-deployment/ on how to enable
+Ansible deployments.
 
-Note that your wsgi script in ``src/{{ project_name|lower }}/wsgi.py already
-points to your staging|production settings.py file. This happens when
-bootstrapping your environment.
 
 Update installation
 ===================
@@ -186,6 +184,7 @@ When updating an existing installation:
 
     $ git pull
     $ pip install -r requirements/<production|staging|test|dev>.txt
+    $ npm install
 
 3. Update the statics and database::
 

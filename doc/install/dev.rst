@@ -7,10 +7,6 @@ Development environment
 Quick start
 ===========
 
-.. note:: If you have some global utilities (like buildout, ipython, etc.)
-   installed, you could pass the option ``--system-site-packages`` to the
-   ``virtualenv`` command.
-
 #. Navigate to the location where you want to place your project.
 
 #. Get the code::

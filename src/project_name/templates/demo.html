@@ -1,0 +1,34 @@
+{% templatetag openblock %} extends "master.html" {% templatetag closeblock %}
+{% templatetag openblock %} load staticfiles {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block content {% templatetag closeblock %}
+<article class="page-container demo">
+
+    <header class="demo__header">
+        <figure class="demo__logo">
+            <img class="demo__logo-img" src="{% templatetag openblock %} static 'img/maykinmedia_logo.png' {% templatetag closeblock %}">
+        </figure>
+        <h1 class="demo__title">It worked!</h1>
+    </header>
+
+    <h2 class="demo__subtitle">
+        Congratulations on installing the Maykin Media default project for
+        <strong>Myproject</strong>.
+    </h2>
+
+    <section class="demo__instructions">
+        <p>
+            Of course, you haven't actually done any work yet. Next, start your first app by running <code>python manage.py startapp [app_label]</code>.
+        </p>
+        <p>
+            You can also checkout the <a href="{% templatetag openblock %} url 'admin:index' {% templatetag closeblock %}">admin</a>.
+        </p>
+    </section>
+
+    <p>
+        You're seeing this message because you have <code>DEBUG = True</code> in your Django settings file and you haven't configured any URLs. Get to work!
+    </p>
+
+</article>
+{% templatetag openblock %} endblock {% templatetag closeblock %}

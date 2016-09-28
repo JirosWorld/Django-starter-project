@@ -14,3 +14,5 @@ Documentation
     :maxdepth: 3
 
     general/index
+    coding_style/index
+    testing

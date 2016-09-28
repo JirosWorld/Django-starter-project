@@ -12,7 +12,6 @@ BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.p
 #
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 PROJECT_NAME = '{{ project_name|lower }}'
 
@@ -64,8 +63,8 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'systemjs.finders.SystemFinder',
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -110,9 +109,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # External middleware.
-    'axes.middleware.FailedLoginMiddleware',
 ]
 
 ROOT_URLCONF = '{{ project_name|lower }}.urls'
@@ -167,7 +163,6 @@ INSTALLED_APPS = [
 
     # External applications.
     'axes',
-    'compressor',
     'sniplates',
     'systemjs',
 
@@ -286,15 +281,3 @@ AXES_LOGIN_FAILURE_LIMIT = 30  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
-
-#
-# Django compressor
-#
-
-COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_URL = STATIC_URL
-COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
-]

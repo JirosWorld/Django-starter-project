@@ -22,7 +22,8 @@ parser.add_argument('target', choices=['production', 'staging', 'test', 'dev'],
 parser.add_argument('--project', default=project_name,
                     help='Name of the project in your src directory, "%s" by default' % project_name)
 parser.add_argument('--init', action='store_true',
-                    help='Initialize a fresh "startproject" by pinning the requirements using pip-tools compile. Automatically done if requirements/base.txt does not yet exist.')
+                    help='Initialize a fresh "startproject" by pinning the requirements using pip-tools compile. '
+                         'Automatically done if requirements/base.txt does not yet exist.')
 parser.add_argument('--env', default='env',
                     help='Directory name for virtualenv, "env" by default')
 
@@ -81,6 +82,7 @@ def append_settings_activate(project, target, env):
         replace_or_append(path, 'set DJANGO_SETTINGS_MODULE=',
                           'set DJANGO_SETTINGS_MODULE=\n')
 
+
 def pip_compile_pin_requirements(virtualenv):
     print('\n== Compiling base requirements ==\n')
     if os.name == 'posix':
@@ -105,6 +107,7 @@ def pip_compile_pin_requirements(virtualenv):
     os.chdir('requirements')
     call('../{0} base.in'.format(pip_compile), shell=True)
     os.chdir('..')
+
 
 def main():
     virtualenv = args.env

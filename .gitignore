@@ -12,10 +12,13 @@ __pycache__
 # Javascript libraries
 /node_modules/
 
+# Coverage reports
+/reports/
+/htmlcov/
+
 # Environment
 conf/local.py
 /env/
 /media/
 /static/
 /mail/
-
