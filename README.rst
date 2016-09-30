@@ -145,7 +145,7 @@ the example file included in the same directory.
 
 Install the front-end CLI tools if you've never installed them before::
 
-    $ npm install -g jspm gulp karma
+    $ npm install -g gulp karma
 
 Enable watch tasks::
 

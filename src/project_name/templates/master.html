@@ -1,4 +1,4 @@
-{% templatetag openblock %} load staticfiles system_tags {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load staticfiles  {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -34,11 +34,6 @@
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         </main>
 
-        <script src="{% templatetag openblock %} static 'jspm_packages/system.js' {% templatetag closeblock %}"></script>
-        <script src="{% templatetag openblock %} static 'js/jspm.browser.js' {% templatetag closeblock %}"></script>
-        <script src="{% templatetag openblock %} static 'js/jspm.config.js' {% templatetag closeblock %}"></script>
-
-        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/main.js" {% templatetag closeblock %}
-        {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/{{ project_name|lower }}.js" {% templatetag closeblock %}
     </body>
 </html>
