@@ -34,6 +34,6 @@
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         </main>
 
-        {% templatetag openblock %} systemjs_import "{{ project_name|lower }}/{{ project_name|lower }}.js" {% templatetag closeblock %}
+        <script src="{% templatetag openblock %} static 'js/{{ project_name|lower }}.js' {% templatetag closeblock %}"></script>
     </body>
 </html>
