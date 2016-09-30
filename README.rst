@@ -157,10 +157,9 @@ For more information on SASS, see: http://sass-lang.com/.
 
 Get all Javascript libraries::
 
-    $ npm install  # also runs `jspm install`
+    $ npm install
 
 For more information on Node.js, see: http://nodejs.org/.
-For more information on jspm, see: http://jspm.io/.
 
 
 Staging and production
