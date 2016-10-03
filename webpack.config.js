@@ -1,4 +1,3 @@
-//var webpack = require('webpack');
 var paths = require('./build/paths');
 
 
@@ -25,8 +24,10 @@ module.exports = {
         }]
     },
 
-//    // Compress output
-//    plugins: [
-//        new webpack.optimize.UglifyJsPlugin()
-//    ]
+    // Allow source level module loading
+    resolve: {
+        root: [
+            paths.jsSrcDir
+        ]
+    },
 };

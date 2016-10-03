@@ -34,14 +34,14 @@ var configuration = function(config) {
 
         preprocessors: preprocessors,
 
-        coverageReporter: {
-            dir: paths.coverageDir
-        },
-
         webpack: webpackConfig,
 
         webpackMiddleware: {
             noInfo: true
+        },
+
+        coverageReporter: {
+            dir: paths.coverageDir
         },
 
         reporters: ['spec', 'coverage'],
