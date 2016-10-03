@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+//var webpack = require('webpack');
 var paths = require('./build/paths');
 
 
@@ -25,8 +25,8 @@ module.exports = {
         }]
     },
 
-    // Compress output
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin()
-    ]
+//    // Compress output
+//    plugins: [
+//        new webpack.optimize.UglifyJsPlugin()
+//    ]
 };

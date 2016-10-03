@@ -33,4 +33,10 @@ module.exports = {
 
     // Path to the (transpiled) js directory
     jsDir: staticRoot + 'js/',
+
+    // Path to js spec (test) fiels
+    jsSpec: sourcesRoot + 'test/**/*.js',
+
+    // Path to js code coverage directory
+    coverageDir: 'build/reports/coverage/'
 };
