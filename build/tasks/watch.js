@@ -16,7 +16,7 @@ gulp.task('watch', ['watch-sass', 'watch-js']);
  * Run using "gulp watch-sass"
  * Runs "sass" task when any file in paths.sassSrc changes
  */
-gulp.task('watch-sass',function() {
+gulp.task('watch-sass', function() {
     gulp.watch(paths.sassSrc, ['sass']);
 });
 
@@ -24,8 +24,9 @@ gulp.task('watch-sass',function() {
 /**
  * Watch-js task
  * Run using "gulp watch-js"
- * Runs "js" task when any file in paths.jsSrc changes
+ * Runs "tdd" task
+ * Runs "js" and "lint" tasks when any file in paths.jsSrc changes
  */
-gulp.task('watch-js',function() {
-    gulp.watch(paths.jsSrc, ['js']);
+gulp.task('watch-js', ['tdd'], function() {
+    gulp.watch(paths.jsSrc, ['js', 'lint']);
 });

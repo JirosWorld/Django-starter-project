@@ -13,7 +13,7 @@ var staticRoot = sourcesRoot + 'static/';
 
 
 /**
- * Application path configuration for use in gulp tasks/webpack
+ * Application path configuration for use in frontend scripts
  */
 module.exports = {
     // Parsed package.json
