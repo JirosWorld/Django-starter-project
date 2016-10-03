@@ -3,18 +3,18 @@ var webpackConfig = require('./webpack.config.js');
 
 
 // Add istanbul-instrumenter to webpack configuration
-webpackConfig.module.loaders.push(
+webpackConfig.module.postLoaders = [
     {
         test: /\.js$/,
-        exclude: /(node_modules|test)/,
-        loader: 'babel-istanbul-loader'
+        include: paths.jsSrcDir,
+        loader: 'istanbul-instrumenter'
     }
-);
+];
 
 
 // The preprocessor config
-var preprocessors = {}
-preprocessors[paths.jsSpec] = [
+var preprocessors = {};
+preprocessors[paths.jsSpecEntry] = [
     'webpack'
 ]
 
@@ -29,7 +29,7 @@ var configuration = function(config) {
         ],
 
         files: [
-            paths.jsSpec,
+            paths.jsSpecEntry
         ],
 
         preprocessors: preprocessors,
@@ -41,7 +41,11 @@ var configuration = function(config) {
         },
 
         coverageReporter: {
-            dir: paths.coverageDir
+            dir: paths.coverageDir,
+            reporters: [
+                { type: 'html', subdir: 'report-html' },
+                { type: 'text' }
+            ]
         },
 
         reporters: ['spec', 'coverage'],
