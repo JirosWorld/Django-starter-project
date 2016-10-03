@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var paths = require('./build/paths');
 
 
@@ -30,4 +31,9 @@ module.exports = {
             paths.jsSrcDir
         ]
     },
+
+    // Minify output
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({minimize: true})
+    ]
 };
