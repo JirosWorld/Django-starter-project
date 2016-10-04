@@ -2,7 +2,7 @@ Pillow
 pytz
 raven
 
-Django==1.9
+Django
 django-admin-tools
 django-autoslug
 django-axes
