@@ -13,6 +13,7 @@ __pycache__
 /node_modules/
 
 # Coverage reports
+/build/reports/
 /reports/
 /htmlcov/
 
