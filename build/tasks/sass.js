@@ -21,7 +21,7 @@ gulp.task('sass', function() {
     gulp.src(paths.sassSrc)
         // Compiles sass to css
         .pipe(sass({
-            outputStyle: 'expanded',
+            outputStyle: 'minified',
 
             // Includes bourbon neat
             includePaths: bourbon.includePaths.concat(neat.includePaths)
