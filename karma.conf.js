@@ -50,7 +50,7 @@ var configuration = function(config) {
 
         reporters: ['spec', 'coverage'],
 
-        browsers: ['Chrome'],
+        browsers: ['Chrome', 'Firefox', 'PhantomJS'],
     });
 }
 
