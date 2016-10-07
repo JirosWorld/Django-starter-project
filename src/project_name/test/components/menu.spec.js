@@ -1,4 +1,3 @@
-import 'components/menu';
 import Menu from 'components/menu';
 
 
