@@ -41,9 +41,8 @@ var configuration = function(config) {
         },
 
         coverageReporter: {
-            dir: paths.coverageDir,
             reporters: [
-                { type: 'html', subdir: 'report-html' },
+                { type: 'cobertura', dir: paths.coverageDir, subdir: '.', file: 'coverage.xml' },
                 { type: 'text' }
             ]
         },

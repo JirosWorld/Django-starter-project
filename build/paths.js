@@ -44,5 +44,5 @@ module.exports = {
     jsSpecEntry: sourcesRoot + 'test/index.js',
 
     // Path to js code coverage directory
-    coverageDir: 'build/reports/coverage/'
+    coverageDir: 'reports/jstests/'
 };
