@@ -1,6 +1,5 @@
 import os
 
-from django.conf import global_settings as DEFAULT_SETTINGS
 from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -89,9 +88,12 @@ TEMPLATES = [
             os.path.join(DJANGO_PROJECT_DIR, 'templates'),
         ],
         'OPTIONS': {
-            'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + [
+            'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                '{{ project_name|lower }}.utils.context_processors.settings',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'myproject.utils.context_processors.settings',
             ],
             'loaders': RAW_TEMPLATE_LOADERS
         },
