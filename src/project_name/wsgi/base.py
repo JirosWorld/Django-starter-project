@@ -38,9 +38,9 @@ def setupenv():
 
 def init_newrelic():
     if os.environ.get('PROJECT_ROOT'):
-    try:
-        import newrelic.agent
-        newrelic.agent.initialize(os.path.join(os.environ.get('PROJECT_ROOT'), 'newrelic.ini'), 'production')
-    except Exception, e:
-        print("Could not initialize New Relic APM, ignoring:")
-        print(e)
+        try:
+            import newrelic.agent
+            newrelic.agent.initialize(os.path.join(os.environ.get('PROJECT_ROOT'), 'newrelic.ini'), 'production')
+        except Exception as e:
+            print("Could not initialize New Relic APM, ignoring:")
+            print(e)
