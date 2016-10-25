@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = True
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.default.application'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ENVIRONMENT = 'development'
 
