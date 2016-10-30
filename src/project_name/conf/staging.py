@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.staging.application'
 ENVIRONMENT = 'staging'
 
 ADMINS = (
