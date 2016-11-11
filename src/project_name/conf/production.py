@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.production.application'
 ENVIRONMENT = 'production'
 SHOW_ALERT = False
 
@@ -63,6 +62,11 @@ LOGGING['loggers'].update({
         'handlers': ['django'],
         'level': 'WARNING',
         'propagate': True,
+    },
+    'django.security.DisallowedHost': {
+        'handlers': ['django'],
+        'level': 'CRITICAL',
+        'propagate': False,
     },
 })
 
