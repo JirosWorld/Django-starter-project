@@ -78,13 +78,17 @@ or keep in a different location (like the virtual environment)::
     |       |
     |       +-- conf        -- Django settings files.
     |       |
-    |       +-- sass        -- Sass (css pre-processor) source files
+    |       +-- js          -- JavaScript source files.
     |       |
-    |       +-- templates   -- Project templates
+    |       +-- sass        -- Sass (css pre-processor) source files.
     |       |
-    |       +-- wsgi        -- Default location for wsgi deployment scripts
+    |       +-- templates   -- Project templates.
     |       |
-    |       +-- static      -- Default location for project static files
+    |       +-- tests       -- Automated tests.
+    |       |
+    |       +-- wsgi        -- Default location for wsgi deployment scripts.
+    |       |
+    |       +-- static      -- Default location for project static files.
     |       |
     |       +-- ...         -- Project specific applications.
     |
@@ -145,7 +149,8 @@ the example file included in the same directory.
 
 Install the front-end CLI tools if you've never installed them before::
 
-    $ npm install -g jspm gulp karma
+    $ npm install -g gulp
+    $ npm install
 
 Enable watch tasks::
 
@@ -157,10 +162,9 @@ For more information on SASS, see: http://sass-lang.com/.
 
 Get all Javascript libraries::
 
-    $ npm install  # also runs `jspm install`
+    $ npm install
 
 For more information on Node.js, see: http://nodejs.org/.
-For more information on jspm, see: http://jspm.io/.
 
 
 Staging and production

@@ -24,7 +24,6 @@ Quick start
 
     $ source env/bin/activate  # or, workon <env> if you use virtualenvwrapper
     $ npm install
-    $ jspm install
     $ gulp sass
     $ python src/manage.py collectstatic --link
     $ python src/manage.py migrate

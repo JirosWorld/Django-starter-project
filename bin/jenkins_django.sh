@@ -6,7 +6,7 @@ env/bin/pip install -r requirements/test.txt
 
 # install front-end deps
 echo "Installing front end dependencies..."
-npm install  # invokes jspm install
+npm install
 
 # compile sass to css
 echo "Compiling sass..."
