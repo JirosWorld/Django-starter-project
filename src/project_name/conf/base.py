@@ -94,7 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'myproject.utils.context_processors.settings',
+                '{{ project_name|lower }}.utils.context_processors.settings',
             ],
             'loaders': RAW_TEMPLATE_LOADERS
         },

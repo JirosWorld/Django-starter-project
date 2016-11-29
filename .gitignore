@@ -22,3 +22,4 @@ conf/local.py
 /media/
 /static/
 /mail/
+/log/*.log*
