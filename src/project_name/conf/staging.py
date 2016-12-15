@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.staging.application'
 ENVIRONMENT = 'staging'
 
 ADMINS = (
@@ -44,6 +43,11 @@ LOGGING['loggers'].update({
         'handlers': ['django'],
         'level': 'WARNING',
         'propagate': True,
+    },
+    'django.security.DisallowedHost': {
+        'handlers': ['django'],
+        'level': 'CRITICAL',
+        'propagate': False,
     },
 })
 

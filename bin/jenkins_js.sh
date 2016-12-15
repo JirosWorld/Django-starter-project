@@ -6,7 +6,7 @@ export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.test
 env/bin/pip install -r requirements/test.txt
 
 echo "Installing front-end build tooling + dependencies"
-npm install  # invokes jspm install
+npm install
 
 echo "Running collectstatic..."
 env/bin/python manage.py collectstatic --link --noinput

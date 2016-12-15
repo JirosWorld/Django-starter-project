@@ -57,21 +57,13 @@ test-runner, and you need to install it globally if you have never done so::
 By default, the tests are run against PhantomJS and Chrome/Chromium. To run
 the tests, execute::
 
-    $ npm test
-
-If you want to gather coverage stats, run::
-
-    $ npm test -- --coverage
+    $ gulp test
 
 If you want to target a single browser, you can run karma directly::
 
     $ karma start karma.conf.js --single-run --browsers=PhantomJS
 
-and with coverage::
-
-    $ karma start karma.conf.js --single-run --browsers=PhantomJS --coverage
-
-Coverage reports can be found in ``reports/jstests/<browser>/index.html``.
+Coverage reports can be found in ``build/reports/coverage``.
 
 To trigger a test run on file change (source file or test file), run::
 

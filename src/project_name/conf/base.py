@@ -1,6 +1,5 @@
 import os
 
-from django.conf import global_settings as DEFAULT_SETTINGS
 from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -12,6 +11,7 @@ BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.p
 #
 
 DEBUG = False
+WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.application'
 
 PROJECT_NAME = '{{ project_name|lower }}'
 
@@ -64,7 +64,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'systemjs.finders.SystemFinder',
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -90,8 +89,11 @@ TEMPLATES = [
             os.path.join(DJANGO_PROJECT_DIR, 'templates'),
         ],
         'OPTIONS': {
-            'context_processors': DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + [
+            'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
                 '{{ project_name|lower }}.utils.context_processors.settings',
             ],
             'loaders': RAW_TEMPLATE_LOADERS
@@ -164,7 +166,6 @@ INSTALLED_APPS = [
     # External applications.
     'axes',
     'sniplates',
-    'systemjs',
 
     # Project applications.
 ]
@@ -218,7 +219,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGGING_DIR, 'django.log'),
             'formatter': 'verbose',
-            'maxBytes': 1024*1024*10,  # 10 MB
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 10
         },
         'project': {
@@ -226,7 +227,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGGING_DIR, '{{ project_name|lower }}.log'),
             'formatter': 'verbose',
-            'maxBytes': 1024*1024*10,  # 10 MB
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 10
         },
         'performance': {
@@ -234,7 +235,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(LOGGING_DIR, 'performance.log'),
             'formatter': 'performance',
-            'maxBytes': 1024*1024*10,  # 10 MB
+            'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 10
         },
     },
@@ -247,6 +248,11 @@ LOGGING = {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['console'],
+            'level': 'INFO',
             'propagate': True,
         },
     }

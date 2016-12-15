@@ -2,14 +2,12 @@
   "name": "{{ project_name|lower }}",
   "version": "1.0.0-alpha.0",
   "description": "{{ project_name }} project",
-  "main": "src/static/{{ project_name|lower }}/js/main.js",
+  "main": "src/static/{{ project_name|lower }}/js/{{ project_name|lower }}.js",
   "directories": {
     "doc": "doc"
   },
   "scripts": {
-    "test": "karma start karma.conf.js --single-run",
-    "postinstall": "jspm install",
-    "dev-bundle": "jspm bundle {{ project_name|lower }}/main.js static/SYSTEMJS/bundles/main.js -wid",
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -18,52 +16,40 @@
   "author": "Maykin Media",
   "license": "UNLICENSED",
   "homepage": "https://maykinmedia.nl",
-  "devDependencies": {
-    "babel-plugin-istanbul": "^2.0.1",
-    "babel-preset-es2015": "^6.14.0",
-    "bourbon-neat": "^1.8.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.2.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-watch": "^4.3.9",
-    "jasmine": "^2.5.0",
-    "jspm": "^0.17.0-beta.28",
-    "karma": "^1.2.0",
-    "karma-babel-preprocessor": "^6.0.1",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-jasmine-ajax": "^0.1.13",
-    "karma-jspm": "^2.2.0",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.26",
-    "minimist": "^1.2.0",
-    "npmlog": "^4.0.0"
-  },
   "dependencies": {
+    "bourbon-neat": "^1.8.0",
     "font-awesome": "^4.6.3",
     "material-design-icons": "2.2.3",
     "normalize.css": "^4.0.0"
   },
-  "jspm": {
-    "name": "{{ project_name|lower }}",
-    "main": "main.js",
-    "directories": {
-      "baseURL": "static",
-      "lib": "static/js"
-    },
-    "configFiles": {
-      "jspm:browser": "src/{{ project_name|lower }}/static/js/jspm.browser.js",
-      "jspm": "src/{{ project_name|lower }}/static/js/jspm.config.js"
-    },
-    "dependencies": {},
-    "devDependencies": {
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.13"
-    },
-    "peerDependencies": {},
-    "overrides": {}
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "bourbon": "^4.2.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-sass": "^2.2.0",
+    "istanbul-instrumenter-loader": "^1.0.0",
+    "jasmine-core": "^2.5.2",
+    "jshint": "^2.9.3",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-jasmine-ajax": "^0.1.13",
+    "karma-jasmine-jquery": "^0.1.1",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^1.8.0",
+    "node-sass": "^3.9.3",
+    "postcss-loader": "^0.11.1",
+    "require-dir": "^0.3.0",
+    "sass-loader": "^4.0.2",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-stream": "^3.2.0"
   }
 }

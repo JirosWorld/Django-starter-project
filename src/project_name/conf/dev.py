@@ -5,7 +5,6 @@ from .base import *
 #
 
 DEBUG = True
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.default.application'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ENVIRONMENT = 'development'
 
@@ -55,9 +54,6 @@ LOGGING['loggers'].update({
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
-
-COMPRESS_ENABLED = False
-SYSTEMJS_ENABLED = False
 
 #
 # Django debug toolbar
