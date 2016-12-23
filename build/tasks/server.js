@@ -7,9 +7,10 @@ var WebpackDevServer = require("webpack-dev-server");
 
 
 /**
- * Js task
- * Run using "gulp js"
- * Runs webpack to compile javascript
+ * Server task
+ * Run using "gulp server"
+ * Starts a webpack dev server on port 8080
+ * Proxies request to Django (assumed to be listening on port 8000)
  */
 gulp.task('server', function() {
     webpackConfig.entry.unshift(
