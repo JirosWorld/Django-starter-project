@@ -7,3 +7,9 @@ describe('menu', function() {
         expect(Menu).toBeTruthy();
     });
 });
+
+
+// check if HMR is enabled
+if (module.hot) {
+    module.hot.accept();
+}
