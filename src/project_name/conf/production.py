@@ -26,25 +26,28 @@ DATABASES = {
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '{{ secret_key }}'
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
 
-# Memcached cache backend setup.
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': '127.0.0.1:11211',
-#     }
-# }
+# Redis cache backend
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2", # NOTE: watch out for multiple projects using the same cache!
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "IGNORE_EXCEPTIONS": True,
+        }
+    }
+}
+
+# Caching sessions.
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = "default"
 
 # Caching templates.
 TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', RAW_TEMPLATE_LOADERS),
 ]
-
-# Caching sessions.
-# SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Production logging facility.
 LOGGING['loggers'].update({
@@ -69,11 +72,6 @@ LOGGING['loggers'].update({
         'propagate': False,
     },
 })
-
-#
-# django-maintenancemode
-#
-MAINTENANCE_MODE = False
 
 #
 # Raven
