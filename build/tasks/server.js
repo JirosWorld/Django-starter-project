@@ -1,3 +1,4 @@
+'use strict';
 var gulp = require('gulp');
 var webpack = require('webpack');
 var paths = require('../paths');
