@@ -13,33 +13,39 @@ var webpackConfig = require('../../webpack.config.js');
  * Proxies request to Django (assumed to be listening on port 8000)
  */
 gulp.task('server', function() {
+    var compiler, server;
+
     webpackConfig.entry.unshift(
         "webpack-dev-server/client?http://localhost:8080",
         "webpack/hot/only-dev-server"
     );
+
     webpackConfig.plugins = [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin()
     ];
-    var compiler = webpack(webpackConfig);
+
+    compiler = webpack(webpackConfig);
     server = new WebpackDevServer(compiler, {
         hot: true,
         publicPath: "/static/js/",
+
         proxy: {
             '/': {
-                target: 'http://localhost:8000/',
                 secure: false,
+                target: 'http://localhost:8000/',
+
                 bypass: function(request, response, proxyOptions) {
                     if (request.path.startsWith('/static/js/')) {
                         return request.path;
                     } else if (request.path.indexOf('hot-update') > 0) {
-                        // ugly hack, but publicPath is not properly supported :/
-                        return '/static/js' + request.path;
+                        return '/static/js' + request.path;  // Ugly hack, but publicPath is not properly supported :/
                     }
                     return false;
                 }
             }
         }
     });
+
     server.listen(8080);
 });
