@@ -8,7 +8,7 @@ var paths = require('./build/paths');
  */
 module.exports = {
     // Path to the js entry point (source)
-    entry: __dirname + '/' + paths.jsEntry,
+    entry: [__dirname + '/' + paths.jsEntry],
 
     // Path to the (transpiled) js
     output: {

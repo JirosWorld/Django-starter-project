@@ -7,4 +7,4 @@ var gulp = require('gulp');
  * Run using "gulp"
  * Runs "sass" and "js" and "watch" tasks
  */
-gulp.task('default', ['sass', 'server', 'js', 'watch']);
+gulp.task('default', ['sass', 'js']);
