@@ -1,10 +1,9 @@
 'use strict';
 var gulp = require('gulp');
 var webpack = require('webpack');
+var WebpackDevServer = require("webpack-dev-server");
 var paths = require('../paths');
 var webpackConfig = require('../../webpack.config.js');
-
-var WebpackDevServer = require("webpack-dev-server");
 
 
 /**
