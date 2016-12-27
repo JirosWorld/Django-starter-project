@@ -8,7 +8,7 @@
  * Example class
  * @class
  */
-class Example {
+export default class Example {
     /**
      * Constructor method
      * Gets called when class get instantiated
@@ -29,6 +29,10 @@ class Example {
 }
 
 
+// Webpack HMR
+if (module.hot) {
+    module.hot.accept();  // https://webpack.github.io/docs/hot-module-replacement.html
+}
 
-module.hot.accept();  // https://webpack.github.io/docs/hot-module-replacement.html
+
 new Example();  // Initiate this module
