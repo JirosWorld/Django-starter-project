@@ -1,0 +1,34 @@
+{% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n admin_tools_menu_tags staticfiles {% templatetag closeblock %}
+
+{% templatetag openblock %} block title {% templatetag closeblock %}{% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openvariable %} settings.PROJECT_NAME|capfirst {% templatetag closevariable %} {% templatetag openblock %} trans 'admin' {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block extrastyle {% templatetag closeblock %}
+{% templatetag openvariable %} block.super {% templatetag closevariable %}
+{% templatetag openblock %} if user.is_active and user.is_staff {% templatetag closeblock %}
+{% templatetag openblock %} if not is_popup {% templatetag closeblock %}
+{% templatetag openblock %} admin_tools_render_menu_css {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+<link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/admin_overrides.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block branding {% templatetag closeblock %}
+<h1 id="site-name">{% templatetag openvariable %} settings.PROJECT_NAME|capfirst {% templatetag closevariable %} {% templatetag openblock %} trans 'administration' {% templatetag closeblock %}</h1>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block nav-global {% templatetag closeblock %}
+{% templatetag openblock %} if user.is_active and user.is_staff {% templatetag closeblock %}
+{% templatetag openblock %} if not is_popup {% templatetag closeblock %}
+{% templatetag openblock %} admin_tools_render_menu {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block footer {% templatetag closeblock %}
+    {% templatetag openvariable %} block.super {% templatetag closevariable %}
+
+    {% templatetag openblock %} if settings.ENVIRONMENT and settings.SHOW_ALERT {% templatetag closeblock %}
+      {% templatetag openblock %} include "includes/debug_alert.html" {% templatetag closeblock %}
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
