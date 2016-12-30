@@ -1,143 +1,21 @@
 import os
 
-from django.contrib.messages import constants as message_constants
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.path.pardir))
 
-#
-# Standard Django settings.
-#
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
-DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.application'
-
-PROJECT_NAME = '{{ project_name|lower }}'
-
-ADMINS = (
-    ('Admin', '{{ project_name|lower }}@example.com'),
-)
-MANAGERS = ADMINS
-
-DEFAULT_FROM_EMAIL = '{{ project_name|lower }}@example.com'
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-LANGUAGE_CODE = 'nl-nl'
-
-TIME_ZONE = 'Europe/Amsterdam'
-
-LOCALE_PATHS = (
-    os.path.join(DJANGO_PROJECT_DIR, 'conf', 'locale'),
-)
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATIC_URL = '/static/'
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(DJANGO_PROJECT_DIR, 'static'),
-    os.path.join(BASE_DIR, 'node_modules', 'normalize.css'),
-    os.path.join(BASE_DIR, 'node_modules', 'font-awesome'),
-)
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
-]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/media/'
-
-# Make this unique, and don't share it with anybody.
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '{{ secret_key }}'
 
-# List of callables that know how to import templates from various sources.
-RAW_TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'admin_tools.template_loaders.Loader',
-    # 'django.template.loaders.eggs.Loader',
-)
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'APP_DIRS': False,  # conflicts with explicity specifying the loaders
-        'DIRS': [
-            os.path.join(DJANGO_PROJECT_DIR, 'templates'),
-        ],
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                '{{ project_name|lower }}.utils.context_processors.settings',
-            ],
-            'loaders': RAW_TEMPLATE_LOADERS
-        },
-    },
-]
+ALLOWED_HOSTS = []
 
-MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = '{{ project_name|lower }}.urls'
-
-# Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.application'
-
-# Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-FIXTURE_DIRS = (
-    os.path.join(DJANGO_PROJECT_DIR, 'fixtures'),
-)
+# Application definition
 
 INSTALLED_APPS = [
 
@@ -158,10 +36,10 @@ INSTALLED_APPS = [
     # 'django.contrib.sitemaps',
 
     # django-admin-tools
-    'admin_tools',
-    'admin_tools.theming',
-    'admin_tools.menu',
-    'admin_tools.dashboard',
+    # 'admin_tools',
+    # 'admin_tools.theming',
+    # 'admin_tools.menu',
+    # 'admin_tools.dashboard',
 
     # External applications.
     'axes',
@@ -170,13 +48,122 @@ INSTALLED_APPS = [
     # Project applications.
 ]
 
+MIDDLEWARE_CLASSES = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = '{{ project_name|lower }}.urls'
+
+# List of callables that know how to import templates from various sources.
+RAW_TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    # 'admin_tools.template_loaders.Loader',
+)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(DJANGO_PROJECT_DIR, 'templates'),
+        ],
+        'APP_DIRS': False,  # conflicts with explicity specifying the loaders
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                '{{ project_name|lower }}.utils.context_processors.settings',
+            ],
+            'loaders': RAW_TEMPLATE_LOADERS
+        },
+    },
+]
+
+WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.application'
+
+# Database: Defined in target specific settings files.
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
+
+# Password validation
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
+
+LANGUAGE_CODE = 'nl-nl'
+
+TIME_ZONE = 'Europe/Amsterdam'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+USE_THOUSAND_SEPARATOR = True
+
+# Translations
+LOCALE_PATHS = (
+    os.path.join(DJANGO_PROJECT_DIR, 'conf', 'locale'),
+)
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    os.path.join(DJANGO_PROJECT_DIR, 'static'),
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+FIXTURE_DIRS = (
+    os.path.join(DJANGO_PROJECT_DIR, 'fixtures'),
+)
+
+DEFAULT_FROM_EMAIL = '{{ project_name|lower }}@example.com'
+
 LOGGING_DIR = os.path.join(BASE_DIR, 'log')
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -267,6 +254,7 @@ LOGGING = {
 # SESSION_COOKIE_HTTPONLY = True
 # CSRF_COOKIE_SECURE = True
 # X_FRAME_OPTIONS = 'DENY'
+from django.contrib.messages import constants as message_constants
 
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'debug',
@@ -277,6 +265,9 @@ MESSAGE_TAGS = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+PROJECT_NAME = '{{ project_name|lower }}'
+
 ENVIRONMENT = None
 SHOW_ALERT = True
 
