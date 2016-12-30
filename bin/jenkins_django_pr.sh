@@ -9,16 +9,15 @@ echo "Installing front end dependencies..."
 npm install
 
 # compile sass to css
-# echo "Compiling sass..."
-# gulp sass
-# SASS_COMPILE_FAIL=$?
+echo "Compiling sass..."
+gulp sass
+SASS_COMPILE_FAIL=$?
 
 echo "Running Django staticfiles..."
-env/bin/python manage.py collectstatic --link --noinput
-env/bin/python manage.py systemjs_bundle
+env/bin/python src/manage.py collectstatic --link --noinput
 
 echo "Starting tests"
-(env/bin/python manage.py jenkins --project-apps-tests \
+(env/bin/python src/manage.py jenkins --project-apps-tests \
     --liveserver=localhost:8082-8179 \
     --verbosity 2 \
     --noinput \
