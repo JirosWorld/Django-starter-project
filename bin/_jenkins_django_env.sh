@@ -19,4 +19,4 @@ pip install pip-tools
 pip-compile requirements/base.in --output-file requirements/base.txt
 
 echo ".. Installing testing requirements..."
-pip install -r requirements/jenkins.txt
+pip install -r requirements/test.txt

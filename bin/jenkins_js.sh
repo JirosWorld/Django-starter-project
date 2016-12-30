@@ -9,7 +9,7 @@ echo "Installing front-end build tooling + dependencies"
 npm install
 
 echo "Running collectstatic..."
-env/bin/python manage.py collectstatic --link --noinput
+env/bin/python src/manage.py collectstatic --link --noinput
 
 echo "Starting tests"
 xvfb-run --server-args='-screen 0, 1920x1200x16' npm test
