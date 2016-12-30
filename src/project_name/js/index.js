@@ -1,9 +1,6 @@
-import 'components/menu';
-import Menu from 'components/menu';
-
-
-describe('menu', function() {
-    it('should be able to import "Menu" class', () => {
-        expect(Menu).toBeTruthy();
-    });
-});
+/**
+ * JavaScript entry point
+ * Use this to import other modules
+ * @module
+ */
+import './components/example';

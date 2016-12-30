@@ -1,6 +1,7 @@
 {% templatetag openblock %} extends "master.html" {% templatetag closeblock %}
 {% templatetag openblock %} load staticfiles {% templatetag closeblock %}
 
+{% templatetag openblock %} block menu {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 {% templatetag openblock %} block content {% templatetag closeblock %}
 <article class="page-container demo">
@@ -10,12 +11,11 @@
             <img class="demo__logo-img" src="{% templatetag openblock %} static 'img/maykinmedia_logo.png' {% templatetag closeblock %}">
         </figure>
         <h1 class="demo__title">It worked!</h1>
+        <h2 class="demo__subtitle">
+            Congratulations on installing the Maykin Media default project for
+            <strong>{{ project_name }}</strong>.
+        </h2>
     </header>
-
-    <h2 class="demo__subtitle">
-        Congratulations on installing the Maykin Media default project for
-        <strong>{{ project_name }}</strong>.
-    </h2>
 
     <section class="demo__instructions">
         <p>
@@ -26,9 +26,11 @@
         </p>
     </section>
 
-    <p>
-        You're seeing this message because you have <code>DEBUG = True</code> in your Django settings file and you haven't configured any URLs. Get to work!
-    </p>
+    <section class="demo__explanation">
+        <p>
+            You're seeing this message because you have <code>DEBUG = True</code> in your Django settings file and you haven't configured any URLs. Get to work!
+        </p>
+    </section>
 
 </article>
 {% templatetag openblock %} endblock {% templatetag closeblock %}

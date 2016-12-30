@@ -3,7 +3,7 @@ pytz
 raven
 
 Django
-django-admin-tools
+# django-admin-tools
 django-autoslug
 django-axes
 django-choices
@@ -11,4 +11,4 @@ django-rosetta
 django-sniplates
 django-redis
 
-djangorestframework
+# djangorestframework
