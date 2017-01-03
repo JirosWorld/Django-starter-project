@@ -29,6 +29,8 @@ SECRET_KEY = '{{ secret_key }}'
 ALLOWED_HOSTS = []
 
 # Redis cache backend
+# NOTE: If you do not use a cache backend, do not use a session backend or
+# cached template loaders that rely on a backend.
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
