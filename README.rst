@@ -46,6 +46,16 @@ installation instructions below and start at step 3.
 
 To start the project, you can continue to the Installation section, bullet 3.
 
+
+**Default apps**
+
+You can add boilerplate apps from here: https://bitbucket.org/maykinmedia/default-apps/src
+
+Simply add the app (folder name) to the project by using::
+
+    git archive --remote=git@bitbucket.org:maykinmedia/default-apps.git develop <app> | tar -x -C src/<project_name>
+
+
 **Additions**
 
 If you want to configure your Django settings module automatically::
@@ -58,6 +68,7 @@ In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.
     $ mkvirtualenvwrapper <project_name>
     $ echo "export DJANGO_SETTINGS_MODULE='<project_name>.conf.dev'" >> $WORKON_HOME/<project_name>/bin/postactivate
     $ workon <project_name>  # Reload virtualenv.
+
 
 **NOTE:** The section above will not be included in your project's README.
 Below you'll see the actual project README template.
