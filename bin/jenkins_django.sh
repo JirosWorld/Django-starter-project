@@ -1,8 +1,8 @@
 #!/bin/bash
-virtualenv env -p python3
+cur_dir="$(dirname "$0")"
 
-export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.test
-env/bin/pip install -r requirements/test.txt
+# load the helper scripts
+. $cur_dir/_jenkins_django_env.sh
 
 # install front-end deps
 echo "Installing front end dependencies..."
@@ -14,11 +14,10 @@ gulp sass
 SASS_COMPILE_FAIL=$?
 
 echo "Running Django staticfiles..."
-env/bin/python manage.py collectstatic --link --noinput
-env/bin/python manage.py systemjs_bundle
+env/bin/python src/manage.py collectstatic --link --noinput
 
 echo "Starting tests"
-(env/bin/python manage.py jenkins --project-apps-tests \
+(env/bin/python src/manage.py jenkins --project-apps-tests \
     --keepdb \
     --liveserver=localhost:8082-8179 \
     --verbosity 2 \
