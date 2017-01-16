@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sniplates',
 
     # Project applications.
+    '{{ project_name|lower }}.accounts',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -247,9 +248,12 @@ LOGGING = {
 
 #
 # Additional Django settings
-# Enable these when using HTTPS
 #
 
+# Custom user model
+AUTH_USER_MODEL = 'accounts.User'
+
+# Enable these when using HTTPS
 # SESSION_COOKIE_SECURE = True
 # SESSION_COOKIE_HTTPONLY = True
 # CSRF_COOKIE_SECURE = True
