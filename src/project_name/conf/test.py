@@ -7,8 +7,6 @@ from .base import *
 #
 
 DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.test.application'
-ENVIRONMENT = 'test'
 
 ADMINS = ()
 
@@ -26,17 +24,6 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS += [
-    'django_jenkins',
-]
-
-PROJECT_APPS = [app.rsplit('.apps.')[0] for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}')]
-
-JENKINS_TASKS = (
-    'django_jenkins.tasks.run_pylint',
-    'django_jenkins.tasks.run_pep8',
-)
-
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -49,7 +36,24 @@ LOGGING['loggers'].update({
     },
 })
 
+#
+# Custom settings
+#
 
-# Skip migrations in Django 1.7, see: https://gist.github.com/nealtodd/2869341f38f5b1eeb86d
-# Migration skipping is however not recommended, if possible, use the --keepdb option,
-# this is viable for develop/master builds, but not for pr's.
+# Show active environment in admin.
+ENVIRONMENT = 'test'
+
+#
+# Library settings
+#
+INSTALLED_APPS += [
+    'django_jenkins',
+]
+
+PROJECT_APPS = [app.rsplit('.apps.')[0] for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}')]
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.run_pep8',
+)
+

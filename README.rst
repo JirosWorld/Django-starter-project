@@ -205,3 +205,4 @@ When updating an existing installation:
 
     $ python src/manage.py collectstatic --link
     $ python src/manage.py migrate
+

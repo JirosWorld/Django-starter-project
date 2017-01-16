@@ -6,7 +6,6 @@ from .base import *
 
 DEBUG = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ENVIRONMENT = 'development'
 
 ADMINS = ()
 MANAGERS = ADMINS
@@ -50,14 +49,25 @@ LOGGING['loggers'].update({
     },
 })
 
+#
 # Additional Django settings
+#
+
+# Disable security measures for development
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
 
 #
-# Django debug toolbar
+# Custom settings
 #
+ENVIRONMENT = 'development'
+
+#
+# Library settings
+#
+
+# Django debug toolbar
 INSTALLED_APPS += [
     'debug_toolbar',
 ]
