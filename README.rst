@@ -27,6 +27,7 @@ code, like ``maykinmedia``::
 
 You'll need pip-compile to generate the pinned versions of the requirements::
 
+    $ pip install pip setuptools --upgrade (optionally)
     $ pip install pip-tools
     $ cd requirements
     $ pip-compile base.in
