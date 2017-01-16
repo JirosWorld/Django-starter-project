@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sniplates',
 
     # Project applications.
+    '{{ project_name|lower }}.accounts',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -247,13 +248,18 @@ LOGGING = {
 
 #
 # Additional Django settings
-# Enable these when using HTTPS
 #
 
+# Custom user model
+AUTH_USER_MODEL = 'accounts.User'
+
+# Enable these when using HTTPS
 # SESSION_COOKIE_SECURE = True
 # SESSION_COOKIE_HTTPONLY = True
 # CSRF_COOKIE_SECURE = True
 # X_FRAME_OPTIONS = 'DENY'
+
+# Custom message tags
 from django.contrib.messages import constants as message_constants
 
 MESSAGE_TAGS = {
@@ -264,16 +270,18 @@ MESSAGE_TAGS = {
     message_constants.ERROR: 'danger'
 }
 
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
+#
+# Custom settings
+#
 PROJECT_NAME = '{{ project_name|lower }}'
-
 ENVIRONMENT = None
 SHOW_ALERT = True
 
 #
-# Django-axes
+# Library settings
 #
+
+# Django-axes
 AXES_LOGIN_FAILURE_LIMIT = 30  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False

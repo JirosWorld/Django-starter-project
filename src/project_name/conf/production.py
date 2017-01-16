@@ -5,8 +5,6 @@ from .base import *
 #
 
 DEBUG = False
-ENVIRONMENT = 'production'
-SHOW_ALERT = False
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -76,8 +74,18 @@ LOGGING['loggers'].update({
 })
 
 #
-# Raven
+# Custom settings
 #
+
+# Show active environment in admin.
+ENVIRONMENT = 'production'
+SHOW_ALERT = False
+
+#
+# Library settings
+#
+
+# Raven
 INSTALLED_APPS = INSTALLED_APPS + [
     'raven.contrib.django.raven_compat',
 ]
