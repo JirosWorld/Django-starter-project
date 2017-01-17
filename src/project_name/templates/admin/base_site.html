@@ -1,10 +1,11 @@
 {% verbatim %}{% extends "admin/base.html" %}
-{% load i18n static %}
+{% load i18n static hijack_tags %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Administration') }}{% endblock %}
 
 {% block extrastyle %}
     {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/admin/admin_overrides.css' %}">
 {% endblock %}
 
@@ -13,6 +14,11 @@
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
+
+{% block messages %}
+    {% hijack_notification %}
+    {{ block.super }}
+{% endblock %}
 
 {% block footer %}
     {{ block.super }}

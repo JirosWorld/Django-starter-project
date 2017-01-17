@@ -1,4 +1,4 @@
-{% templatetag openblock %} load staticfiles  {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load staticfiles hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -9,6 +9,7 @@
 
         <link href="{% templatetag openblock %} static 'css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
         <link href="{% templatetag openblock %} static 'css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" />
 
         {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -22,6 +23,7 @@
     </head>
 
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
+        {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
 
         <main>
             {% templatetag openblock %} block menu {% templatetag closeblock %}
