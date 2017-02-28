@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     # External applications.
     'axes',
     'sniplates',
+    'hijack',
+    'compat',  # Part of hijack
+    'hijack_admin',
 
     # Project applications.
     '{{ project_name|lower }}.accounts',
@@ -234,7 +237,7 @@ LOGGING = {
             'propagate': True,
         },
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['django'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -280,3 +283,13 @@ AXES_LOGIN_FAILURE_LIMIT = 30  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
+
+# Django-hijack (and Django-hijack-admin)
+from django.core.urlresolvers import reverse_lazy
+
+HIJACK_LOGIN_REDIRECT_URL = '/'
+HIJACK_LOGOUT_REDIRECT_URL = reverse_lazy('admin:accounts_user_changelist')
+HIJACK_REGISTER_ADMIN = False
+# This is a CSRF-security risk.
+# See: http://django-hijack.readthedocs.io/en/latest/configuration/#allowing-get-method-for-hijack-views
+HIJACK_ALLOW_GET_REQUESTS = True

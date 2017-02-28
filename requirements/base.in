@@ -5,6 +5,8 @@ raven
 
 Django
 # django-admin-tools
+django-hijack
+django-hijack-admin
 django-axes
 django-choices
 django-rosetta
