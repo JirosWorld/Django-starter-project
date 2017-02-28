@@ -74,6 +74,12 @@ LOGGING['loggers'].update({
 # Show active environment in admin.
 ENVIRONMENT = 'staging'
 
+# We will assume we're running under https
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+
 #
 # Library settings
 #

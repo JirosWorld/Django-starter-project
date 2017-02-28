@@ -81,6 +81,13 @@ LOGGING['loggers'].update({
 ENVIRONMENT = 'production'
 SHOW_ALERT = False
 
+# We will assume we're running under https
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+
+
 #
 # Library settings
 #

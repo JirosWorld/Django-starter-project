@@ -253,12 +253,6 @@ LOGGING = {
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
 
-# Enable these when using HTTPS
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = True
-# CSRF_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
-
 # Custom message tags
 from django.contrib.messages import constants as message_constants
 

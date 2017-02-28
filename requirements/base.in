@@ -5,7 +5,6 @@ raven
 
 Django
 # django-admin-tools
-django-autoslug
 django-axes
 django-choices
 django-rosetta
