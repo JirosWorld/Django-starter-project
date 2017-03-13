@@ -17,10 +17,11 @@ node {
   // TODO: Pick up Coverage (reports/coverage.xml) and violations (reports/pep8.report, pyflakes.report, pylint.report)
   }
 
-  stage('Analysis') {
-    def scannerHome = tool 'SonarQube Scanner 2.8';
-    withSonarQubeEnv('Jenkins Scanner') {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-  }
+// Enable for SonarQube
+//  stage('Analysis') {
+//    def scannerHome = tool 'SonarQube Scanner 2.8';
+//    withSonarQubeEnv('Jenkins Scanner') {
+//      sh "${scannerHome}/bin/sonar-scanner"
+//    }
+//  }
 }
