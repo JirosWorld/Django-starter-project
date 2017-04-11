@@ -1,5 +1,8 @@
 {% comment %}
+
 [![Requirements Status](https://requires.io/bitbucket/maykinmedia/default-project/requirements.svg?branch=master)](https://requires.io/bitbucket/maykinmedia/default-project/requirements/?branch=master)
+
+![Requirements Status](https://requires.io/bitbucket/maykinmedia/default-project/requirements.svg?branch=master)
 
 Get started
 ===========
