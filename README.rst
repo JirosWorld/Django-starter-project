@@ -1,4 +1,5 @@
 {% comment %}
+[![Requirements Status](https://requires.io/bitbucket/maykinmedia/default-project/requirements.svg?branch=master)](https://requires.io/bitbucket/maykinmedia/default-project/requirements/?branch=master)
 
 Get started
 ===========
@@ -74,7 +75,10 @@ In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.
 **NOTE:** The section above will not be included in your project's README.
 Below you'll see the actual project README template.
 
-{% endcomment %}Project layout
+{% endcomment %}
+[![Requirements Status](https://requires.io/bitbucket/maykinmedia/{{ project_name|lower }}/requirements.svg?branch=master)](https://requires.io/bitbucket/maykinmedia/{{ project_name|lower }}/requirements/?branch=master)
+
+Project layout
 ==============
 
 The project layout was made in such a way that code is seperated from non-code
@@ -206,4 +210,3 @@ When updating an existing installation:
 
     $ python src/manage.py collectstatic --link
     $ python src/manage.py migrate
-
