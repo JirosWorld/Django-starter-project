@@ -1,8 +1,8 @@
 {% comment %}
 
-[![Requirements Status](https://requires.io/bitbucket/maykinmedia/default-project/requirements.svg?branch=master)](https://requires.io/bitbucket/maykinmedia/default-project/requirements/?branch=master)
-
-![Requirements Status](https://requires.io/bitbucket/maykinmedia/default-project/requirements.svg?branch=master)
+.. image:: https://requires.io/bitbucket/maykinmedia/default-project/requirements.svg?branch=master
+     :target: https://requires.io/bitbucket/maykinmedia/default-project/requirements/?branch=master
+     :alt: Requirements Status
 
 Get started
 ===========
@@ -79,7 +79,10 @@ In case you are using [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.
 Below you'll see the actual project README template.
 
 {% endcomment %}
-[![Requirements Status](https://requires.io/bitbucket/maykinmedia/{{ project_name|lower }}/requirements.svg?branch=master)](https://requires.io/bitbucket/maykinmedia/{{ project_name|lower }}/requirements/?branch=master)
+
+.. image:: https://requires.io/bitbucket/maykinmedia/{{ project_name|lower }}/requirements.svg?branch=master
+     :target: https://requires.io/bitbucket/maykinmedia/{{ project_name|lower }}/requirements/?branch=master
+     :alt: Requirements Status
 
 Project layout
 ==============
