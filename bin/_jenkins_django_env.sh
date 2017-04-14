@@ -14,9 +14,9 @@ fi
 echo "Installing requirements..."
 pip install pip --upgrade
 
-echo ".. Compiling dependencies versions..."
-pip install pip-tools
-pip-compile requirements/base.in --output-file requirements/base.txt
+# echo ".. Compiling dependencies versions..."
+# pip install pip-tools
+# pip-compile requirements/base.in --output-file requirements/base.txt
 
 echo ".. Installing testing requirements..."
 pip install -r requirements/test.txt
