@@ -256,6 +256,12 @@ LOGGING = {
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
 
+# Allow logging in with both username+password and email+password
+AUTHENTICATION_BACKENDS = [
+    '{{ project_name|lower }}.accounts.backends.UserModelEmailBackend',
+    'django.contrib.auth.backends.ModelBackend'
+]
+
 #
 # Custom settings
 #
