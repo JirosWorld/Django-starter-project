@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # Project applications.
     '{{ project_name|lower }}.accounts',
+    '{{ project_name|lower }}.utils',
 ]
 
 MIDDLEWARE_CLASSES = [
