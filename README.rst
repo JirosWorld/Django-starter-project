@@ -93,7 +93,7 @@ or keep in a different location (like the virtual environment)::
 
     {{ project_name|lower }}
     |
-    +-- bin                 -- Usefull scripts (mostly for developers).
+    +-- bin                 -- Useful scripts (mostly for developers).
     |
     +-- build               -- All Gulp tasks.
     |
