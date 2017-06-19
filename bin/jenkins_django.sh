@@ -20,7 +20,6 @@ echo "Starting tests"
 # Add '--keepdb' if you want to speed up your tests, but note that
 # it can fail due to migrations
 (env/bin/python src/manage.py jenkins --project-apps-tests \
-    --liveserver=localhost:8082-8179 \
     --verbosity 2 \
     --noinput \
     --enable-coverage \

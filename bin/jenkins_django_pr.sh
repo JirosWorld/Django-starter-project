@@ -18,7 +18,6 @@ env/bin/python src/manage.py collectstatic --link --noinput
 
 echo "Starting tests"
 (env/bin/python src/manage.py jenkins --project-apps-tests \
-    --liveserver=localhost:8082-8179 \
     --verbosity 2 \
     --noinput \
     --enable-coverage \
