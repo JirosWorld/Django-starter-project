@@ -1,4 +1,5 @@
 from .base import *
+import raven
 
 #
 # Standard Django settings.
@@ -100,6 +101,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
 ]
 RAVEN_CONFIG = {
     'dsn': 'https://',
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
 }
 LOGGING['handlers'].update({
     'sentry': {
