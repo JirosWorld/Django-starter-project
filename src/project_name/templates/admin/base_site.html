@@ -1,34 +1,27 @@
-{% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
-{% templatetag openblock %} load i18n admin_tools_menu_tags staticfiles {% templatetag closeblock %}
+{% verbatim %}{% extends "admin/base.html" %}
+{% load i18n static hijack_tags %}
 
-{% templatetag openblock %} block title {% templatetag closeblock %}{% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openvariable %} settings.PROJECT_NAME|capfirst {% templatetag closevariable %} {% templatetag openblock %} trans 'admin' {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block title %}{{ title }} | {{ site_title|default:_('Administration') }}{% endblock %}
 
-{% templatetag openblock %} block extrastyle {% templatetag closeblock %}
-{% templatetag openvariable %} block.super {% templatetag closevariable %}
-{% templatetag openblock %} if user.is_active and user.is_staff {% templatetag closeblock %}
-{% templatetag openblock %} if not is_popup {% templatetag closeblock %}
-{% templatetag openblock %} admin_tools_render_menu_css {% templatetag closeblock %}
-{% templatetag openblock %} endif {% templatetag closeblock %}
-{% templatetag openblock %} endif {% templatetag closeblock %}
-<link href="{% templatetag openblock %} static '{{ project_name|lower }}/css/admin_overrides.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin/admin_overrides.css' %}">
+{% endblock %}
 
-{% templatetag openblock %} block branding {% templatetag closeblock %}
-<h1 id="site-name">{% templatetag openvariable %} settings.PROJECT_NAME|capfirst {% templatetag closevariable %} {% templatetag openblock %} trans 'administration' {% templatetag closeblock %}</h1>
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Administration') }}</a></h1>
+{% endblock %}
 
-{% templatetag openblock %} block nav-global {% templatetag closeblock %}
-{% templatetag openblock %} if user.is_active and user.is_staff {% templatetag closeblock %}
-{% templatetag openblock %} if not is_popup {% templatetag closeblock %}
-{% templatetag openblock %} admin_tools_render_menu {% templatetag closeblock %}
-{% templatetag openblock %} endif {% templatetag closeblock %}
-{% templatetag openblock %} endif {% templatetag closeblock %}
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block nav-global %}{% endblock %}
 
-{% templatetag openblock %} block footer {% templatetag closeblock %}
-    {% templatetag openvariable %} block.super {% templatetag closevariable %}
+{% block messages %}
+    {% hijack_notification %}
+    {{ block.super }}
+{% endblock %}
 
-    {% templatetag openblock %} if settings.ENVIRONMENT and settings.SHOW_ALERT {% templatetag closeblock %}
-      {% templatetag openblock %} include "includes/debug_alert.html" {% templatetag closeblock %}
-    {% templatetag openblock %} endif {% templatetag closeblock %}
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block footer %}
+    {{ block.super }}
+
+    {% include "includes/debug_alert.html" %}
+{% endblock %}{% endverbatim %}

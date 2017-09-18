@@ -1,12 +1,11 @@
 from .base import *
+import raven
 
 #
 # Standard Django settings.
 #
 
 DEBUG = False
-ENVIRONMENT = 'production'
-SHOW_ALERT = False
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -29,6 +28,8 @@ SECRET_KEY = '{{ secret_key }}'
 ALLOWED_HOSTS = []
 
 # Redis cache backend
+# NOTE: If you do not use a cache backend, do not use a session backend or
+# cached template loaders that rely on a backend.
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -74,13 +75,33 @@ LOGGING['loggers'].update({
 })
 
 #
-# Raven
+# Custom settings
 #
+
+# Show active environment in admin.
+ENVIRONMENT = 'production'
+SHOW_ALERT = False
+
+# We will assume we're running under https
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+# Only set this when we're behind Nginx as configured in our example-deployment
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+#
+# Library settings
+#
+
+# Raven
 INSTALLED_APPS = INSTALLED_APPS + [
     'raven.contrib.django.raven_compat',
 ]
 RAVEN_CONFIG = {
-    'dsn': 'http://',
+    'dsn': 'https://',
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
 }
 LOGGING['handlers'].update({
     'sentry': {

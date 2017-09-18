@@ -1,11 +1,11 @@
 from .base import *
+import raven
 
 #
 # Standard Django settings.
 #
 
 DEBUG = False
-ENVIRONMENT = 'staging'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -28,6 +28,8 @@ SECRET_KEY = '{{ secret_key }}'
 ALLOWED_HOSTS = []
 
 # Redis cache backend
+# NOTE: If you do not use a cache backend, do not use a session backend or
+# cached template loaders that rely on a backend.
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -43,7 +45,7 @@ CACHES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = "default"
 
-
+# Caching templates.
 TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader', RAW_TEMPLATE_LOADERS),
 ]
@@ -67,13 +69,31 @@ LOGGING['loggers'].update({
 })
 
 #
-# Raven
+# Custom settings
 #
+
+# Show active environment in admin.
+ENVIRONMENT = 'staging'
+
+# We will assume we're running under https
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+# Only set this when we're behind Nginx as configured in our example-deployment
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+#
+# Library settings
+#
+
+# Raven
 INSTALLED_APPS = INSTALLED_APPS + [
     'raven.contrib.django.raven_compat',
 ]
 RAVEN_CONFIG = {
-    'dsn': 'http://',
+    'dsn': 'https://',
+    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
 }
 LOGGING['handlers'].update({
     'sentry': {

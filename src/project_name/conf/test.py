@@ -7,8 +7,6 @@ from .base import *
 #
 
 DEBUG = False
-WSGI_APPLICATION = '{{ project_name|lower }}.wsgi.test.application'
-ENVIRONMENT = 'test'
 
 ADMINS = ()
 
@@ -16,8 +14,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': '{{ project_name|lower }}',
-        'USER': '{{ project_name|lower }}',
-        'PASSWORD': '{{ project_name|lower }}',
+        'USER': 'jenkins',
+        'PASSWORD': 'jenkins',
         'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',  # Set to empty string for default.
         'TEST': {
@@ -25,17 +23,6 @@ DATABASES = {
         }
     }
 }
-
-INSTALLED_APPS += [
-    'django_jenkins',
-]
-
-PROJECT_APPS = [app for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}')]
-
-JENKINS_TASKS = (
-    'django_jenkins.tasks.run_pylint',
-    'django_jenkins.tasks.run_pep8',
-)
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
@@ -49,7 +36,29 @@ LOGGING['loggers'].update({
     },
 })
 
+#
+# Custom settings
+#
 
-# Skip migrations in Django 1.7, see: https://gist.github.com/nealtodd/2869341f38f5b1eeb86d
-# Migration skipping is however not recommended, if possible, use the --keepdb option,
-# this is viable for develop/master builds, but not for pr's.
+# Show active environment in admin.
+ENVIRONMENT = 'test'
+
+#
+# Django-axes
+#
+AXES_BEHIND_REVERSE_PROXY = False  # Required to allow FakeRequest and the like to work correctly.
+
+#
+# Library settings
+#
+INSTALLED_APPS += [
+    'django_jenkins',
+]
+
+PROJECT_APPS = [app.rsplit('.apps.')[0] for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}')]
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.run_pep8',
+)
+

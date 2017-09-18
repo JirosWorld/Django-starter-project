@@ -14,13 +14,12 @@ gulp sass
 SASS_COMPILE_FAIL=$?
 
 echo "Running Django staticfiles..."
-env/bin/python manage.py collectstatic --link --noinput
-env/bin/python manage.py systemjs_bundle
+env/bin/python src/manage.py collectstatic --link --noinput
 
 echo "Starting tests"
-(env/bin/python manage.py jenkins --project-apps-tests \
-    --keepdb \
-    --liveserver=localhost:8082-8179 \
+# Add '--keepdb' if you want to speed up your tests, but note that
+# it can fail due to migrations
+(env/bin/python src/manage.py jenkins --project-apps-tests \
     --verbosity 2 \
     --noinput \
     --enable-coverage \

@@ -18,7 +18,7 @@ project_name = '{{ project_name|lower }}'
 
 parser = argparse.ArgumentParser(description=description)
 parser.add_argument('target', choices=['production', 'staging', 'test', 'dev'],
-                    help='production/staging/dev')
+                    help='production/staging/test/dev')
 parser.add_argument('--project', default=project_name,
                     help='Name of the project in your src directory, "%s" by default' % project_name)
 parser.add_argument('--init', action='store_true',

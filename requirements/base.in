@@ -1,14 +1,16 @@
+psycopg2
 Pillow
 pytz
 raven
 
 Django
-django-admin-tools
-django-autoslug
+# django-admin-tools
+django-hijack
+django-hijack-admin
 django-axes
 django-choices
 django-rosetta
 django-sniplates
 django-redis
 
-djangorestframework
+# djangorestframework
