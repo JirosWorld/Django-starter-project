@@ -35,7 +35,7 @@ gulp.task('sass', ['font-awesome'], function() {
         }))
 
         // Remove duplicated code
-        //.pipe(purge())
+        .pipe(purge())
         .pipe(cleanCSS({compatibility: 'ie8', level: 2}))
 
         // Writes css to paths.cssDir
