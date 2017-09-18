@@ -21,10 +21,6 @@
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
 
         <main>
-            {% templatetag openblock %} block menu {% templatetag closeblock %}
-                {% templatetag openblock %} include "includes/menu.html" {% templatetag closeblock %}
-            {% templatetag openblock %} endblock menu {% templatetag closeblock %}
-
             {% templatetag openblock %} block content {% templatetag closeblock %}
                 Override <code>{% templatetag openblock %} verbatim {% templatetag closeblock %}{% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endverbatim {% templatetag closeblock %}</code>
                 to get some actual content.
