@@ -5,6 +5,6 @@ var gulp = require('gulp');
 /**
  * Default task
  * Run using "gulp"
- * Runs "sass" and "js" and "watch" tasks
+ * Runs "sass" and "js" tasks
  */
-gulp.task('default', ['sass', 'js']);
+gulp.task('build', ['sass', 'js']);

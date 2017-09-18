@@ -20,16 +20,25 @@ module.exports = {
     package: pkg,
 
     // Path to the sass (sources) directory
+    sassSrcDir: sourcesRoot + 'sass/',
+
+    // Path to the sass (sources) entry point
     sassSrc: sourcesRoot + 'sass/**/*.scss',
 
     // Path to the (transpiled) css directory
     cssDir: staticRoot + 'css/',
 
+    // Path to the fonts directory
+    fontsDir: staticRoot + 'fonts/',
+
     // Path to the js entry point (source)
     jsEntry: sourcesRoot + 'js/index.js',
 
+    // Path to the js (sources) directory
+    jsSrcDir: sourcesRoot + 'js/',
+
     // Path to js (sources)
-    jsSrc: sourcesRoot + '/js/**/*.js',
+    jsSrc: sourcesRoot + 'js/**/*.js',
 
     // Path to the js (sources) directory
     jsSrcDir: sourcesRoot + 'js/',
@@ -38,11 +47,17 @@ module.exports = {
     jsDir: staticRoot + 'js/',
 
     // Path to js spec (test) files
-    jsSpec: sourcesRoot + 'test/**/*.spec.js',
+    jsSpec: sourcesRoot + 'tests/**/*.spec.js',
 
     // Path to js spec (test) entry file
-    jsSpecEntry: sourcesRoot + 'test/index.js',
+    jsSpecEntry: sourcesRoot + 'tests/index.js',
 
     // Path to js code coverage directory
-    coverageDir: 'reports/jstests/'
+    coverageDir: 'reports/jstests/',
+
+    // Path to HTML templates directory
+    htmlTemplatesDir: sourcesRoot + 'templates/',
+
+    // Path to HTML includes directory
+    htmlIncludesDir: sourcesRoot + 'templates/includes/'
 };
