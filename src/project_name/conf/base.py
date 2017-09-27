@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Optional applications.
+    'django_admin_index',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     # 'django.contrib.humanize',
@@ -273,6 +274,8 @@ SHOW_ALERT = True
 #
 # Library settings
 #
+
+ADMIN_INDEX_SHOW_REMAINING_APPS = True
 
 # Django-axes
 AXES_LOGIN_FAILURE_LIMIT = 30  # Default: 3
