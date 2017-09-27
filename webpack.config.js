@@ -25,12 +25,7 @@ module.exports = {
         }]
     },
 
-    // Allow source level module loading
-    resolve: {
-        root: [
-            paths.jsSrcDir
-        ]
-    },
+    devtool: 'sourcemap',
 
     // Minify output
     plugins: [
