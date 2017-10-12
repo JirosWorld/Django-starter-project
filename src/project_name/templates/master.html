@@ -1,7 +1,6 @@
-{% templatetag openblock %} load staticfiles hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load staticfiles  {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="utf-8">
         <title>{% templatetag openblock %} block title {% templatetag closeblock %}{{ project_name|title }}{% templatetag openblock %} endblock {% templatetag closeblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,35 +8,19 @@
         <meta name="author" content="">
 
         <link href="{% templatetag openblock %} static 'css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
-        <link href="{% templatetag openblock %} static 'css/print.css' {% templatetag closeblock %}" media="print" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" />
-
         {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-
         <link rel="shortcut icon" href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% templatetag openblock %} static 'ico/apple-touch-icon-144-precomposed.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% templatetag openblock %} static 'ico/apple-touch-icon-114-precomposed.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% templatetag openblock %} static 'ico/apple-touch-icon-72-precomposed.png' {% templatetag closeblock %}">
-        <link rel="apple-touch-icon-precomposed" href="{% templatetag openblock %} static 'ico/apple-touch-icon-57-precomposed.png' {% templatetag closeblock %}">
-
-        {% templatetag openblock %} block extra_head {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
     </head>
 
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
-        {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
 
         <main>
-            {% templatetag openblock %} block menu {% templatetag closeblock %}
-                {% templatetag openblock %} include "includes/menu.html" {% templatetag closeblock %}
-            {% templatetag openblock %} endblock menu {% templatetag closeblock %}
-
             {% templatetag openblock %} block content {% templatetag closeblock %}
                 Override <code>{% templatetag openblock %} verbatim {% templatetag closeblock %}{% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endverbatim {% templatetag closeblock %}</code>
                 to get some actual content.
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         </main>
 
-        {% templatetag openblock %} block extra_js {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-
+        <script src="{% templatetag openblock %} static 'js/{{ project_name|lower }}.js' {% templatetag closeblock %}"></script>
     </body>
 </html>

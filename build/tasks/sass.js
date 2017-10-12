@@ -1,9 +1,9 @@
 'use strict';
+var cleanCSS = require('gulp-clean-css');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var bourbon = require('bourbon');
-var neat = require('bourbon-neat');
 var autoprefixer = require('gulp-autoprefixer');
+var purge = require('gulp-css-purge');
 var paths = require('../paths');
 
 
@@ -16,15 +16,15 @@ var paths = require('../paths');
  * Auto prefixes css
  * Writes css to paths.cssDir
  */
-gulp.task('sass', function() {
+gulp.task('sass', ['font-awesome'], function() {
     // Searches for sass files in paths.sassSrc
-    gulp.src(paths.sassSrc)
+    return gulp.src(paths.sassSrc)
         // Compiles sass to css
         .pipe(sass({
-            outputStyle: 'minified',
+            outputStyle: 'compressed',
 
-            // Includes bourbon neat
-            includePaths: bourbon.includePaths.concat(neat.includePaths)
+            // Allow importing from node_modules in .scss files
+            includePaths: 'node_modules/',
         })
         .on('error', sass.logError))
 
@@ -33,6 +33,10 @@ gulp.task('sass', function() {
             browsers: ['last 2 versions'],
             cascade: false
         }))
+
+        // Remove duplicated code
+        .pipe(purge())
+        .pipe(cleanCSS({compatibility: 'ie8', level: 2}))
 
         // Writes css to paths.cssDir
         .pipe(gulp.dest(paths.cssDir));
