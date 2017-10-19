@@ -31,4 +31,4 @@ echo "Cleaning up uploaded files..."
 rm -rf media/*
 
 # exit code so that the whole build fails if any step fails
-! (( $TESTS_FAIL ))
+! (( $SASS_COMPILE_FAIL || $TESTS_FAIL ))

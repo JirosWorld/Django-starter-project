@@ -25,7 +25,10 @@ a:focus, a:hover {
 #header {
 	color: $color_secondary_light;
   background: $color_primary_dark;
-	/* border-bottom: 8px solid $color_secondary; */
+  /* border-bottom: 8px solid $color_secondary; */
+  position: sticky;
+  top: 0;
+  z-index: 100000;
 
 	a:link, a:visited {
 	  color: $color_lightest;
@@ -57,7 +60,11 @@ a:focus, a:hover {
 
 div.breadcrumbs {
   background: $color_primary;
-	color: $color_primary_light;
+  color: $color_primary_light;
+  position: sticky;
+  top: 60px;
+  z-index: 100000;
+
   a {
     color: $color_lightest;
 
