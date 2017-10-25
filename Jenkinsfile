@@ -14,7 +14,33 @@ node {
   stage('Test') {
     sh ". env/bin/activate && ./env/bin/python src/manage.py jenkins  -r --project-apps-tests --enable-coverage --pep8-ignore=W293,W291,E501,E261 --pep8-exclude=migrations,static,media --pylint-rcfile=pylint.rc --coverage-rcfile=.coveragerc"
     junit 'reports/junit.xml'
-  // TODO: Pick up Coverage (reports/coverage.xml) and violations (reports/pep8.report, pyflakes.report, pylint.report)
+    // Requires: https://wiki.jenkins.io/display/JENKINS/Cobertura+Plugin
+    // Requires: https://wiki.jenkins.io/display/JENKINS/Warnings+Plugin
+            step(
+                [
+                    $class: 'CoberturaPublisher',
+                    coberturaReportFile: 'reports/coverage.xml'
+                ]
+            )
+            step(
+                [
+                    $class: 'WarningsPublisher',
+                    parserConfigurations: [
+                        [
+                            parserName: 'PyLint',
+                            pattern: 'reports/pylint.report',
+                            unstableTotalAll: '10',
+                            usePreviousBuildAsReference: true,
+                        ],
+                        [
+                            parserName: 'Pep8',
+                            pattern: 'reports/pep8.report',
+                            unstableTotalAll: '50',
+                            usePreviousBuildAsReference: true,
+                        ],
+                    ]
+                ]
+            )
   }
 
 // Enable for SonarQube
