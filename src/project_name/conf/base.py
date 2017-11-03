@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Optional applications.
+    'ordered_model',
     'django_admin_index',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
