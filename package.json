@@ -54,8 +54,8 @@
     "require-dir": "^0.3.0",
     "sass-loader": "^4.0.2",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^2.8.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
     "webpack-stream": "^4.0.0",
     "yargs": "^9.0.1"
   }
