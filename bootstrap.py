@@ -93,13 +93,6 @@ def pip_compile_pin_requirements(virtualenv):
     call(cmd_tpl, shell=True)
 
     if os.name == 'posix':
-        pip_path = os.path.join(virtualenv, 'bin', 'pip')
-    elif os.name == 'nt':
-        pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
-    cmd_tpl = '{pip} install --upgrade pip'.format(pip=pip_path)
-    call(cmd_tpl, shell=True)
-
-    if os.name == 'posix':
         bin_dir = 'bin'
     elif os.name == 'nt':
         bin_dir = 'Scripts'
@@ -107,7 +100,6 @@ def pip_compile_pin_requirements(virtualenv):
     os.chdir('requirements')
     call('../{0} base.in'.format(pip_compile), shell=True)
     os.chdir('..')
-
 
 def main():
     virtualenv = args.env
@@ -127,6 +119,14 @@ def main():
         if not os.path.exists(django_admin_symlink):
             os.symlink('../../src/manage.py', django_admin_symlink)
 
+    print('\n== Upgrading Pip ==\n')
+    if os.name == 'posix':
+        pip_path = os.path.join(virtualenv, 'bin', 'pip')
+    elif os.name == 'nt':
+        pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
+    cmd_tpl = '{pip} install --upgrade pip'.format(pip=pip_path)
+    call(cmd_tpl, shell=True)
+
     if args.init or not os.path.exists(os.path.join('requirements', 'base.txt')):
         pip_compile_pin_requirements(virtualenv)
 
@@ -138,8 +138,7 @@ def main():
     elif os.name == 'nt':
         pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
         cmd_tpl = '{pip} install -r requirements\\{target}.txt'
-    call(cmd_tpl.format(pip=pip_path, target=args.target), shell=True)
+    return call(cmd_tpl.format(pip=pip_path, target=args.target), shell=True)
 
 if __name__ == '__main__':
-    main()
-    sys.exit(0)
+    sys.exit(main())
