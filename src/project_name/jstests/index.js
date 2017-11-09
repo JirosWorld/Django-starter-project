@@ -5,3 +5,4 @@ testsContext.keys().forEach(testsContext);
 /** Include sources */
 let sourceContext = require.context('../js/', true, /\.js$/);
 sourceContext.keys().forEach(sourceContext);
+

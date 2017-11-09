@@ -1,15 +1,19 @@
+var path = require('path');
 var paths = require('./build/paths');
 var webpackConfig = require('./webpack.config.js');
 
 
 // Add istanbul-instrumenter to webpack configuration
-webpackConfig.module.postLoaders = [
-    {
-        test: /\.js$/,
-        include: paths.jsSrcDir,
-        loader: 'istanbul-instrumenter'
+webpackConfig.module.loaders.push({
+    test: /\.js$/,
+    include: __dirname + '/' + paths.jsSrcDir,
+    loader: 'istanbul-instrumenter-loader',
+    enforce: 'post',
+
+    options: {
+        esModules: true
     }
-];
+});
 
 
 // The preprocessor config
