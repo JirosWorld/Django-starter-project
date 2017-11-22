@@ -61,14 +61,9 @@ LOGGING['loggers'].update({
         'level': 'ERROR',
         'propagate': False,
     },
-    '{{ project_name|lower }}': {
-        'handlers': ['project'],
-        'level': 'WARNING',
-        'propagate': True,
-    },
     'django': {
         'handlers': ['django'],
-        'level': 'WARNING',
+        'level': 'INFO',
         'propagate': True,
     },
     'django.security.DisallowedHost': {
