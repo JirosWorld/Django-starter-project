@@ -14,12 +14,26 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': '{{ project_name|lower }}',
+        # The database account jenkins/jenkins is always present for testing.
         'USER': 'jenkins',
         'PASSWORD': 'jenkins',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
+        # Empty for localhost through domain sockets or '127.0.0.1' for
+        # localhost through TCP.
+        'HOST': '',
+        # Empty for the default port. For testing, we use the following ports
+        # for different databases. The default port is set to the latest
+        # Debian stable database version.
+        #
+        # PostgreSQL 9.3: 5433
+        # PostgreSQL 9.4: 5434  (and port 5432, the default port)
+        # PostgreSQL 9.5: 5435
+        # PostgreSQL 9.6: 5436
+        'PORT': '',
         'TEST': {
-            'NAME': 'test_%s' % os.getenv('JOB_NAME', default='{{ project_name|lower }}')
+            'NAME': 'test_{{ project_name|lower }}_{}_{}'.format(
+                os.getenv('JOB_NAME', default='').lower().rsplit('/', 1)[-1],
+                os.getenv('BUILD_NUMBER', default='0'),
+            )
         }
     }
 }
