@@ -63,14 +63,12 @@ ENVIRONMENT = 'test'
 AXES_BEHIND_REVERSE_PROXY = False  # Required to allow FakeRequest and the like to work correctly.
 
 #
-# Library settings
+# Jenkins settings
 #
 INSTALLED_APPS += [
     'django_jenkins',
 ]
-
-PROJECT_APPS = [app.rsplit('.apps.')[0] for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}')]
-
+PROJECT_APPS = [app for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}.')]
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pylint',
     'django_jenkins.tasks.run_pep8',
