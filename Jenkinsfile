@@ -10,6 +10,9 @@ node('master') {
     def envDir = "${curDir}/../env"
 
     stage ("Build") {
+        // Clean build when the previous build failed.
+        cleanWs cleanWhenNotBuilt: false, cleanWhenSuccess: false, notFailBuild: true
+        
         def installed = fileExists "${envDir}/bin/activate"
 
         checkout scm
@@ -95,16 +98,17 @@ node('master') {
     stage ("Test frontend") {
         def testsError = null
 
-        // TODO: Should be gulp test, but Sven made a booboo
         try {
-            sh "xvfb-run --server-args='-screen 0, 1920x1200x16' gulp build"
+            sh "xvfb-run --server-args='-screen 0, 1920x1200x16' ./node_modules/gulp/bin/gulp.js test"
         }
         catch(err) {
             testsError = err
             currentBuild.result = "FAILURE"
         }
         finally {
-            // Maybe do stuff
+            sh "./node_modules/gulp/bin/gulp.js lint"
+            sh "./node_modules/gulp/bin/gulp.js build"
+
             if (testsError) {
                 throw testsError
             }
@@ -116,6 +120,13 @@ node('master') {
             [
                 $class: "CoberturaPublisher",
                 coberturaReportFile: "reports/coverage.xml"
+            ]
+        )
+        step(
+            [
+                $class: 'CloverPublisher',
+                cloverReportDir: 'reports/jstests/',
+                cloverReportFileName: 'clover.xml',
             ]
         )
         step(
@@ -134,6 +145,12 @@ node('master') {
                         unstableTotalAll: "50",
                         usePreviousBuildAsReference: true,
                     ],
+                    [
+                        parserName: "JSLint",
+                        pattern: "reports/jstests/jshint-output.xml",
+                        unstableTotalAll: "50",
+                        usePreviousBuildAsReference: true,
+                    ],
                 ]
             ]
         )
@@ -147,6 +164,7 @@ node('master') {
 //    }
 //  }
 
+// This is the new syntax (will probably not work)
 //    post {
 //        always {
 //            cleanWs()
