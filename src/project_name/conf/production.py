@@ -88,7 +88,8 @@ CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 # Only set this when we're behind Nginx as configured in our example-deployment
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
+SECURE_CONTENT_TYPE_NOSNIFF = True # Sets X-Content-Type-Options: nosniff
+SECURE_BROWSER_XSS_FILTER = True # Sets X-XSS-Protection: 1; mode=block
 
 #
 # Library settings
