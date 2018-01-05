@@ -102,7 +102,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
 ]
 RAVEN_CONFIG = {
     'dsn': 'https://',
-    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    'release': raven.fetch_git_sha(BASE_DIR),
 }
 LOGGING['handlers'].update({
     'sentry': {
