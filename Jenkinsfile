@@ -10,9 +10,20 @@ node('master') {
     def envDir = "${curDir}/../env"
 
     stage ("Build") {
+        // Use the clean option that fits best in the project.
+        // Clean build when changing target
+        if (env.CHANGE_TARGET) {
+            // Clean workspace
+            // cleanWs()
+
+            // Clean virtual environment
+            dir("env") {
+                deleteDir()
+            }
+        }
         // Clean build when the previous build failed.
-        cleanWs cleanWhenNotBuilt: false, cleanWhenSuccess: false, notFailBuild: true
-        
+        // cleanWs cleanWhenNotBuilt: false, cleanWhenSuccess: false, notFailBuild: true
+
         def installed = fileExists "${envDir}/bin/activate"
 
         checkout scm
@@ -70,11 +81,11 @@ node('master') {
                     --project-apps-tests \
                     --verbosity 2 \
                     --noinput \
+                    --pep8-rcfile=.pep8 \
+                    --pylint-rcfile=.pylintrc \
+                    --coverage-rcfile=.coveragerc \
                     ${keepDbOption} \
                     --enable-coverage \
-                    --pep8-rcfile=pep8.rc \
-                    --pylint-rcfile=pylint.rc \
-                    --coverage-rcfile=.coveragerc \
                     --settings=${djangoSettings}
                 deactivate
                """
@@ -92,6 +103,13 @@ node('master') {
             if (testsError) {
                 throw testsError
             }
+        }
+
+        try {
+            sh "${envDir}/bin/isort --recursive --check-only --diff --quiet src > reports/isort.report"
+        }
+        catch(err) {
+            // Nothing...
         }
     }
 
@@ -146,6 +164,12 @@ node('master') {
                         usePreviousBuildAsReference: true,
                     ],
                     [
+                        parserName: "Dynamic",
+                        pattern: "reports/isort.report",
+                        unstableTotalAll: "10",
+                        usePreviousBuildAsReference: true,
+                    ],
+                    [
                         parserName: "JSLint",
                         pattern: "reports/jstests/jshint-output.xml",
                         unstableTotalAll: "50",
@@ -163,21 +187,4 @@ node('master') {
 //      sh "${scannerHome}/bin/sonar-scanner"
 //    }
 //  }
-
-// This is the new syntax (will probably not work)
-//    post {
-//        always {
-//            cleanWs()
-//        }
-//        failure {
-//            slackSend color: 'danger', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-//        }
-//        success {
-//            slackSend color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-//        }
-//        unstable {
-//            slackSend color: 'warning', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-//        }
-//    }
-
 }
