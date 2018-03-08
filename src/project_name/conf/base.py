@@ -173,6 +173,7 @@ FIXTURE_DIRS = (
 )
 
 DEFAULT_FROM_EMAIL = '{{ project_name|lower }}@example.com'
+EMAIL_TIMEOUT = 10
 
 LOGGING_DIR = os.path.join(BASE_DIR, 'log')
 
