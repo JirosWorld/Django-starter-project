@@ -16,8 +16,8 @@ Set up my development environment for me!
 project_name = '{{ project_name|lower }}'
 
 parser = argparse.ArgumentParser(description=description)
-parser.add_argument('target', choices=['production', 'staging', 'test', 'development'],
-                    help='production/staging/test/development')
+parser.add_argument('target', choices=['production', 'staging', 'test', 'jenkins', 'development'],
+                    help='production/staging/test/jenkins/development')
 parser.add_argument('--project', default=project_name,
                     help='Name of the project in your src directory, "%s" by default' % project_name)
 parser.add_argument('--env', default='env',

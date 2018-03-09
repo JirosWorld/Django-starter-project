@@ -2,8 +2,8 @@
 
 virtualenv env -p python3
 
-export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.test
-env/bin/pip install -r requirements/test.txt
+export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.jenkins
+env/bin/pip install -r requirements/jenkins.txt
 
 echo "Installing front-end build tooling + dependencies"
 npm install

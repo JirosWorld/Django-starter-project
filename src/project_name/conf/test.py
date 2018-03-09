@@ -1,4 +1,4 @@
-import os
+import raven
 
 from .base import *
 
@@ -8,45 +8,64 @@ from .base import *
 
 DEBUG = False
 
-ADMINS = ()
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '{{ project_name|lower }}',
-        # The database account jenkins/jenkins is always present for testing.
-        'USER': 'jenkins',
-        'PASSWORD': 'jenkins',
-        # Empty for localhost through domain sockets or '127.0.0.1' for
-        # localhost through TCP.
-        'HOST': '',
-        # Empty for the default port. For testing, we use the following ports
-        # for different databases. The default port is set to the latest
-        # Debian stable database version.
-        #
-        # PostgreSQL 9.3: 5433
-        # PostgreSQL 9.4: 5434  (and port 5432, the default port)
-        # PostgreSQL 9.5: 5435
-        # PostgreSQL 9.6: 5436
-        'PORT': '',
-        'TEST': {
-            'NAME': 'test_{{ project_name|lower }}_{}_{}'.format(
-                os.getenv('JOB_NAME', default='').lower().rsplit('/', 1)[-1],
-                os.getenv('BUILD_NUMBER', default='0'),
-            )
+        'NAME': '{{ project_name|lower }}-test',
+        'USER': '{{ project_name|lower }}',
+        'PASSWORD': '{{ project_name|lower }}',
+        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',  # Set to empty string for default.
+    }
+}
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '{{ secret_key }}'
+
+ALLOWED_HOSTS = []
+
+# Redis cache backend
+# NOTE: If you do not use a cache backend, do not use a session backend or
+# cached template loaders that rely on a backend.
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1", # NOTE: watch out for multiple projects using the same cache!
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "IGNORE_EXCEPTIONS": True,
         }
     }
 }
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+# Caching sessions.
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = "default"
+
+# Caching templates.
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', RAW_TEMPLATE_LOADERS),
+]
 
 LOGGING['loggers'].update({
+    '': {
+        'handlers': ['sentry'],
+        'level': 'WARNING',
+        'propagate': False,
+    },
     'django': {
         'handlers': ['django'],
-        'level': 'WARNING',
+        'level': 'INFO',
         'propagate': True,
+    },
+    'django.security.DisallowedHost': {
+        'handlers': ['django'],
+        'level': 'CRITICAL',
+        'propagate': False,
     },
 })
 
@@ -57,19 +76,33 @@ LOGGING['loggers'].update({
 # Show active environment in admin.
 ENVIRONMENT = 'test'
 
-#
-# Django-axes
-#
-AXES_BEHIND_REVERSE_PROXY = False  # Required to allow FakeRequest and the like to work correctly.
+# We will assume we're running under https
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+# Only set this when we're behind Nginx as configured in our example-deployment
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_CONTENT_TYPE_NOSNIFF = True # Sets X-Content-Type-Options: nosniff
+SECURE_BROWSER_XSS_FILTER = True # Sets X-XSS-Protection: 1; mode=block
+
 
 #
-# Jenkins settings
+# Library settings
 #
-INSTALLED_APPS += [
-    'django_jenkins',
+
+# Raven
+INSTALLED_APPS = INSTALLED_APPS + [
+    'raven.contrib.django.raven_compat',
 ]
-PROJECT_APPS = [app for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}.')]
-JENKINS_TASKS = (
-    'django_jenkins.tasks.run_pylint',
-    'django_jenkins.tasks.run_pep8',
-)
+RAVEN_CONFIG = {
+    'dsn': 'https://',
+    'release': raven.fetch_git_sha(BASE_DIR),
+}
+LOGGING['handlers'].update({
+    'sentry': {
+        'level': 'WARNING',
+        'class': 'raven.handlers.logging.SentryHandler',
+        'dsn': RAVEN_CONFIG['dsn']
+    },
+})
