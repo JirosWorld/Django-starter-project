@@ -81,6 +81,19 @@ DEBUG_TOOLBAR_CONFIG = {
 
 AXES_BEHIND_REVERSE_PROXY = False  # Default: False (we are typically using Nginx as reverse proxy)
 
+# in memory cache and django-axes don't get along.
+# https://django-axes.readthedocs.io/en/latest/configuration.html#known-configuration-problems
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'axes_cache': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+AXES_CACHE = 'axes_cache'
+
 # Override settings with local settings.
 try:
     from .local import *
