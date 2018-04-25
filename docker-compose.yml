@@ -1,22 +1,14 @@
-version: '3.3'
+# Inspired by https://docs.docker.com/compose/django/
+version: '3'
 
 services:
-  # Postgres
   db:
     image: postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-
   web:
     build: .
-    command: ["./bin/docker_start.sh"]
-    volumes:
-      - .:/srv
+    environment:
+      - DJANGO_SETTINGS_MODULE=ztc.conf.docker
     ports:
       - "8000:8000"
-    links:
-      - db
     depends_on:
       - db
