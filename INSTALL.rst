@@ -6,7 +6,7 @@ The {{ project_name }} is developed in Python using the `Django framework`_.
 There are 3 sections below, focussing on developers, running the project using
 Docker and hints for running the project in production.
 
-.. _Django framework: https://www.djangoproject.com/>
+.. _Django framework: https://www.djangoproject.com/
 
 
 Development
@@ -189,7 +189,7 @@ The easiest way to get the project started is by using `Docker Compose`_.
 5. To shutdown the services, use ``docker-compose down``.
 
 .. _Docker Compose: https://docs.docker.com/compose/install/
-.. _Github: https://github.com/maykinmedia/{{ project_name|lower }}>
+.. _Github: https://github.com/maykinmedia/{{ project_name|lower }}/
 
 
 More Docker
@@ -264,5 +264,7 @@ Commands can be executed using:
     $ python src/manage.py <command>
 
 There are no specific commands for the project. See
-`Django framework <https://docs.djangoproject.com/en/dev/ref/django-admin/#available-commands>`_
-for all default commands, or type ``python src/manage.py --help``.
+`Django framework commands`_ for all default commands, or type
+``python src/manage.py --help``.
+
+.. _Django framework commands: https://docs.djangoproject.com/en/dev/ref/django-admin/#available-commands

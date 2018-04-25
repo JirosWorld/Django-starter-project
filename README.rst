@@ -46,6 +46,8 @@ You'll need pip-compile to generate the pinned versions of the requirements:
     $ pip-compile base.in
     $ cd ..
 
+Modify the ``README.rst`` to be suitable for this project.
+
 Once the project is ready, create a repository online and commit the files to
 the repository:
 
@@ -133,7 +135,7 @@ References
 ==========
 
 * `Issues <https://taiga.maykinmedia.nl/project/{{ project_name|lower }}>`_
-* `Code <bitbucket.org/maykinmedia/{{ project_name|lower }}>`_
+* `Code <https://bitbucket.org/maykinmedia/{{ project_name|lower }}>`_
 
 
 .. |build-status| image:: http://jenkins.maykin.nl/buildStatus/icon?job={{ project_name|lower }}
