@@ -117,7 +117,7 @@ node('master') {
         def testsError = null
 
         try {
-            sh "xvfb-run --server-args='-screen 0, 1920x1200x16' ./node_modules/gulp/bin/gulp.js test"
+            sh "xvfb-run -a --server-args='-screen 0, 1920x1200x16' ./node_modules/gulp/bin/gulp.js test"
         }
         catch(err) {
             testsError = err
@@ -126,6 +126,7 @@ node('master') {
         finally {
             sh "./node_modules/gulp/bin/gulp.js lint"
             sh "./node_modules/gulp/bin/gulp.js build"
+            junit "reports/jstests/test-results.xml"
 
             if (testsError) {
                 throw testsError

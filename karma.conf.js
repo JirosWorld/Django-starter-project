@@ -44,7 +44,7 @@ var configuration = function(config) {
             noInfo: true
         },
 
-        reporters: ['spec', 'coverage-istanbul'],
+        reporters: ['spec', 'coverage-istanbul', 'junit'],
 
         browsers: ['Chromium', 'Firefox', 'PhantomJS'],
 
@@ -52,6 +52,12 @@ var configuration = function(config) {
             reports: ['clover', 'text-summary'],
             dir: paths.coverageDir,
             fixWebpackSourcePaths: true,
+        },
+
+        junitReporter: {
+            outputDir: paths.coverageDir,
+            outputFile: 'test-results.xml',
+            useBrowserName: false,
         }
     });
 };
