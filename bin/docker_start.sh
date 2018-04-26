@@ -25,4 +25,4 @@ python src/manage.py migrate
 
 # Start server
 >&2 echo "Starting server"
-uwsgi --http :8000 --module ztc.wsgi --static-map /static=/app/static --chdir=src
+uwsgi --http :8000 --module {{ project_name|lower }}.wsgi --static-map /static=/app/static --chdir=src

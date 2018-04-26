@@ -23,6 +23,11 @@ DEBUG = getenv('DEBUG', False)
 ADMINS = getenv('ADMINS', split=True)
 MANAGERS = ADMINS
 
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = getenv('ALLOWED_HOSTS', '*', split=True)
+
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -34,9 +39,29 @@ DATABASES = {
     }
 }
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = getenv('ALLOWED_HOSTS', '*', split=True)
+# See: docker-compose.yml
+# Optional Docker container usage below:
+#
+# # Elasticsearch
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+#         'URL': getenv('ELASTICSEARCH_URL', 'http://elasticsearch:9200/'),
+#         'INDEX_NAME': '{{ project_name|lower }}',
+#     },
+# }
+#
+# # Caching
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': getenv('CACHE_LOCATION', 'redis://redis:6379/1'),
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             'IGNORE_EXCEPTIONS': True,
+#         }
+#     }
+# }
 
 #
 # Additional Django settings
@@ -50,6 +75,7 @@ CSRF_COOKIE_SECURE = getenv('CSRF_COOKIE_SECURE', False)
 #
 # Custom settings
 #
+AXES_BEHIND_REVERSE_PROXY = False
 ENVIRONMENT = 'docker'
 
 # Override settings with local settings.

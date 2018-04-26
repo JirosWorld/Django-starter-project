@@ -2,9 +2,9 @@
 Installation
 ============
 
-The {{ project_name }} is developed in Python using the `Django framework`_.
-There are 3 sections below, focussing on developers, running the project using
-Docker and hints for running the project in production.
+The project is developed in Python using the `Django framework`_. There are 3
+sections below, focussing on developers, running the project using Docker and
+hints for running the project in production.
 
 .. _Django framework: https://www.djangoproject.com/
 
@@ -44,7 +44,7 @@ development machine.
 
    .. code-block:: bash
 
-       $ git clone git@github.com:maykinmedia/{{ project_name|lower }}.git
+       $ git clone git@bitbucket.org:maykinmedia/{{ project_name|lower }}.git
        $ cd {{ project_name|lower }}
 
 3. Install all required libraries.
@@ -62,6 +62,7 @@ development machine.
 
        $ npm install -g gulp
        $ npm install
+       $ gulp sass
 
 5. Activate your virtual environment and create the statics and database:
 
@@ -115,6 +116,7 @@ When updating an existing installation:
        $ git pull
        $ pip install -r requirements/dev.txt
        $ npm install
+       $ gulp sass
 
 3. Update the statics and database:
 
@@ -144,7 +146,7 @@ The easiest way to get the project started is by using `Docker Compose`_.
 
    .. code-block:: bash
 
-       $ git clone git@github.com:maykinmedia/{{ project_name|lower }}.git
+       $ git clone git@bitbucket.org:maykinmedia/{{ project_name|lower }}.git
        Cloning into '{{ project_name|lower }}'...
        ...
 
@@ -157,6 +159,14 @@ The easiest way to get the project started is by using `Docker Compose`_.
        $ docker-compose up -d
        Starting {{ project_name|lower }}_db_1 ... done
        Starting {{ project_name|lower }}_web_1 ... done
+
+   It can take a while before everything is done. Even after starting the web
+   container, the database might still be migrating. You can always check the
+   status with:
+
+   .. code-block:: bash
+
+       $ docker logs -f {{ project_name|lower }}_web_1
 
 3. Create an admin user and load initial data. If different container names
    are shown above, use the container name ending with ``_web_1``:
@@ -186,7 +196,8 @@ The easiest way to get the project started is by using `Docker Compose`_.
        NAME      ACTIVE   DRIVER       STATE     URL
        default   *        virtualbox   Running   tcp://<ip>:<port>
 
-5. To shutdown the services, use ``docker-compose down``.
+5. To shutdown the services, use ``docker-compose down`` and to clean up your
+   system you can run ``docker system prune``.
 
 .. _Docker Compose: https://docs.docker.com/compose/install/
 .. _Github: https://github.com/maykinmedia/{{ project_name|lower }}/

@@ -34,7 +34,7 @@ code, like ``maykinmedia``:
 
 .. code-block:: bash
 
-    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js,sh,cfg,properties <project_name> .
+    $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,rb,html,gitignore,json,ini,js,sh,cfg,properties,yml <project_name> .
 
 You'll need pip-compile to generate the pinned versions of the requirements:
 
@@ -128,7 +128,8 @@ Introduction
 Documentation
 =============
 
-See ``INSTALL.rst`` for installation instructions, available settings and commands.
+See ``INSTALL.rst`` for installation instructions, available settings and
+commands.
 
 
 References
