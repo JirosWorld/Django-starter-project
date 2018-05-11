@@ -31,7 +31,7 @@ node('master') {
         // Hard way of determining the Django settings path.
         if (!djangoSettings) {
             djangoSettings = sh(
-                script: 'projectFolder=`cd src; ls -d */`; echo "${projectFolder%?}.conf.test"',
+                script: 'projectFolder=`cd src; ls -d */`; echo "${projectFolder%?}.conf.jenkins"',
                 returnStdout: true
             )
         }
