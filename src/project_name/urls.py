@@ -6,6 +6,8 @@ from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.base import TemplateView
 
+handler500 = '{{ project_name|lower }}.utils.views.server_error'
+
 urlpatterns = [
     # url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^admin/password_reset/$', auth_views.password_reset, name='admin_password_reset'),
