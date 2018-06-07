@@ -21,6 +21,10 @@
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         </main>
 
+        {% if dsn %}
+            <script src="https://cdn.ravenjs.com/3.15.0/raven.min.js"></script>
+            <script>Raven.config({{ dsn }}).install();</script>
+        {% endif %}
         <script src="{% templatetag openblock %} static 'js/{{ project_name|lower }}.js' {% templatetag closeblock %}"></script>
     </body>
 </html>
