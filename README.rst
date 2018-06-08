@@ -102,9 +102,8 @@ Below you'll see the actual project README template.
 .. _default-apps: https://bitbucket.org/maykinmedia/default-apps/src
 .. _virtualenvwrapper: https://virtualenvwrapper.readthedocs.org/en/latest/
 
-{% endcomment %}
 
-==================
+{% endcomment %}==================
 {{ project_name }}
 ==================
 
@@ -140,7 +139,7 @@ References
 * `Code <https://bitbucket.org/maykinmedia/{{ project_name|lower }}>`_
 
 
-.. |build-status| image:: http://jenkins.maykin.nl/buildStatus/icon?job={{ project_name|lower }}
+.. |build-status| image:: http://jenkins.maykin.nl/buildStatus/icon?job=bitbucket/{{ project_name|lower }}/master
     :alt: Build status
     :target: http://jenkins.maykin.nl/job/{{ project_name|lower }}
 
