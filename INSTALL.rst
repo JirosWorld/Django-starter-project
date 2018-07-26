@@ -49,10 +49,13 @@ development machine.
 
 3. Install all required libraries.
    **Tip:** You can use the ``bootstrap.py`` script to install the requiments
-   and set the proper settings in ``manage.py``.
+   and set the proper settings in ``manage.py``. Or, perform the steps 
+   manually:
 
    .. code-block:: bash
 
+       $ virtualenv env
+       $ source env/bin/activate
        $ pip install -r requirements/dev.txt
 
 4. Install the front-end CLI tool `gulp`_ if you've never installed them
@@ -213,13 +216,15 @@ all settings.
 
 .. code-block:: bash
 
-    $ docker build . && docker run \
+    $ docker build -t {{ project_name|lower }}
+    $ docker run \
         -p 8000:8000 \
         -e DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker \
         -e DATABASE_USERNAME=... \
         -e DATABASE_PASSWORD=... \
         -e DATABASE_HOST=... \
-        --name {{ project_name|lower }}
+        --name {{ project_name|lower }} \
+        {{ project_name|lower }}
 
     $ docker exec -it {{ project_name|lower }} /app/src/manage.py createsuperuser
 
