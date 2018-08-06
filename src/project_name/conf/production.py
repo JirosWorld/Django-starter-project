@@ -101,7 +101,8 @@ INSTALLED_APPS = INSTALLED_APPS + [
     'raven.contrib.django.raven_compat',
 ]
 RAVEN_CONFIG = {
-    'dsn': 'https://',
+    'dsn': 'https://', # https://username:password@sentry-domain/project-nr
+    'public_dsn': '', # https://username@sentry-domain/project-nr
     'release': raven.fetch_git_sha(BASE_DIR),
 }
 LOGGING['handlers'].update({

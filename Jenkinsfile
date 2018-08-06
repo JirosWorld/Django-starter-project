@@ -45,7 +45,7 @@ node('master') {
         sh """
             . ${envDir}/bin/activate
             pip install pip --upgrade
-            pip install -r requirements/test.txt
+            pip install -r requirements/jenkins.txt
             deactivate
           """
     }
