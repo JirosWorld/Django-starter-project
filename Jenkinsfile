@@ -7,7 +7,7 @@ node('master') {
     // in the build step.
     def djangoSettings = null
     def curDir = pwd()
-    def envDir = "${curDir}/../env"
+    def envDir = "${curDir}/env"
 
     stage ("Build") {
         // Use the clean option that fits best in the project.
