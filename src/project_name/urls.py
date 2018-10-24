@@ -7,6 +7,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.base import TemplateView
 
 handler500 = '{{ project_name|lower }}.utils.views.server_error'
+admin.site.site_header = '{{ project_name|lower }} admin'
+admin.site.site_title = '{{ project_name|lower }} admin'
+admin.site.index_title = 'Welcome to the {{ project_name|lower }} admin'
 
 urlpatterns = [
     # url(r'^admin_tools/', include('admin_tools.urls')),
