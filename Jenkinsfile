@@ -2,7 +2,7 @@
 
 // Use "node {...}" to use any Jenkins server, or "node('master') {...}" to
 // only run on the master node.
-node('master') {
+node {
     // You can hardcode the settings here, or have it dynamically figured out
     // in the build step.
     def djangoSettings = null
