@@ -1,3 +1,5 @@
+import warnings
+
 from .base import *
 
 #
@@ -94,8 +96,15 @@ CACHES = {
 
 AXES_CACHE = 'axes_cache'
 
+
+# THOU SHALT NOT USE NAIVE DATETIMES
+warnings.filterwarnings(
+    'error', r"DateTimeField .* received a naive datetime",
+    RuntimeWarning, r'django\.db\.models\.fields',
+)
+
 # Override settings with local settings.
 try:
-    from .local import *
+    from .local import *  # noqa
 except ImportError:
     pass

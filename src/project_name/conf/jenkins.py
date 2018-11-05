@@ -1,4 +1,5 @@
 import os
+import warnings
 
 from .base import *
 
@@ -85,4 +86,10 @@ PROJECT_APPS = [app for app in INSTALLED_APPS if app.startswith('{{ project_name
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pylint',
     'django_jenkins.tasks.run_pep8',
+)
+
+# THOU SHALT NOT USE NAIVE DATETIMES
+warnings.filterwarnings(
+    'error', r"DateTimeField .* received a naive datetime",
+    RuntimeWarning, r'django\.db\.models\.fields',
 )
