@@ -12,7 +12,6 @@ var paths = require('../paths');
  * Run using "gulp sass"
  * Searches for sass files in paths.sassSrc
  * Compiles sass to css
- * Includes bourbon neat
  * Auto prefixes css
  * Writes css to paths.cssDir
  */
