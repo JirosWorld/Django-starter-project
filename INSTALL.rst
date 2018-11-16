@@ -18,9 +18,9 @@ Prerequisites
 
 You need the following libraries and/or programs:
 
-* `Python`_ 3.4 or above
+* `Python`_ 3.6 or above
 * Python `Virtualenv`_ and `Pip`_
-* `PostgreSQL`_ 9.1 or above
+* `PostgreSQL`_ 10 or above
 * `Node.js`_
 * `npm`_
 
@@ -49,7 +49,7 @@ development machine.
 
 3. Install all required libraries.
    **Tip:** You can use the ``bootstrap.py`` script to install the requiments
-   and set the proper settings in ``manage.py``. Or, perform the steps 
+   and set the proper settings in ``manage.py``. Or, perform the steps
    manually:
 
    .. code-block:: bash
@@ -138,6 +138,24 @@ To run the test suite:
 
     $ python src/manage.py test {{ project_name|lower }}
 
+Configuration via environment variables
+---------------------------------------
+
+A number of common settings/configurations can be modified by setting
+environment variables. You can persist these in your ``local.py`` settings
+file or as part of the ``(post)activate`` of your virtualenv.
+
+* ``SECRET_KEY``: the secret key to use. A default is set in ``dev.py``
+
+* ``DB_NAME``: name of the database for the project. Defaults to ``{{ project_name|lower }}``.
+* ``DB_USER``: username to connect to the database with. Defaults to ``{{ project_name|lower }}``.
+* ``DB_PASSWORD``: password to use to connect to the database. Defaults to ``{{ project_name|lower }}``.
+* ``DB_HOST``: database host. Defaults to ``localhost``
+* ``DB_PORT``: database port. Defaults to ``5432``.
+
+* ``SENTRY_DSN``: the DSN of the project in Sentry. If set, enabled Raven as
+  logger and will send errors/logging to Sentry. If unset, Raven will be
+  disabled.
 
 Docker
 ======
@@ -219,7 +237,6 @@ all settings.
     $ docker build -t {{ project_name|lower }}
     $ docker run \
         -p 8000:8000 \
-        -e DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker \
         -e DATABASE_USERNAME=... \
         -e DATABASE_PASSWORD=... \
         -e DATABASE_HOST=... \
@@ -227,6 +244,26 @@ all settings.
         {{ project_name|lower }}
 
     $ docker exec -it {{ project_name|lower }} /app/src/manage.py createsuperuser
+
+Building and publishing the image
+---------------------------------
+
+Using ``bin/release-docker-image``, you can easily build and tag the image.
+
+The script is based on git branches and tags - if you're on the ``master``
+branch and the current ``HEAD`` is tagged, the tag will be used as
+``RELEASE_TAG`` and the image will be pushed. If you want to push the image
+without a git tag, you can use the ``RELEASE_TAG`` envvar.
+
+The image will only be pushed if the ``JOB_NAME`` envvar is set. The image
+will always be built, even if no envvar is set. The default release tag is
+``latest``.
+
+Example usage:
+
+.. code-block:: bash
+
+    JOB_NAME=publish RELEASE_TAG=dev ./bin/release-docker-image.sh
 
 
 Staging and production
