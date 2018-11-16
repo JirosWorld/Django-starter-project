@@ -11,12 +11,23 @@ BASE_DIR = os.path.abspath(os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.p
 # See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '{{ secret_key }}'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = []
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', '{{ project_name|lower }}'),
+        'USER': os.getenv('DB_USER', '{{ project_name|lower }}'),
+        'PASSWORD': os.getenv('DB_PASSWORD', '{{ project_name|lower }}'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', 5432),
+    }
+}
 
 # Application definition
 
@@ -300,3 +311,23 @@ HIJACK_REGISTER_ADMIN = False
 # This is a CSRF-security risk.
 # See: http://django-hijack.readthedocs.io/en/latest/configuration/#allowing-get-method-for-hijack-views
 HIJACK_ALLOW_GET_REQUESTS = True
+
+# Raven
+SENTRY_DSN = os.getenv('SENTRY_DSN')
+
+if SENTRY_DSN:
+    INSTALLED_APPS = INSTALLED_APPS + [
+        'raven.contrib.django.raven_compat',
+    ]
+
+    RAVEN_CONFIG = {
+        'dsn': SENTRY_DSN,
+        # 'release': raven.fetch_git_sha(BASE_DIR), doesn't work in Docker
+    }
+    LOGGING['handlers'].update({
+        'sentry': {
+            'level': 'WARNING',
+            'class': 'raven.handlers.logging.SentryHandler',
+            'dsn': RAVEN_CONFIG['dsn']
+        },
+    })

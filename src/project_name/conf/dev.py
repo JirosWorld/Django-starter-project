@@ -1,6 +1,14 @@
+import os
 import warnings
 
-from .base import *
+os.environ.setdefault('SECRET_KEY', '{{ secret_key }}')
+
+# uses postgresql by default, see base.py
+os.environ.setdefault('DB_NAME', '{{ project_name|lower }}'),
+os.environ.setdefault('DB_USER', '{{ project_name|lower }}'),
+os.environ.setdefault('DB_PASSWORD', '{{ project_name|lower }}'),
+
+from .base import *  # noqa isort:skip
 
 #
 # Standard Django settings.
@@ -11,18 +19,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ADMINS = ()
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '{{ project_name|lower }}.db'),
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
-    }
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts

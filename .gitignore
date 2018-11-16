@@ -24,3 +24,10 @@ local.py
 /mail/
 /log/*.log*
 /log/nginx/*.log*
+
+# Static files build by gulp
+src/{{ project_name|lower }}/static/css/admin/admin_overrides.css
+src/{{ project_name|lower }}/static/css/screen.css
+
+src/{{ project_name|lower }}/static/fonts/
+src/{{ project_name|lower }}/static/js/
