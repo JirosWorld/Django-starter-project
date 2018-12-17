@@ -300,10 +300,21 @@ AXES_LOGIN_FAILURE_LIMIT = 30  # Default: 3
 AXES_LOCK_OUT_AT_FAILURE = True  # Default: True
 AXES_USE_USER_AGENT = False  # Default: False
 AXES_COOLOFF_TIME = 1  # One hour
-AXES_BEHIND_REVERSE_PROXY = True  # Default: False (we are typically using Nginx as reverse proxy)
 AXES_ONLY_USER_FAILURES = False  # Default: False (you might want to block on username rather than IP)
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = False  # Default: False (you might want to block on username and IP)
 
+# The default meta precedence order
+IPWARE_META_PRECEDENCE_ORDER = (
+    'HTTP_X_FORWARDED_FOR', 'X_FORWARDED_FOR',  # <client>, <proxy1>, <proxy2>
+    'HTTP_CLIENT_IP',
+    'HTTP_X_REAL_IP',
+    'HTTP_X_FORWARDED',
+    'HTTP_X_CLUSTER_CLIENT_IP',
+    'HTTP_FORWARDED_FOR',
+    'HTTP_FORWARDED',
+    'HTTP_VIA',
+    'REMOTE_ADDR',
+)
 
 HIJACK_LOGIN_REDIRECT_URL = '/'
 HIJACK_LOGOUT_REDIRECT_URL = reverse_lazy('admin:accounts_user_changelist')
