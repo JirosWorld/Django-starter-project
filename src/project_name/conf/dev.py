@@ -10,6 +10,10 @@ os.environ.setdefault('DB_PASSWORD', '{{ project_name|lower }}'),
 
 from .base import *  # noqa isort:skip
 
+# Feel free to switch dev to sqlite3 for simple projects,
+# or override DATABASES in your local.py
+# DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+
 #
 # Standard Django settings.
 #
