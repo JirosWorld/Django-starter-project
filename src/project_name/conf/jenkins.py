@@ -25,10 +25,7 @@ DATABASES = {
         # for different databases. The default port is set to the latest
         # Debian stable database version.
         #
-        # PostgreSQL 9.3: 5433
-        # PostgreSQL 9.4: 5434  (and port 5432, the default port)
-        # PostgreSQL 9.5: 5435
-        # PostgreSQL 9.6: 5436
+        # PostgreSQL 9.6: 5432 (default for Jenkins)
         'PORT': '',
         'TEST': {
             'NAME': 'test_{{ project_name|lower }}_{}_{}'.format(
