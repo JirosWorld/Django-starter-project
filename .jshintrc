@@ -19,7 +19,7 @@
     "nonbsp"        : true,     // true: Prohibit "non-breaking whitespace" characters.
     "nonew"         : false,    // true: Prohibit use of constructors for side-effects (without assignment)
     "plusplus"      : false,    // true: Prohibit use of `++` and `--`
-    "quotmark"      : "single",    // Quotation mark consistency:
+    "quotmark"      : "single", // Quotation mark consistency:
                                 //   false    : do nothing (default)
                                 //   true     : ensure whatever is used is consistent
                                 //   "single" : require single quotes
@@ -31,7 +31,7 @@
                                 //   "strict" : all variables, all function parameters
     "strict"        : false,     // true: Requires all functions run in ES5 Strict Mode
     "maxparams"     : false,    // {int} Max number of formal params allowed per function
-    "maxdepth"      : false,    // {int} Max depth of nested blocks (within functions)
+    "maxdepth"      : 3,        // {int} Max depth of nested blocks (within functions)
     "maxstatements" : false,    // {int} Max number statements per function
     "maxcomplexity" : false,    // {int} Max cyclomatic complexity per function
     "maxlen"        : false,    // {int} Max number of characters per line
@@ -44,7 +44,7 @@
     "eqnull"        : false,     // true: Tolerate use of `== null`
     "esversion"     : 6,         // {int} Specify the ECMAScript version to which the code must adhere.
     "moz"           : false,     // true: Allow Mozilla specific syntax (extends and overrides esnext features)
-                                 // (ex: `for each`, multiple try/catch, function expression…)
+                                 // (ex: `for each`, multiple try/catch, function expressionï¿½)
     "evil"          : false,     // true: Tolerate use of `eval` and `new Function()`
     "expr"          : false,     // true: Tolerate `ExpressionStatement` as Programs
     "funcscope"     : false,     // true: Tolerate defining variables inside control statements
@@ -70,11 +70,11 @@
     "couch"         : false,    // CouchDB
     "devel"         : true,     // Development/debugging (alert, confirm, etc)
     "dojo"          : false,    // Dojo Toolkit
-    "jasmine"       : true,    // Jasmine
+    "jasmine"       : false,    // Jasmine
     "jquery"        : false,    // jQuery
-    "mocha"         : false,     // Mocha
+    "mocha"         : true,     // Mocha
     "mootools"      : false,    // MooTools
-    "node"          : false,    // Node.js
+    "node"          : true,     // Node.js
     "nonstandard"   : false,    // Widely adopted globals (escape, unescape, etc)
     "phantom"       : false,    // PhantomJS
     "prototypejs"   : false,    // Prototype and Scriptaculous

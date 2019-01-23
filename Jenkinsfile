@@ -53,17 +53,19 @@ node {
     stage ("Install frontend requirements") {
         sh """
             npm install
-            gulp sass
+            ./node_modules/gulp/bin/gulp.js sass
            """
 
-        sh """
-            . ${envDir}/bin/activate
-            python src/manage.py collectstatic \
-                --link \
-                --noinput \
-                --settings=${djangoSettings}
-            deactivate
+        withEnv(["SECRET_KEY=test_key"]) {
+            sh """
+                . ${envDir}/bin/activate
+                python src/manage.py collectstatic \
+                    --link \
+                    --noinput \
+                    --settings=${djangoSettings}
+                deactivate
            """
+        }
     }
 
     stage ("Test backend") {
@@ -74,42 +76,46 @@ node {
             keepDbOption = "--keepdb"
         }
 
-        try {
-            sh """
-                . ${envDir}/bin/activate
-                python src/manage.py jenkins \
-                    --project-apps-tests \
-                    --verbosity 2 \
-                    --noinput \
-                    --pep8-rcfile=.pep8 \
-                    --pylint-rcfile=.pylintrc \
-                    --coverage-rcfile=.coveragerc \
-                    ${keepDbOption} \
-                    --enable-coverage \
-                    --settings=${djangoSettings}
-                deactivate
-               """
-        }
-        catch(err) {
-            testsError = err
-            currentBuild.result = "FAILURE"
-        }
-        finally {
-            dir("media") {
-                deleteDir()
+        withEnv(["SECRET_KEY=test_key"]) {
+            try {
+                sh """
+                    . ${envDir}/bin/activate
+                    python src/manage.py jenkins \
+                        --project-apps-tests \
+                        --verbosity 2 \
+                        --noinput \
+                        --pep8-rcfile=.pep8 \
+                        --pylint-rcfile=.pylintrc \
+                        --coverage-rcfile=.coveragerc \
+                        ${keepDbOption} \
+                        --enable-coverage \
+                        --settings=${djangoSettings}
+                    deactivate
+                """
             }
-            junit "reports/junit.xml"
+            catch(err) {
+                testsError = err
+                currentBuild.result = "FAILURE"
+            }
+            finally {
+                dir("media") {
+                    deleteDir()
+                }
+                junit "reports/junit.xml"
 
-            if (testsError) {
-                throw testsError
+                if (testsError) {
+                    throw testsError
+                }
             }
         }
 
-        try {
-            sh "${envDir}/bin/isort --recursive --check-only --diff --quiet src > reports/isort.report"
-        }
-        catch(err) {
-            // Nothing...
+        withEnv(["SECRET_KEY=test_key"]) {
+            try {
+                sh "${envDir}/bin/isort --recursive --check-only --diff --quiet src > reports/isort.report"
+            }
+            catch(err) {
+                // Nothing...
+            }
         }
     }
 
@@ -126,7 +132,7 @@ node {
         finally {
             sh "./node_modules/gulp/bin/gulp.js lint"
             sh "./node_modules/gulp/bin/gulp.js build"
-            junit "reports/jstests/test-results.xml"
+            junit "reports/jstests/junit.xml"
 
             if (testsError) {
                 throw testsError
@@ -139,13 +145,6 @@ node {
             [
                 $class: "CoberturaPublisher",
                 coberturaReportFile: "reports/coverage.xml"
-            ]
-        )
-        step(
-            [
-                $class: 'CloverPublisher',
-                cloverReportDir: 'reports/jstests/',
-                cloverReportFileName: 'clover.xml',
             ]
         )
         step(
@@ -168,12 +167,6 @@ node {
                         parserName: "Dynamic",
                         pattern: "reports/isort.report",
                         unstableTotalAll: "10",
-                        usePreviousBuildAsReference: true,
-                    ],
-                    [
-                        parserName: "JSLint",
-                        pattern: "reports/jstests/jshint-output.xml",
-                        unstableTotalAll: "50",
                         usePreviousBuildAsReference: true,
                     ],
                 ]
