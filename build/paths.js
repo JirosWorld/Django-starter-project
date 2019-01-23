@@ -56,8 +56,8 @@ module.exports = {
     coverageDir: 'reports/jstests/',
 
     // Path to HTML templates directory
-    htmlTemplatesDir: sourcesRoot + 'templates/',
+    htmlTemplatesDir: sourcesRoot + 'templates/views',
 
     // Path to HTML includes directory
-    htmlIncludesDir: sourcesRoot + 'templates/includes/'
+    htmlIncludesDir: sourcesRoot + 'templates/components/'
 };

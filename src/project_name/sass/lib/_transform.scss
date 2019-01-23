@@ -1,49 +1,86 @@
-@mixin animate($delay: 0s)  {
-  transition: all 0.2s;
-  transition-delay: $delay;
+@mixin overlay {
+  @include absolute(0px, 0px);
+  width: 100%;
+  height: 100%;
 }
 
-@mixin center-hv {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+@mixin center-h($width: null, $height: null) {
+  @include absolute(null, 50%);
+  @include translate(-50%);
 
-@mixin center-h {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-
-}
-
-@mixin center-v {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-
-}
-
-@mixin rotate {
-  animation: rotate 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-}
-
-
-@keyframes rotate {
-  from {
-
-    transform: translate(-50%, -50%) rotate(0deg);
+  @if $width {
+    width: $width;
   }
 
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
+  @if $height {
+    height: $height;
   }
 }
 
-@mixin rounded {
-  border-radius: 5px;
+@mixin center-v($width: null, $height: null) {
+  @include absolute(50%);
+  @include translate(null, -50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
 }
 
-@mixin shadow($h: 0px, $v: 2px, $color: rgba(0,0,0,0.20)) {
-  box-shadow: $h $v 8px 0 $color;
+@mixin center-hv($width: null, $height: null) {
+  @include absolute(50%, 50%);
+  @include translate(-50%, -50%);
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+}
+
+@mixin absolute($top: null, $left: null) {
+  position: absolute;
+
+  @if $top {
+    top: $top;
+  }
+
+  @if $left {
+    left: $left;
+  }
+}
+
+
+@function tr_rotate($deg) {
+  @return rotate(#{$deg}deg);
+}
+
+
+@mixin rotate($deg, $origin: center) {
+  transform: tr_rotate($deg);
+
+  @if $origin {
+    transform-origin: $origin;
+  }
+}
+
+
+@function tr_translate($x: null, $y: null) {
+  @if $x and $y {
+    @return translate(#{$x}, #{$y});
+  } @else if $x {
+    @return translateX(#{$x});
+  } @else if $y {
+    @return translateY(#{$y});
+  }
+}
+
+
+@mixin translate($x: null, $y: null) {
+  transform: tr_translate($x, $y);
 }
