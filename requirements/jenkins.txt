@@ -2,4 +2,5 @@
 -r testing.txt
 django-jenkins
 pep8
-pylint
+# See: https://github.com/kmmbvnr/django-jenkins/issues/367
+pylint<2.0
