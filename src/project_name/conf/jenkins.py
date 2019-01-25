@@ -36,6 +36,9 @@ DATABASES = {
     }
 }
 
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'for-testing-purposes-only'
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
