@@ -1,4 +1,4 @@
-{% templatetag openblock %} load staticfiles  {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load staticfiles hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,13 +7,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link href="{% templatetag openblock %} static 'css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" />
+        <link href="{% templatetag openblock %} static 'css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
         {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        <link rel="shortcut icon" href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}">
+        <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" rel="shortcut icon">
     </head>
 
     <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
-
+        {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
         <main>
             {% templatetag openblock %} block content {% templatetag closeblock %}
                 Override <code>{% templatetag openblock %} verbatim {% templatetag closeblock %}{% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endverbatim {% templatetag closeblock %}</code>
@@ -22,7 +23,7 @@
         </main>
 
         {% if dsn %}
-            <script src="https://cdn.ravenjs.com/3.15.0/raven.min.js"></script>
+            <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js"></script>
             <script>Raven.config({{ dsn }}).install();</script>
         {% endif %}
         <script src="{% templatetag openblock %} static 'js/main.js' {% templatetag closeblock %}"></script>
