@@ -13,6 +13,6 @@ django-choices
 django-rosetta
 django-sniplates
 django-redis
-django_admin_index
+# django-admin-index
 
 # djangorestframework

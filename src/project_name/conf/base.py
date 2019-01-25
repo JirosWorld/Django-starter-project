@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Optional applications.
-    'ordered_model',
-    'django_admin_index',
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     # 'django.contrib.humanize',
     # 'django.contrib.sitemaps',
+
+    # django-admin-index
+    # 'ordered_model',
+    # 'django_admin_index',
 
     # django-admin-tools
     # 'admin_tools',
@@ -295,7 +297,7 @@ SHOW_ALERT = True
 
 
 # Django-Admin-Index
-ADMIN_INDEX_SHOW_REMAINING_APPS = True
+# ADMIN_INDEX_SHOW_REMAINING_APPS = True
 
 # Django-Axes (4.0+)
 #
