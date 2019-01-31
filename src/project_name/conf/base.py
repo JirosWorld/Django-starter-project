@@ -50,14 +50,8 @@ INSTALLED_APPS = [
     # 'django.contrib.sitemaps',
 
     # django-admin-index
-    # 'ordered_model',
-    # 'django_admin_index',
-
-    # django-admin-tools
-    # 'admin_tools',
-    # 'admin_tools.theming',
-    # 'admin_tools.menu',
-    # 'admin_tools.dashboard',
+    'ordered_model',
+    'django_admin_index',
 
     # External applications.
     'axes',
@@ -297,7 +291,8 @@ SHOW_ALERT = True
 
 
 # Django-Admin-Index
-# ADMIN_INDEX_SHOW_REMAINING_APPS = True
+ADMIN_INDEX_SHOW_REMAINING_APPS = True
+ADMIN_INDEX_AUTO_CREATE_APP_GROUP = True
 
 # Django-Axes (4.0+)
 #
