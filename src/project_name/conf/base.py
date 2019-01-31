@@ -50,14 +50,8 @@ INSTALLED_APPS = [
     # 'django.contrib.sitemaps',
 
     # django-admin-index
-    # 'ordered_model',
-    # 'django_admin_index',
-
-    # django-admin-tools
-    # 'admin_tools',
-    # 'admin_tools.theming',
-    # 'admin_tools.menu',
-    # 'admin_tools.dashboard',
+    'ordered_model',
+    'django_admin_index',
 
     # External applications.
     'axes',
@@ -337,6 +331,9 @@ HIJACK_REGISTER_ADMIN = False
 # This is a CSRF-security risk.
 # See: http://django-hijack.readthedocs.io/en/latest/configuration/#allowing-get-method-for-hijack-views
 HIJACK_ALLOW_GET_REQUESTS = True
+
+# Django Admin Index
+ADMIN_INDEX_AUTO_CREATE_APP_GROUP = True
 
 # Raven
 SENTRY_DSN = os.getenv('SENTRY_DSN')
