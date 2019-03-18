@@ -23,8 +23,8 @@ def capture(parser, token):
 
     Example:
 
-        {% capture as body %}{% lorem 20 w random %}{% endcapture %}
-        {% include 'components/text/text.html' with body=body only %}
+        {% verbatim %}{% capture as body %}{% lorem 20 w random %}{% endcapture %}{% endverbatim %}
+        {% verbatim %}{% include 'components/text/text.html' with body=body only %}{% endverbatim %}
     """
     args = token.split_contents()
     if len(args) < 3 or args[-2] != 'as':
@@ -42,8 +42,8 @@ def placekitten(width=800, height=600):
 
     Example:
 
-        {% placekitten %}
-        {% placekiiten 200 200 %}
+        {% verbatim %}{% placekitten %}{% endverbatim %}
+        {% verbatim %}{% placekiiten 200 200 %}{% endverbatim %}
     """
     return format_html('<img src="{}" />'.format(placekitten_src(width, height)))
 
@@ -55,8 +55,8 @@ def placekitten_src(width=800, height=600):
 
     Example:
 
-        {% placekitten_src as src %}
-        {% placekitten_src 200 200 as mobile_src %}
+        {% verbatim %}{% placekitten_src as src %}{% endverbatim %}
+        {% verbatim %}{% placekitten_src 200 200 as mobile_src %}{% endverbatim %}
         {% include 'components/image/image.html' with mobile_src=mobile_src src=src alt='placekitten' only %}
     """
     return '//placekitten.com/{}/{}'.format(width, height)
