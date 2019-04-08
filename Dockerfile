@@ -21,7 +21,8 @@ RUN apk --no-cache add \
     # pillow dependencies
     jpeg-dev \
     openjpeg-dev \
-    zlib-dev
+    zlib-dev \
+    libffi-dev
 
 
 WORKDIR /app
