@@ -217,6 +217,7 @@ $typography-style-border: solid !default;
 }
 
 @mixin hr($margin: false, $margin-property: $typography-margin-property-hr) {
+  border: none;
   @include border(top);
   margin: 0;
   @include margin($margin, $margin-property, $typography-margin-hr);
