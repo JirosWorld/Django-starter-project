@@ -19,6 +19,7 @@ const watch = gulp.parallel(watchJS, watchSCSS);
  * Runs "js" and "lint" tasks instantly and when any file in paths.jsSrc changes
  */
 function watchJS() {
+    js();
     gulp.watch([paths.jsSrc, paths.jsSpec], gulp.parallel(js, lint));
 }
 
@@ -28,6 +29,7 @@ function watchJS() {
  * Runs "sass" task instantly and when any file in paths.sassSrc changes
  */
 function watchSCSS() {
+    scss()
     gulp.watch(paths.sassSrc, scss);
 }
 
