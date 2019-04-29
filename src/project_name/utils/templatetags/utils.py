@@ -23,8 +23,8 @@ def capture(parser, token):
 
     Example:
 
-        {% verbatim %}{% capture as body %}{% lorem 20 w random %}{% endcapture %}{% endverbatim %}
-        {% verbatim %}{% include 'components/text/text.html' with body=body only %}{% endverbatim %}
+        {% templatetag openblock %} capture as body {% templatetag closeblock %}{% templatetag openblock %} lorem 20 w random {% templatetag closeblock %}{% templatetag openblock %} endcapture {% templatetag closeblock %}
+        {% templatetag openblock %} include 'components/text/text.html' with body=body only {% templatetag closeblock %}
     """
     args = token.split_contents()
     if len(args) < 3 or args[-2] != 'as':
@@ -42,8 +42,8 @@ def placekitten(width=800, height=600):
 
     Example:
 
-        {% verbatim %}{% placekitten %}{% endverbatim %}
-        {% verbatim %}{% placekiiten 200 200 %}{% endverbatim %}
+        {% templatetag openblock %}placekitten {% templatetag closeblock %}
+        {% templatetag openblock %}placekitten 200 200 {% templatetag closeblock %}
     """
     return format_html('<img src="{}" />'.format(placekitten_src(width, height)))
 
@@ -55,8 +55,8 @@ def placekitten_src(width=800, height=600):
 
     Example:
 
-        {% verbatim %}{% placekitten_src as src %}{% endverbatim %}
-        {% verbatim %}{% placekitten_src 200 200 as mobile_src %}{% endverbatim %}
-        {% include 'components/image/image.html' with mobile_src=mobile_src src=src alt='placekitten' only %}
+        {% templatetag openblock %} placekitten_src as src {% templatetag closeblock %}
+        {% templatetag openblock %} placekitten_src 200 200 as mobile_src {% templatetag closeblock %}
+        {% templatetag openblock %} include 'components/image/image.html' with mobile_src=mobile_src src=src alt='placekitten' only {% templatetag closeblock %}
     """
     return '//placekitten.com/{}/{}'.format(width, height)
