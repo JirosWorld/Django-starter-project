@@ -27,6 +27,6 @@ uwsgi \
     --static-map /static=/app/static \
     --static-map /media=/app/media  \
     --chdir src \
-    --processes 2 \
-    --threads 2
+    --processes 4 \
+    --threads 1
     # processes & threads are needed for concurrency without nginx sitting inbetween
