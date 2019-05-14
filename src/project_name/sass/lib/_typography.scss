@@ -18,6 +18,7 @@ $typography-font-family-h: $typography-font-family-base !default;
 
 $typography-font-size-text: 1rem !default;
 $typography-font-size-text-big: ($typography-font-size-text * 1.25) !default;
+$typography-font-size-text-small: ($typography-font-size-text * 0.75) !default;
 
 $typography-font-size-h1: ($typography-font-size-text * 2.5) !default;
 $typography-font-size-h2: ($typography-font-size-text * 2) !default;
@@ -38,8 +39,10 @@ $typography-font-weight-h5: $typography-font-weight-h !default;
 $typography-font-weight-h6: $typography-font-weight-h !default;
 
 
-$typography-line-height-text: 1.5 !default;
-$typography-line-height-text-big: 1.5 !default;
+$typography-line-height-base: 1.5 !default;
+$typography-line-height-text: $typography-line-height-base !default;
+$typography-line-height-text-big: $typography-line-height-base !default;
+$typography-line-height-text-small: $typography-line-height-base !default;
 $typography-line-height-h: 1.2 !default;
 
 $typography-line-height-h1: $typography-line-height-h !default;
@@ -106,6 +109,12 @@ $typography-style-border: solid !default;
   }
   h4#{$not-me} {
     @include h4($margin);
+  }
+  h5#{$not-me} {
+    @include h5($margin);
+  }
+  h6#{$not-me} {
+    @include h6($margin);
   }
   p#{$not-me} {
     @include body($margin);
@@ -189,6 +198,11 @@ $typography-style-border: solid !default;
   line-height: $typography-line-height-text-big;
 }
 
+@mixin body--small {
+  font-size: $typography-font-size-text-small;
+  line-height: $typography-line-height-text-small;
+}
+
 @mixin anchor($hover-to-decorate: $typography-default-hover-link) {
   color: $typography-color-link;
   cursor: pointer;
@@ -210,6 +224,11 @@ $typography-style-border: solid !default;
   }
 }
 
+@mixin anchor-inherit {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 
 @mixin list($margin: false, $margin-property: $typography-margin-property-list) {
   @include body(false);
@@ -217,7 +236,6 @@ $typography-style-border: solid !default;
 }
 
 @mixin hr($margin: false, $margin-property: $typography-margin-property-hr) {
-  border: none;
   @include border(top);
   margin: 0;
   @include margin($margin, $margin-property, $typography-margin-hr);
