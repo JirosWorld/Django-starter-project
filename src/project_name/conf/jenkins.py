@@ -76,6 +76,8 @@ CACHES = {
 
 AXES_CACHE = 'axes_cache'
 
+ELASTIC_APM['DEBUG'] = True
+
 #
 # Jenkins settings
 #

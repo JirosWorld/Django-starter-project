@@ -69,6 +69,8 @@ ENVIRONMENT = 'development'
 # Library settings
 #
 
+ELASTIC_APM['DEBUG'] = True
+
 # Django debug toolbar
 INSTALLED_APPS += [
     'debug_toolbar',

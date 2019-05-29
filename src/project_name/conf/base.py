@@ -59,13 +59,16 @@ INSTALLED_APPS = [
     'hijack',
     'compat',  # Part of hijack
     'hijack_admin',
+    'elasticapm.contrib.django',
 
     # Project applications.
     '{{ project_name|lower }}.accounts',
     '{{ project_name|lower }}.utils',
+
 ]
 
 MIDDLEWARE = [
+    'elasticapm.contrib.django.middleware.TracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
@@ -354,3 +357,11 @@ if SENTRY_DSN:
             'dsn': RAVEN_CONFIG['dsn']
         },
     })
+
+# Elastic APM
+
+ELASTIC_APM = {
+    'SERVICE_NAME': '{{ project_name }}',
+    'SECRET_TOKEN': os.getenv('ELASTIC_APM_SECRET_TOKEN', 'default'),
+    'SERVER_URL': os.getenv('ELASTIC_APM_SERVER_URL', 'http://example.com'),
+}

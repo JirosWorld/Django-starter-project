@@ -91,6 +91,8 @@ CSRF_COOKIE_SECURE = getenv('CSRF_COOKIE_SECURE', False)
 #
 ENVIRONMENT = 'docker'
 
+ELASTIC_APM['SERVICE_NAME'] += ' ' + ENVIRONMENT
+
 if missing_environment_vars:
     raise ImproperlyConfigured(
         'These environment variables are required but missing: {}'.format(', '.join(missing_environment_vars)))
