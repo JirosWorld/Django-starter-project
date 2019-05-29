@@ -52,7 +52,7 @@ node {
 
     stage ("Install frontend requirements") {
         sh """
-            npm install
+            npm ci
             ./node_modules/gulp/bin/gulp.js sass
            """
 
