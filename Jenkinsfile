@@ -76,7 +76,7 @@ node {
             keepDbOption = "--keepdb"
         }
 
-        withEnv(["SECRET_KEY=test_key"]) {
+        withEnv(["SECRET_KEY=test_key","ELASTIC_APM_DISABLE_SEND=true"]) {
             try {
                 sh """
                     . ${envDir}/bin/activate
