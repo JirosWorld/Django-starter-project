@@ -18,8 +18,8 @@ a:focus, a:hover {
   z-index: 100000;
 }
 
-#header a:link, #header a:visited {
-  color: black;
+#header a:link, #header a:visited, #header a:hover {
+  color: black !important;
 }
 
 #user-tools a {
@@ -33,6 +33,7 @@ a:focus, a:hover {
 
 .module h2, .module caption, .inline-group h2 {
   background: #b2d7ee;
+  color: black;
 }
 
 #branding h1 {
@@ -53,11 +54,11 @@ div.breadcrumbs {
 }
 
 div.breadcrumbs a {
-  color: #fff;
+  color: black;
 }
 
 div.breadcrumbs {
-  color: #fff;
+  color: black;
 }
 
 div.breadcrumbs a:focus, div.breadcrumbs a:hover {
@@ -70,7 +71,7 @@ div.breadcrumbs a:focus, div.breadcrumbs a:hover {
 }
 
 #changelist-filter li.selected a {
-  color: #b2d7ee !important;
+  color: #007bc7 !important;
 }
 
 #changelist-filter li.selected a:focus, #changelist-filter li.selected a:hover {
@@ -83,7 +84,7 @@ div.breadcrumbs a:focus, div.breadcrumbs a:hover {
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
   background: #b2d7ee;
-  color: #fff;
+  color: black;
   /* border: 2px solid $color_dark; */
 }
 
@@ -111,6 +112,7 @@ div.breadcrumbs a:focus, div.breadcrumbs a:hover {
 /* Overriding admin-index.css */
 #container .dropdown-menu {
     background-color: #007bc7;
+    top: 57px;
 }
 
 .dropdown-menu .dropdown-menu__item:hover, .dropdown-menu__item--active, .dropdown-menu .dropdown-menu__item:link.dropdown-menu__item--active, .dropdown-menu .dropdown-menu__item:visited.dropdown-menu__item--active {
