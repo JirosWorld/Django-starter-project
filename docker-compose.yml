@@ -9,7 +9,7 @@ services:
     # NOTE: this works for bitnami, not sure if this works for regular
     # postgres image
     volumes:
-      - ./docker-init-db.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./docker-init-db.sql:/docker-entrypoint-initdb.d/init_db.sql
 
   web:
     build: .
