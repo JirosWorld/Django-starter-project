@@ -15,9 +15,11 @@ services:
       - 8000:8000
     depends_on:
       - db
+    volumes:
+      - ./docker-init-db.sh:/docker-entrypoint-initdb.d/init.sh
 
-  # See: src/{{ project_name|lower }}/conf/docker.py
-  # Optional containers below:
+# See: src/{{ project_name|lower }}/conf/docker.py
+# Optional containers below:
 #  elasticsearch:
 #    # NOTE: No persistance storage configured.
 #    # See: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
