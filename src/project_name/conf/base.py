@@ -43,15 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # django-admin-index
+    'ordered_model',
+    'django_admin_index',
+    
     # Optional applications.
     'django.contrib.admin',
     # 'django.contrib.admindocs',
     # 'django.contrib.humanize',
     # 'django.contrib.sitemaps',
 
-    # django-admin-index
-    'ordered_model',
-    'django_admin_index',
 
     # External applications.
     'axes',
