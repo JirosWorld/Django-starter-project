@@ -6,6 +6,11 @@ services:
     # NOTE: No persistance storage configured.
     # See: https://hub.docker.com/_/postgres/
     image: postgres
+    # NOTE: this works for bitnami, not sure if this works for regular
+    # postgres image
+    volumes:
+      - ./docker-init-db.sh:/docker-entrypoint-initdb.d/init.sh
+
   web:
     build: .
     environment:
@@ -15,8 +20,6 @@ services:
       - 8000:8000
     depends_on:
       - db
-    volumes:
-      - ./docker-init-db.sh:/docker-entrypoint-initdb.d/init.sh
 
 # See: src/{{ project_name|lower }}/conf/docker.py
 # Optional containers below:
