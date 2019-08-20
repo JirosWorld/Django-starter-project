@@ -96,8 +96,9 @@ div.breadcrumbs a:focus, div.breadcrumbs a:hover {
   background: #b2d7ee;
 }
 
-.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
-  background: #000;
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit]:focus, .button:hover, input[type=submit]:hover {
+    background: #205067;
+    color: white;
 }
 
 .delete-confirmation form .cancel-link {
