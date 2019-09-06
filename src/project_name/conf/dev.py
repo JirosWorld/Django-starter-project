@@ -49,6 +49,11 @@ LOGGING['loggers'].update({
         'level': 'INFO',
         'propagate': True,
     },
+    'django.utils.autoreload': {
+        'handlers': ['null'],
+        'level': 'DEBUG',
+        'propagate': False,
+    },
 })
 
 #
