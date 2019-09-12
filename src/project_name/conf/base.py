@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     # django-admin-index
     'ordered_model',
     'django_admin_index',
-    
+
     # Optional applications.
     'django.contrib.admin',
     # 'django.contrib.admindocs',
@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     'hijack',
     'compat',  # Part of hijack
     'hijack_admin',
-    'elasticapm.contrib.django',
 
     # Project applications.
     '{{ project_name|lower }}.accounts',
@@ -69,7 +68,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'elasticapm.contrib.django.middleware.TracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
