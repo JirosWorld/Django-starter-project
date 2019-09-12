@@ -115,7 +115,7 @@ LOGGING['handlers'].update({
 
 # APM
 MIDDLEWARE = [
- 'elasticapm.contrib.django.middleware.TracingMiddleware'
+    'elasticapm.contrib.django.middleware.TracingMiddleware'
 ] + MIDDLEWARE
 INSTALLED_APPS = INSTALLED_APPS + [
     'elasticapm.contrib.django',
