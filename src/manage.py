@@ -2,8 +2,10 @@
 import os
 import sys
 
+from {{ project_name|lower }}.setup import setup_env
+
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ project_name|lower }}.conf.dev")
+    setup_env()
 
     try:
         from django.core.management import execute_from_command_line
