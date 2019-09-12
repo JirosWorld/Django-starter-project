@@ -88,6 +88,11 @@ development machine.
 
        $ python src/manage.py runserver
 
+8. Create a .env file with database settings. See dotenv-example for an example.
+
+        $ cp dotenv-example .env
+
+
 **Note:** If you are making local, machine specific, changes, add them to
 ``src/{{ project_name|lower }}/conf/local.py``. You can base this file on the
 example file included in the same directory.
