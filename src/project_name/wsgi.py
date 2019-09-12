@@ -10,7 +10,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-from dotenv import load_dotenv
-load_dotenv()
+from {{ project_name|lower }}.setup import setup_env
+setup_env()
 
 application = get_wsgi_application()
