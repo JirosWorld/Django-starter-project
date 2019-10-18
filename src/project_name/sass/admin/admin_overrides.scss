@@ -125,3 +125,46 @@ div.breadcrumbs {
 .selector-chosen h2 {
   background: $color_primary !important;
 }
+
+/* Calendar widget */
+.calendar {
+  caption {
+    background: $color_secondary_dark !important;
+    color: $color_dark !important;
+  }
+
+  td {
+    a {
+      &:active {
+        background: $color_primary !important;
+      }
+      &:focus, &:hover {
+        background: $color_primary_dark !important;
+      }
+    }
+
+    &.selected a {
+      background: $color_primary !important;
+    }
+  }
+}
+.calendarbox h2 {
+  background: $color_secondary_dark !important;
+  color: $color_dark !important;
+}
+
+/* Time widget */
+.timelist {
+  a:active {
+   background: $color_primary !important;
+  }
+  a:focus, a:hover {
+    background: $color_primary_dark !important;
+  }
+}
+.module.clockbox h2 {
+  /* Match the clock widget with the calendar widget */
+  background: $color_secondary_dark !important;
+  color: $color_dark !important;
+  font-weight: bold !important;
+}
