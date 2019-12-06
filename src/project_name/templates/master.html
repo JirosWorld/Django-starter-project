@@ -23,8 +23,8 @@
         </main>
 
         {% if dsn %}
-            <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js"></script>
-            <script>Raven.config({{ dsn }}).install();</script>
+            <script src="https://browser.sentry-cdn.com/5.10.1/bundle.min.js" integrity="sha384-sAOze6ZTBIpiWBF3VlUteSInM4rYpjxrejp1wMmmKqA9clRZ1vZJ36Ihmt1ilTrG" crossorigin="anonymous"></script>
+            <script>Sentry.init({ dsn: '{{ dsn }}'});</script>
         {% endif %}
         <script src="{% templatetag openblock %} static 'js/main.js' {% templatetag closeblock %}"></script>
     </body>

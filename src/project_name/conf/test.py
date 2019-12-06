@@ -1,5 +1,4 @@
-import raven
-
+import sentry_sdk
 from .base import *
 
 #
@@ -52,11 +51,6 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 ]
 
 LOGGING['loggers'].update({
-    '': {
-        'handlers': ['sentry'],
-        'level': 'WARNING',
-        'propagate': False,
-    },
     'django': {
         'handlers': ['django'],
         'level': 'INFO',
@@ -96,21 +90,19 @@ SECURE_BROWSER_XSS_FILTER = True # Sets X-XSS-Protection: 1; mode=block
 
 ELASTIC_APM['SERVICE_NAME'] += ' ' + ENVIRONMENT
 
-# Raven
-INSTALLED_APPS = INSTALLED_APPS + [
-    'raven.contrib.django.raven_compat',
-]
-RAVEN_CONFIG = {
-    'dsn': 'https://',
-    'release': raven.fetch_git_sha(BASE_DIR),
+# Sentry SDK
+SENTRY_CONFIG = {
+    "dsn": "https://",
+    "public_dsn": "https://",
+    "release": os.getenv('VERSION_TAG', 'VERSION_TAG not set'),
 }
-LOGGING['handlers'].update({
-    'sentry': {
-        'level': 'WARNING',
-        'class': 'raven.handlers.logging.SentryHandler',
-        'dsn': RAVEN_CONFIG['dsn']
-    },
-})
+
+sentry_sdk.init(
+    dsn=SENTRY_CONFIG["dsn"],
+    release=SENTRY_CONFIG["release"],
+    integrations=SENTRY_SDK_INTEGRATIONS,
+    send_default_pii=True
+)
 
 # APM
 MIDDLEWARE = [
