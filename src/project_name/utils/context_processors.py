@@ -11,7 +11,7 @@ def settings(request):
         ]),
     }
     
-    if hasattr(django_settings, 'RAVEN_CONFIG'):
-        context.update(dsn=django_settings.RAVEN_CONFIG.get('public_dsn', ''))
+    if hasattr(django_settings, 'SENTRY_CONFIG'):
+        context.update(dsn=django_settings.SENTRY_CONFIG.get('public_dsn', ''))
         
     return context

@@ -2,8 +2,8 @@ pip-tools
 psycopg2
 Pillow
 pytz
-raven
 python-dotenv
+sentry-sdk
 
 Django
 django-hijack

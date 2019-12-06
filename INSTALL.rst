@@ -158,8 +158,8 @@ file or as part of the ``(post)activate`` of your virtualenv.
 * ``DB_HOST``: database host. Defaults to ``localhost``
 * ``DB_PORT``: database port. Defaults to ``5432``.
 
-* ``SENTRY_DSN``: the DSN of the project in Sentry. If set, enabled Raven as
-  logger and will send errors/logging to Sentry. If unset, Raven will be
+* ``SENTRY_DSN``: the DSN of the project in Sentry. If set, enabled Sentry SDK as
+  logger and will send errors/logging to Sentry. If unset, Sentry SDK will be
   disabled.
 
 Docker
