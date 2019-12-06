@@ -59,11 +59,6 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 
 # Production logging facility.
 LOGGING['loggers'].update({
-    '': {
-        'handlers': ['sentry'],
-        'level': 'ERROR',
-        'propagate': False,
-    },
     'django': {
         'handlers': ['django'],
         'level': 'INFO',

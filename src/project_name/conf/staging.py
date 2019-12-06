@@ -53,11 +53,6 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 ]
 
 LOGGING['loggers'].update({
-    '': {
-        'handlers': ['sentry'],
-        'level': 'WARNING',
-        'propagate': False,
-    },
     'django': {
         'handlers': ['django'],
         'level': 'INFO',
