@@ -24,7 +24,7 @@ libraries:
 
 .. code-block:: bash
 
-    $ virtualenv env or virtualenv --python=/usr/bin/python3.4 env
+    $ virtualenv env or virtualenv --python=/usr/bin/python3.7 env
     $ source env/bin/activate
     $ pip install django
 
@@ -42,9 +42,7 @@ You'll need pip-compile to generate the pinned versions of the requirements:
 
     $ pip install pip setuptools --upgrade (optionally)
     $ pip install pip-tools
-    $ cd requirements
-    $ pip-compile base.in
-    $ cd ..
+    $ ./bin/compile_dependencies.sh
 
 Modify the ``README.rst`` to be suitable for this project.
 

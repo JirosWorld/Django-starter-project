@@ -86,7 +86,7 @@ INSTALLED_APPS += [
 ]
 PROJECT_APPS = [app for app in INSTALLED_APPS if app.startswith('{{ project_name|lower }}.')]
 JENKINS_TASKS = (
-#    'django_jenkins.tasks.run_pylint',
+    # 'django_jenkins.tasks.run_pylint',  # Pylint < 2.0 does not run on Python 3.7+
     'django_jenkins.tasks.run_pep8',
 )
 
