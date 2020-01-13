@@ -13,18 +13,18 @@ ADMINS = (
 )
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '{{ project_name|lower }}-test',
-        'USER': '{{ project_name|lower }}',
-        'PASSWORD': '{{ project_name|lower }}',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  # Set to empty string for default.
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "{{ project_name|lower }}-test",
+        "USER": "{{ project_name|lower }}",
+        "PASSWORD": "{{ project_name|lower }}",
+        "HOST": "",  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        "PORT": "",  # Set to empty string for default.
     }
 }
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '{{ secret_key }}'
+SECRET_KEY = "{{ secret_key }}"
 
 ALLOWED_HOSTS = []
 
@@ -34,42 +34,40 @@ ALLOWED_HOSTS = []
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1", # NOTE: watch out for multiple projects using the same cache!
+        "LOCATION": "redis://127.0.0.1:6379/1",  # NOTE: watch out for multiple projects using the same cache!
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "IGNORE_EXCEPTIONS": True,
-        }
+        },
     }
 }
 
 # Caching sessions.
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 # Caching templates.
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', RAW_TEMPLATE_LOADERS),
+TEMPLATES[0]["OPTIONS"]["loaders"] = [
+    ("django.template.loaders.cached.Loader", RAW_TEMPLATE_LOADERS),
 ]
 
-LOGGING['loggers'].update({
-    'django': {
-        'handlers': ['django'],
-        'level': 'INFO',
-        'propagate': True,
-    },
-    'django.security.DisallowedHost': {
-        'handlers': ['django'],
-        'level': 'CRITICAL',
-        'propagate': False,
-    },
-})
+LOGGING["loggers"].update(
+    {
+        "django": {"handlers": ["django"], "level": "INFO", "propagate": True,},
+        "django.security.DisallowedHost": {
+            "handlers": ["django"],
+            "level": "CRITICAL",
+            "propagate": False,
+        },
+    }
+)
 
 #
 # Custom settings
 #
 
 # Show active environment in admin.
-ENVIRONMENT = 'test'
+ENVIRONMENT = "test"
 
 # We will assume we're running under https
 SESSION_COOKIE_SECURE = True
@@ -80,35 +78,33 @@ CSRF_COOKIE_SECURE = True
 # X_FRAME_OPTIONS = 'DENY'
 
 # Only set this when we're behind Nginx as configured in our example-deployment
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_CONTENT_TYPE_NOSNIFF = True # Sets X-Content-Type-Options: nosniff
-SECURE_BROWSER_XSS_FILTER = True # Sets X-XSS-Protection: 1; mode=block
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Sets X-Content-Type-Options: nosniff
+SECURE_BROWSER_XSS_FILTER = True  # Sets X-XSS-Protection: 1; mode=block
 
 
 #
 # Library settings
 #
 
-ELASTIC_APM['SERVICE_NAME'] += ' ' + ENVIRONMENT
+ELASTIC_APM["SERVICE_NAME"] += " " + ENVIRONMENT
 
 # Sentry SDK
 SENTRY_CONFIG = {
     "dsn": "https://",
     "public_dsn": "https://",
-    "release": os.getenv('VERSION_TAG', 'VERSION_TAG not set'),
+    "release": os.getenv("VERSION_TAG", "VERSION_TAG not set"),
 }
 
 sentry_sdk.init(
     dsn=SENTRY_CONFIG["dsn"],
     release=SENTRY_CONFIG["release"],
     integrations=SENTRY_SDK_INTEGRATIONS,
-    send_default_pii=True
+    send_default_pii=True,
 )
 
 # APM
-MIDDLEWARE = [
-    'elasticapm.contrib.django.middleware.TracingMiddleware'
-] + MIDDLEWARE
+MIDDLEWARE = ["elasticapm.contrib.django.middleware.TracingMiddleware"] + MIDDLEWARE
 INSTALLED_APPS = INSTALLED_APPS + [
-    'elasticapm.contrib.django',
+    "elasticapm.contrib.django",
 ]
