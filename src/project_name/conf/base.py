@@ -1,9 +1,9 @@
 import os
 
-from sentry_sdk.integrations import celery, django, redis
-
 # Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
+
+from sentry_sdk.integrations import celery, django, redis
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 DJANGO_PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))

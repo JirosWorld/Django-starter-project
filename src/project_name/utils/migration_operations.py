@@ -1,7 +1,7 @@
 import os
 
 from django.conf import settings
-from django.db import router, migrations
+from django.db import migrations, router
 
 
 def _get_reset_sql() -> str:
