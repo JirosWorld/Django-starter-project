@@ -5,7 +5,7 @@
 
 # Stage 1 - Backend build environment
 # includes compilers and build tooling to create the environment
-FROM python:3.7-buster AS builbackend-d
+FROM python:3.7-buster AS backend-build
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
@@ -54,10 +54,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         postgresql-client \
         # lxml deps
         # libxslt \
-        # Pillow deps
-        libjpeg \
-        openjpeg \
-        zlib \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
