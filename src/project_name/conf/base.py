@@ -3,7 +3,12 @@ import os
 # Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
-from sentry_sdk.integrations import celery, django, redis
+from sentry_sdk.integrations import django, redis
+
+try:
+    from sentry_sdk.integrations import celery
+except ImportError:  # no celery in this proejct
+    celery = None
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 DJANGO_PROJECT_DIR = os.path.abspath(
@@ -315,10 +320,11 @@ HIJACK_ALLOW_GET_REQUESTS = True
 SENTRY_DSN = os.getenv("SENTRY_DSN")
 
 SENTRY_SDK_INTEGRATIONS = [
-    celery.CeleryIntegration(),
     django.DjangoIntegration(),
     redis.RedisIntegration(),
 ]
+if celery is not None:
+    SENTRY_SDK_INTEGRATIONS.append(celery.CeleryIntegration())
 
 if SENTRY_DSN:
     import sentry_sdk
