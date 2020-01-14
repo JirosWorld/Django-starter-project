@@ -11,6 +11,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 from {{ project_name|lower }}.setup import setup_env
+
 setup_env()
 
 application = get_wsgi_application()

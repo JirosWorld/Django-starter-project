@@ -1,23 +1,28 @@
-pip-tools
-psycopg2
-Pillow
-pytz
-python-dotenv
-sentry-sdk
+# Core python libraries
+Pillow  # handle images
+psycopg2  # database driver
+pytz  # handle timezones
+python-dotenv  # environment variables for secrets
+python-decouple  # processing of envvar configs
 
-Django
-django-hijack
-django-hijack-admin
+# Framework libraries
+django < 3.0
+django-admin-index
 django-axes
 django-choices
+django-hijack
+django-hijack-admin
+django-redis
 django-rosetta
 django-sniplates
-django-redis
--e git+git://github.com/maykinmedia/django-admin-index@master#egg=django_admin_index
 
+# API libraries
 # djangorestframework
+# django-extra-fields
+# django-filter
+# drf-yasg  # api documentation
 
-# For Elastic APM integration
-elastic-apm
-cachetools
-
+# WSGI servers & monitoring - production oriented
+uwsgi
+sentry-sdk  # error monitoring
+elastic-apm  # Elastic APM integration

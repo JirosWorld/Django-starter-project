@@ -1,13 +1,13 @@
 import os
 
 from django.conf import settings
-from django.db import router, migrations
+from django.db import migrations, router
 
 
 def _get_reset_sql() -> str:
     INFILE = os.path.join(settings.BASE_DIR, "bin", "reset_sequences.sql")
 
-    with open(INFILE, 'r') as infile:
+    with open(INFILE, "r") as infile:
         SQL = infile.read()
 
     return SQL
@@ -35,13 +35,16 @@ class ResetSequences(migrations.RunSQL):
         ...         ResetSequences(),
         ...     ]
     """
+
     reversible = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(None, *args, **kwargs)
 
     def database_forwards(self, app_label, schema_editor, from_state, to_state) -> None:
-        if router.allow_migrate(schema_editor.connection.alias, app_label, **self.hints):
+        if router.allow_migrate(
+            schema_editor.connection.alias, app_label, **self.hints
+        ):
 
             base_sql = _get_reset_sql()
 

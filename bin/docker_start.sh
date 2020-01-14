@@ -1,14 +1,19 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 # Wait for the database container
 # See: https://docs.docker.com/compose/startup-order/
-db_host=${DATABASE_HOST:-db}
-db_user=${DATABASE_USER:-postgres}
-db_password=${DATABASE_PASSWORD}
+export PGHOST=${DB_HOST:-db}
+export PGPORT=${DB_PORT:-5432}
 
-until PGPASSWORD=$db_password psql -h "$db_host" -U "$db_user" -c '\q'; do
+fixtures_dir=${FIXTURES_DIR:-/app/fixtures}
+
+uwsgi_port=${UWSGI_PORT:-8000}
+uwsgi_processes=${UWSGI_PROCESSES:-4}
+uwsgi_threads=${UWSGI_THREADS:-1}
+
+until pg_isready; do
   >&2 echo "Waiting for database connection..."
   sleep 1
 done
@@ -22,11 +27,15 @@ python src/manage.py migrate
 # Start server
 >&2 echo "Starting server"
 uwsgi \
-    --http :8000 \
+    --http :$uwsgi_port \
+    --http-keepalive \
     --module {{ project_name|lower }}.wsgi \
     --static-map /static=/app/static \
     --static-map /media=/app/media  \
     --chdir src \
-    --processes 4 \
-    --threads 1
+    --enable-threads \
+    --processes $uwsgi_processes \
+    --threads $uwsgi_threads \
+    --post-buffering=8192 \
+    --buffer-size=65535
     # processes & threads are needed for concurrency without nginx sitting inbetween

@@ -5,50 +5,36 @@
 
 # Stage 1 - Backend build environment
 # includes compilers and build tooling to create the environment
+FROM python:3.7-buster AS backend-build
 
-FROM python:3.7-alpine AS backend-build
-
-RUN apk --no-cache add \
-    gcc \
-    musl-dev \
-    pcre-dev \
-    linux-headers \
-    postgresql-dev \
-    # libraries installed using git
-    git \
-    # lxml dependencies
-    libxslt-dev \
-    # pillow dependencies
-    jpeg-dev \
-    openjpeg-dev \
-    zlib-dev \
-    libffi-dev
-
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+RUN mkdir /app/src
 
 # Ensure we use the latest version of pip
 RUN pip install pip setuptools -U
-
 COPY ./requirements /app/requirements
 RUN pip install -r requirements/production.txt
 
 
 # Stage 2 - Install frontend deps and build assets
-FROM mhart/alpine-node:10 AS frontend-build
+FROM node:13-buster AS frontend-build
 
-RUN apk --no-cache add \
-    git
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 # copy configuration/build files
-COPY ./*.json /app/
-COPY ./*.js /app/
 COPY ./build /app/build/
+COPY ./*.json ./*.js ./.babelrc /app/
 
 # install WITH dev tooling
-RUN npm install
+RUN npm ci
 
 # copy source code
 COPY ./src /app/src
@@ -58,40 +44,42 @@ RUN npm run build
 
 
 # Stage 3 - Build docker image suitable for production
-FROM python:3.7-alpine
+FROM python:3.7-buster
 
-RUN apk --no-cache add \
-    ca-certificates \
-    mailcap \
-    musl \
-    pcre \
-    postgresql \
-    # lxml dependencies
-    libxslt \
-    # pillow dependencies
-    jpeg \
-    openjpeg \
-    zlib
-
-# TODO: add nodejs for swagger2openapi conversion
+# Stage 3.1 - Set up the needed production dependencies
+# install all the dependencies for GeoDjango
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        procps \
+        vim \
+        postgresql-client \
+        # lxml deps
+        # libxslt \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY ./bin/docker_start.sh /start.sh
 RUN mkdir /app/log
+RUN mkdir /app/media
 
 # copy backend build deps
 COPY --from=backend-build /usr/local/lib/python3.7 /usr/local/lib/python3.7
-COPY --from=backend-build /app/src/ /app/src/
 COPY --from=backend-build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
+COPY --from=backend-build /app/src/ /app/src/
 
-# copy build statics
+# copy frontend build statics
 COPY --from=frontend-build /app/src/{{ project_name|lower }}/static /app/src/{{ project_name|lower }}/static
-
 
 # copy source code
 COPY ./src /app/src
-RUN mkdir /app/media
 
+RUN useradd -M -u 1000 maykin
+RUN chown -R maykin /app
+
+# drop privileges
+USER maykin
+
+ARG COMMIT_HASH
+ENV GIT_SHA=${COMMIT_HASH}
 ENV DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
 
 ARG SECRET_KEY=dummy
