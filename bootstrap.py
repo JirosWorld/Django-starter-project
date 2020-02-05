@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # bootstrap.py
 # Bootstrap and setup a virtualenv with the specified requirements.txt
 import argparse
@@ -90,15 +90,9 @@ def pip_compile_pin_requirements(virtualenv):
         pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
     cmd_tpl = '{pip} install pip-tools'.format(pip=pip_path)
     call(cmd_tpl, shell=True)
-
-    if os.name == 'posix':
-        bin_dir = 'bin'
-    elif os.name == 'nt':
-        bin_dir = 'Scripts'
-    pip_compile = os.path.join(virtualenv, bin_dir, 'pip-compile')
-    os.chdir('requirements')
-    call('../{0} base.in'.format(pip_compile), shell=True)
-    os.chdir('..')
+    print('Error: Run `. env/bin/activate && ./bin/compile_dependencies.sh` to ensure you have requirements/base.txt and requirements/dev.txt')
+    print('After that rerun bootstrap.py')
+    sys.exit(1)
 
 def main():
     virtualenv = args.env
@@ -126,7 +120,9 @@ def main():
     cmd_tpl = '{pip} install --upgrade pip'.format(pip=pip_path)
     call(cmd_tpl, shell=True)
 
-    if args.init or not os.path.exists(os.path.join('requirements', 'base.txt')):
+    if args.init \
+       or not os.path.exists(os.path.join('requirements', 'base.txt')) \
+       or not os.path.exists(os.path.join('requirements', 'dev.txt')):
         pip_compile_pin_requirements(virtualenv)
 
     print('\n== Installing %s requirements ==\n' % args.target)
