@@ -53,7 +53,7 @@ node {
     stage ("Install frontend requirements") {
         sh """
             npm ci
-            ./node_modules/gulp/bin/gulp.js sass
+            ./node_modules/gulp/bin/gulp.js build
            """
 
         withEnv(["SECRET_KEY=test_key"]) {
@@ -130,7 +130,6 @@ node {
         }
         finally {
             sh "./node_modules/gulp/bin/gulp.js lint"
-            sh "./node_modules/gulp/bin/gulp.js build"
             junit "reports/jstests/junit.xml"
 
             if (testsError) {
