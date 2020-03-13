@@ -11,6 +11,17 @@ DEBUG = False
 
 ADMINS = ()
 
+
+def get_db_name(prefix):
+    """
+    get a reasonable name below Postgres' 63 char name limit
+    """
+    job = os.getenv("JOB_NAME", default="").lower().rsplit("/", 1)[-1]
+    build = os.getenv("BUILD_NUMBER", default="0")
+    lim = 63 - 2 - len(prefix) - len(build)
+    return "{}_{}_{}".format(prefix, job[:lim], build)
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -27,12 +38,7 @@ DATABASES = {
         #
         # PostgreSQL 9.6: 5432 (default for Jenkins)
         "PORT": "",
-        "TEST": {
-            "NAME": "test_{{ project_name|lower }}_{}_{}".format(
-                os.getenv("JOB_NAME", default="").lower().rsplit("/", 1)[-1],
-                os.getenv("BUILD_NUMBER", default="0"),
-            )
-        },
+        "TEST": {"NAME": get_db_name("test_{{ project_name|lower }}")},
     }
 }
 
