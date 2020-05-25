@@ -1,12 +1,11 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
-from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = "Send a test notification to verify if notifications are properly configured"
+    help = "Creates an initial superuser account and mails the credentials to the specified email"
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -27,19 +26,8 @@ class Command(BaseCommand):
             )
             return
 
-        call_command(
-            "createsuperuser",
-            username=username,
-            email=email,
-            no_input=True,
-            interactive=False,
-        )
-
-        user = User.objects.get(username=username)
-
         password = User.objects.make_random_password(length=20)
-        user.set_password(password)
-        user.save()
+        user = User.objects.create_superuser(username=username, email=email, password=password)
 
         send_mail(
             f"Credentials for {settings.PROJECT_NAME}",
