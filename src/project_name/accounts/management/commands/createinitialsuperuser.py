@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
+from django.urls import exceptions, reverse
 
 
 class Command(BaseCommand):
@@ -29,8 +30,13 @@ class Command(BaseCommand):
         password = User.objects.make_random_password(length=20)
         user = User.objects.create_superuser(username=username, email=email, password=password)
 
+        try:
+            link = f'{settings.ALLOWED_HOSTS[0]}{reverse("admin:index")}'
+        except exceptions.NoReverseMatch:
+            link = settings.ALLOWED_HOSTS[0]
+
         send_mail(
-            f"Credentials for {settings.PROJECT_NAME}",
+            f"Credentials for {settings.PROJECT_NAME} ({link})",
             f"Credentials for project: {settings.PROJECT_NAME}\n\nUsername: {username}\nPassword: {password}",
             settings.DEFAULT_FROM_EMAIL,
             [email],
