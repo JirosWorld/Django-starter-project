@@ -91,8 +91,8 @@ ELASTIC_APM["SERVICE_NAME"] += " " + ENVIRONMENT
 
 # Sentry SDK
 SENTRY_CONFIG = {
-    "dsn": "https://",
-    "public_dsn": "https://",
+    "dsn": os.getenv("SENTRY_DSN", "https://"),
+    "public_dsn": os.getenv("SENTRY_DSN", "https://"),
     "release": os.getenv("VERSION_TAG", "VERSION_TAG not set"),
 }
 
