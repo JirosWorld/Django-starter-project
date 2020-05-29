@@ -26,3 +26,20 @@ class CreateInitialSuperuserTests(TestCase):
             link = settings.ALLOWED_HOSTS[0]
         self.assertEqual(sent_mail.subject, f"Credentials for {settings.PROJECT_NAME} ({link})")
         self.assertListEqual(sent_mail.recipients(), ["support@maykinmedia.nl"])
+
+    @override_settings(ALLOWED_HOSTS=[])
+    def test_create_initial_superuser_command_allowed_hosts_empty(self):
+        call_command("createinitialsuperuser", "maykin", "support@maykinmedia.nl")
+        user = User.objects.get()
+
+        self.assertTrue(user.has_usable_password())
+        self.assertTrue(user.is_active)
+        self.assertTrue(user.is_staff)
+        self.assertTrue(user.is_superuser)
+
+        self.assertEqual(len(mail.outbox), 1)
+
+        sent_mail = mail.outbox[0]
+        link = "unknown url"
+        self.assertEqual(sent_mail.subject, f"Credentials for {settings.PROJECT_NAME} ({link})")
+        self.assertListEqual(sent_mail.recipients(), ["support@maykinmedia.nl"])

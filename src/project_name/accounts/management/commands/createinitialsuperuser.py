@@ -32,6 +32,8 @@ class Command(BaseCommand):
 
         try:
             link = f'{settings.ALLOWED_HOSTS[0]}{reverse("admin:index")}'
+        except IndexError:
+            link = "unknown url"
         except exceptions.NoReverseMatch:
             link = settings.ALLOWED_HOSTS[0]
 
