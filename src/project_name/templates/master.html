@@ -1,19 +1,16 @@
 {% templatetag openblock %} load staticfiles hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="view {% templatetag openblock %} block view_class {% templatetag closeblock %}view--{% templatetag openvariable %} request.resolver_match.namespaces|join:'-' {% templatetag closevariable %}-{% templatetag openvariable %} request.resolver_match.url_name {% templatetag closevariable %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
     <head>
         <meta charset="utf-8">
         <title>{% templatetag openblock %} block title {% templatetag closeblock %}{{ project_name|title }}{% templatetag openblock %} endblock {% templatetag closeblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <link href="{% templatetag openblock %} static 'css/screen.css' {% templatetag closeblock %}" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" rel="shortcut icon">
+        <link href="{% templatetag openblock %} static 'bundles/{{ project_name }}-css.css' {% templatetag closeblock %}" media="all" rel="stylesheet" />
         <link href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
         {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" rel="shortcut icon">
     </head>
 
-    <body class="{% templatetag openblock %} block body-class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
+    <body class="view__body">
         {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
         <main>
             {% templatetag openblock %} block content {% templatetag closeblock %}
@@ -21,11 +18,10 @@
                 to get some actual content.
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         </main>
-
         {% if dsn %}
             <script src="https://browser.sentry-cdn.com/5.10.1/bundle.min.js" integrity="sha384-sAOze6ZTBIpiWBF3VlUteSInM4rYpjxrejp1wMmmKqA9clRZ1vZJ36Ihmt1ilTrG" crossorigin="anonymous"></script>
             <script>Sentry.init({ dsn: '{{ dsn }}'});</script>
         {% endif %}
-        <script src="{% templatetag openblock %} static 'js/main.js' {% templatetag closeblock %}"></script>
+        <script src="{% templatetag openblock %} static 'bundles/{{ project_name }}-js.js' {% templatetag closeblock %}"></script>
     </body>
 </html>

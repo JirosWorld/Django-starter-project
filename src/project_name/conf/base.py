@@ -7,7 +7,7 @@ from sentry_sdk.integrations import django, redis
 
 try:
     from sentry_sdk.integrations import celery
-except ImportError:  # no celery in this proejct
+except:  # no celery in this proejct
     celery = None
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

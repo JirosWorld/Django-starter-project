@@ -1,15 +1,14 @@
-var path = require('path');
-var fs = require('fs');
+const fs = require('fs');
 
 
 /** Parses package.json */
-var pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
+const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
-/** Name of the sources directory */
-var sourcesRoot = 'src/' + pkg.name + '/';
+/** Src dir */
+const sourcesRoot = 'src/' + pkg.name + '/';
 
-/** Name of the static (source) directory */
-var staticRoot = sourcesRoot + 'static/';
+/** "Main" static dir */
+const staticRoot = sourcesRoot + 'static/';
 
 
 /**
@@ -19,14 +18,23 @@ module.exports = {
     // Parsed package.json
     package: pkg,
 
-    // Path to the sass (sources) directory
-    sassSrcDir: sourcesRoot + 'sass/',
+    // Src dir
+    sourcesRoot: sourcesRoot,
 
-    // Path to the sass (sources) entry point
-    sassSrc: sourcesRoot + 'sass/**/*.scss',
+    // "Main" static dir
+    staticRoot: staticRoot,
+
+    // Path to the scss entry point
+    scssEntry: sourcesRoot + 'scss/screen.scss',
+
+    // Path to the scss (sources) directory
+    scssSrcDir: sourcesRoot + 'scss/',
+
+    // Path to the scss (sources) entry point
+    scssSrc: sourcesRoot + 'scss/**/*.scss',
 
     // Path to the (transpiled) css directory
-    cssDir: staticRoot + 'css/',
+    cssDir: staticRoot + 'bundles/',
 
     // Path to the fonts directory
     fontsDir: staticRoot + 'fonts/',
@@ -34,8 +42,8 @@ module.exports = {
     // Path to the js entry point (source)
     jsEntry: sourcesRoot + 'js/index.js',
 
-    // Path to the js (sources) directory
-    jsSrcDir: sourcesRoot + 'js/',
+    // Path to the compatibility js entry point (source)
+    swEntry: sourcesRoot + 'js/sw.js',
 
     // Path to js (sources)
     jsSrc: sourcesRoot + 'js/**/*.js',
@@ -44,7 +52,7 @@ module.exports = {
     jsSrcDir: sourcesRoot + 'js/',
 
     // Path to the (transpiled) js directory
-    jsDir: staticRoot + 'js/',
+    jsDir: staticRoot + 'bundles/',
 
     // Path to js spec (test) files
     jsSpec: sourcesRoot + 'jstests/**/*.spec.js',
