@@ -1,6 +1,8 @@
 from django import template
 from django.utils.html import format_html
 
+from {{project_name|lower}}.utils.misc import VERSION
+
 register = template.Library()
 
 
@@ -62,3 +64,8 @@ def placekitten_src(width=800, height=600):
         {% templatetag openblock %} include 'components/image/image.html' with mobile_src=mobile_src src=src alt='placekitten' only {% templatetag closeblock %}
     """
     return "//placekitten.com/{}/{}".format(width, height)
+
+
+@register.simple_tag
+def version():
+    return VERSION

@@ -1,25 +1,42 @@
-{% verbatim %}{% extends "admin/base.html" %}
-{% load i18n static hijack_tags %}
+{% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n static hijack_tags utils {% templatetag closeblock %}
 
-{% block title %}{{ title }} | {{ site_title|default:_('Administration') }}{% endblock %}
+{% templatetag openblock %} block title {% templatetag closeblock %}
+{% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openvariable %} site_title|default:_('Administration') {% templatetag closevariable %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block extrastyle %}
-    {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'bundles/admin_overrides.css' %}">
-{% endblock %}
+{% templatetag openblock %} block extrastyle {% templatetag closeblock %}
+    {% templatetag openvariable %} block.super {% templatetag closevariable %}
 
-{% block branding %}
-    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Administration') }}</a></h1>
-{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" />
+    <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'bundles/admin_overrides.css' {% templatetag closeblock %}">
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block nav-global %}{% endblock %}
+{% templatetag openblock %} block branding {% templatetag closeblock %}
+    <h1 id="site-name">
+        <a href="{% templatetag openblock %} url 'admin:index' {% templatetag closeblock %}">
+            {% templatetag openvariable %} site_header|default:_('Administration') {% templatetag closevariable %}
+        </a>
+    </h1>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block messages %}
-    {% hijack_notification %}
-    {{ block.super }}
-{% endblock %}
+{% templatetag openblock %} block nav-global {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% block footer %}
-    {{ block.super }}
-{% endblock %}{% endverbatim %}
+{% templatetag openblock %} block messages {% templatetag closeblock %}
+    {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
+    {% templatetag openvariable %} block.super {% templatetag closevariable %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block footer {% templatetag closeblock %}
+    <div id="footer">
+        {% templatetag openblock %} version as build {% templatetag closeblock %}
+        {% templatetag openblock %} if build {% templatetag closeblock %}
+            <div class="version">
+                <span class="version__text">
+                    {% templatetag openvariable %} build {% templatetag closevariable %}
+                </span>
+            </div>
+        {% templatetag openblock %} endif {% templatetag closeblock %}
+    </div>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
