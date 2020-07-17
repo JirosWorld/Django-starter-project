@@ -48,9 +48,6 @@ development machine.
        $ cd {{ project_name|lower }}
 
 3. Install all required libraries.
-   **Tip:** You can use the ``bootstrap.py`` script to install the requiments
-   and set the proper settings in ``manage.py``. Or, perform the steps
-   manually:
 
    .. code-block:: bash
 
