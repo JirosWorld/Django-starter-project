@@ -10,13 +10,13 @@ var paths = require('../paths');
  * Runs jshint
  */
 function lint() {
-    return gulp.src([paths.jsSrc, paths.jsSpec])
+    return gulp.src([paths.jsSrc])
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('gulp-jshint-jslint-file-reporter', {
             filename: paths.coverageDir + '/jshint-output.xml'
         }));
-};
+}
 
 gulp.task('lint', lint);
 exports.lint = lint;

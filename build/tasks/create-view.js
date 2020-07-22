@@ -1,20 +1,20 @@
 'use strict';
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-var argv = require('yargs').argv;
-var gulp = require('gulp');
-var file = require('gulp-file');
-var paths = require('../paths');
+const argv = require('yargs').argv;
+const gulp = require('gulp');
+const file = require('gulp-file');
+const paths = require('../paths');
 
 
 /** {string} The views directory. */
-var VIEWS_DIR = 'views/';
+const VIEWS_DIR = 'views/';
 
 
 /**
  * Create view task
- * Run using "gulp create-view --name foo [--js --sass --html-include]"
+ * Run using "gulp create-view --name foo [--js --scss --html-include]"
  * Creates files for a new view
  */
 gulp.task('create-view', function(cb) {
@@ -27,13 +27,13 @@ gulp.task('create-view', function(cb) {
         console.info('Please provide at least one of the following arguments:');
         console.info('');
         console.info('--js');
-        console.info('--sass or --scss');
+        console.info('--scss');
         console.info('--html-include');
         return;
     }
 
     var jsViewsDir = paths.jsSrcDir + VIEWS_DIR;
-    var sassViewsDir = paths.sassSrcDir + VIEWS_DIR;
+    var sassViewsDir = paths.scssSrcDir + VIEWS_DIR;
     var jsTargetDir = jsViewsDir + argv.name + '/'
     var sassTargetDir = sassViewsDir + argv.name + '/';
     var sassAllContents = '';
@@ -60,19 +60,19 @@ gulp.task('create-view', function(cb) {
 
     // Generate SASS view if --sass or --scss is passed
     if (argv.sass || argv.scss) {
-        new file('_all.scss', '@import \'' + argv.name + '\'')
+        new file('_index.scss', '@import \'' + argv.name + '\';')
             .pipe(gulp.dest(sassTargetDir));
 
         new file('_' + argv.name + '.scss', '.' + argv.name + ' {\n}')
             .pipe(gulp.dest(sassTargetDir));
 
-        // Update views/_all.scss
+        // Update views/_index.scss
         setTimeout(function() {
             sassAllContents = getFolders(sassViewsDir).reduce(function(acc, value) {
-                return acc + '@import \'' + value + '/all\';\n';
+                return acc + '@import \'' + value + '\';\n';
             }, '// THIS IS A GULP GENERATED FILE!!!\n');
 
-            new file('_all.scss', sassAllContents)
+            new file('_index.scss', sassAllContents)
                 .pipe(gulp.dest(sassViewsDir));
         }, 0);
     }

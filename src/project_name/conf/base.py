@@ -3,11 +3,11 @@ import os
 # Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
-from sentry_sdk.integrations import django, redis
+from sentry_sdk.integrations import django, redis, DidNotEnable
 
 try:
     from sentry_sdk.integrations import celery
-except ImportError:  # no celery in this proejct
+except DidNotEnable:  # no celery in this proejct
     celery = None
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

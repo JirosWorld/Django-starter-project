@@ -1,20 +1,20 @@
 'use strict';
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-var argv = require('yargs').argv;
-var gulp = require('gulp');
-var file = require('gulp-file');
-var paths = require('../paths');
+const argv = require('yargs').argv;
+const gulp = require('gulp');
+const file = require('gulp-file');
+const paths = require('../paths');
 
 
 /** {string} The components directory. */
-var COMPONENTS_DIR = 'components/';
+const COMPONENTS_DIR = 'components/';
 
 
 /**
  * Create component task
- * Run using "gulp create-component --name foo [--js --sass --html-include]"
+ * Run using "gulp create-component --name foo [--js --scss --html-include]"
  * Creates files for a new component (BEM block)
  */
 gulp.task('create-component', function(cb) {
@@ -27,13 +27,13 @@ gulp.task('create-component', function(cb) {
         console.info('Please provide at least one of the following arguments:');
         console.info('');
         console.info('--js');
-        console.info('--sass or --scss');
+        console.info('--scss');
         console.info('--html-include');
         return;
     }
 
     var jsComponentsDir = paths.jsSrcDir + COMPONENTS_DIR;
-    var sassComponentsDir = paths.sassSrcDir + COMPONENTS_DIR;
+    var sassComponentsDir = paths.scssSrcDir + COMPONENTS_DIR;
     var jsTargetDir = jsComponentsDir + argv.name + '/'
     var sassTargetDir = sassComponentsDir + argv.name + '/';
     var sassAllContents = '';
@@ -60,19 +60,19 @@ gulp.task('create-component', function(cb) {
 
     // Generate SASS component if --sass or --scss is passed
     if (argv.sass || argv.scss) {
-        new file('_all.scss', '@import \'' + argv.name + '\'')
+        new file('_index.scss', '@import \'' + argv.name + '\';')
             .pipe(gulp.dest(sassTargetDir));
 
         new file('_' + argv.name + '.scss', '.' + argv.name + ' {\n}')
             .pipe(gulp.dest(sassTargetDir));
 
-        // Update components/_all.scss
+        // Update components/_index.scss
         setTimeout(function() {
             sassAllContents = getFolders(sassComponentsDir).reduce(function(acc, value) {
-                return acc + '@import \'' + value + '/all\';\n';
+                return acc + '@import \'' + value + '\';\n';
             }, '// THIS IS A GULP GENERATED FILE!!!\n');
 
-            new file('_all.scss', sassAllContents)
+            new file('_index.scss', sassAllContents)
                 .pipe(gulp.dest(sassComponentsDir));
         }, 0);
     }
@@ -83,7 +83,7 @@ gulp.task('create-component', function(cb) {
             .pipe(gulp.dest(paths.htmlIncludesDir + '/' + argv.name))
     }
 
-    cb()
+    cb();
 });
 
 

@@ -1,5 +1,8 @@
-var paths = require('./build/paths');
-var webpackConfig = require('./webpack.config.js');
+const paths = require('./build/paths');
+const webpackConfig = require('./webpack.config.js');
+
+// Prevent testing infrastructure from crashing (MIGHT REQUIRE --production --sourcemap NOT TO BE SET!
+webpackConfig.output.library = undefined;
 
 // Add istanbul-instrumenter to webpack configuration
 webpackConfig.module.rules.push({
@@ -15,14 +18,14 @@ webpackConfig.module.rules.push({
 
 
 // The preprocessor config
-var preprocessors = {};
+const preprocessors = {};
 preprocessors[paths.jsSpecEntry] = [
     'webpack'
-]
+];
 
 
 // The main configuration
-var configuration = function (config) {
+const configuration = function (config) {
     config.set({
         frameworks: [
             'mocha'
@@ -58,7 +61,6 @@ var configuration = function (config) {
           useBrowserName: false,
         },
 
-        // browsers: ['Chromium', 'Firefox', 'PhantomJS'],
         browsers: ['Chromium'],
     });
 };
