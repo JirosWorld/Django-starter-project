@@ -3,7 +3,7 @@ import os
 # Django-hijack (and Django-hijack-admin)
 from django.urls import reverse_lazy
 
-from sentry_sdk.integrations import django, redis, DidNotEnable
+from sentry_sdk.integrations import DidNotEnable, django, redis
 
 try:
     from sentry_sdk.integrations import celery
