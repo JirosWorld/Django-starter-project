@@ -24,7 +24,9 @@ class CreateInitialSuperuserTests(TestCase):
             link = f'{settings.ALLOWED_HOSTS[0]}{reverse("admin:index")}'
         except exceptions.NoReverseMatch:
             link = settings.ALLOWED_HOSTS[0]
-        self.assertEqual(sent_mail.subject, f"Credentials for {settings.PROJECT_NAME} ({link})")
+        self.assertEqual(
+            sent_mail.subject, f"Credentials for {settings.PROJECT_NAME} ({link})"
+        )
         self.assertListEqual(sent_mail.recipients(), ["support@maykinmedia.nl"])
 
     @override_settings(ALLOWED_HOSTS=[])
@@ -41,5 +43,7 @@ class CreateInitialSuperuserTests(TestCase):
 
         sent_mail = mail.outbox[0]
         link = "unknown url"
-        self.assertEqual(sent_mail.subject, f"Credentials for {settings.PROJECT_NAME} ({link})")
+        self.assertEqual(
+            sent_mail.subject, f"Credentials for {settings.PROJECT_NAME} ({link})"
+        )
         self.assertListEqual(sent_mail.recipients(), ["support@maykinmedia.nl"])
