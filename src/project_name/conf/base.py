@@ -103,8 +103,6 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "{{ project_name|lower }}.utils.context_processors.settings",
-                # REQUIRED FOR ADMIN INDEX
-                "django_admin_index.context_processors.dashboard",
             ],
             "loaders": RAW_TEMPLATE_LOADERS,
         },
