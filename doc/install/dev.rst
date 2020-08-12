@@ -14,13 +14,11 @@ Quick start
     $ git clone git@bitbucket.org:maykinmedia/{{ project_name|lower }}.git
     $ cd {{ project_name|lower }}
 
-#. Install all required libraries:
+#. Bootstrap the virtual environment and install all required libraries. The
+   ``bootstrap.py`` script basically sets the proper Django settings file to be
+   used::
 
-    .. code-block:: bash
-
-       $ virtualenv env
-       $ source env/bin/activate
-       $ pip install -r requirements/dev.txt
+    $ python bootstrap.py <production|staging|test|dev>
 
 #. Activate your virtual environment and create the statics and database::
 
