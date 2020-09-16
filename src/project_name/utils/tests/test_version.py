@@ -5,7 +5,7 @@ from unittest.mock import patch
 from django.conf import settings
 from django.test import TestCase
 
-from {{project_name|lower}}.utils.misc import get_current_version
+from {{project_name|lower}}.conf.version import get_current_version
 
 
 class VersionTestCase(TestCase):

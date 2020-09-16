@@ -9,6 +9,7 @@ from .utils import config, get_sentry_integrations
 
 # Build paths inside the project, so further paths can be defined relative to
 # the code root.
+
 DJANGO_PROJECT_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), os.path.pardir)
 )

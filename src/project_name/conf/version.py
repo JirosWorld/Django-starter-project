@@ -1,4 +1,6 @@
 import logging
+import os
+
 from shutil import which
 from subprocess import CalledProcessError, check_output
 
@@ -6,7 +8,9 @@ logger = logging.getLogger(__name__)
 
 
 def get_current_version():
-    if not which("git"):
+    if os.environ.get("VERSION_TAG"):
+        return os.environ.get("VERSION_TAG")
+    elif not which("git"):
         return ""
 
     try:
@@ -27,6 +31,3 @@ def get_current_version():
         commit = None
 
     return commit if commit else ""
-
-
-VERSION = get_current_version()
