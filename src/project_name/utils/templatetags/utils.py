@@ -1,7 +1,6 @@
 from django import template
+from django.conf import settings
 from django.utils.html import format_html
-
-from {{project_name|lower}}.conf import VERSION_TAG
 
 register = template.Library()
 
@@ -68,4 +67,4 @@ def placekitten_src(width=800, height=600):
 
 @register.simple_tag
 def version():
-    return VERSION_TAG
+    return settings.VERSION_TAG

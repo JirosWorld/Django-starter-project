@@ -1,6 +1,7 @@
+import os
 from subprocess import CalledProcessError
 from unittest import skip
-from unittest.mock import patch
+from unittest.mock import mock_open, patch
 
 from django.conf import settings
 from django.test import TestCase
@@ -10,9 +11,22 @@ from {{project_name|lower}}.conf.version import get_current_version
 
 class VersionTestCase(TestCase):
     def setUp(self):
-        patched_subprocess = patch("{{ project_name|lower }}.utils.misc.check_output")
-
+        patched_subprocess = patch("{{ project_name|lower }}.conf.version.check_output")
         self.mocked_subprocess = patched_subprocess.start()
+
+        patched_which = patch("{{ project_name|lower }}.conf.version.which")
+        self.mocked_which = patched_which.start()
+
+    @patch.dict(os.environ, {"VERSION_TAG": "foobar"})
+    def test_version_tag_set(self):
+        self.assertEqual(get_current_version(), "foobar")
+
+
+class GitVersionTestCase(VersionTestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.mocked_which.return_value = True # assume git is installed for this testcase
 
     def tearDown(self):
         patch.stopall()
@@ -63,8 +77,36 @@ class VersionTestCase(TestCase):
 
         self.assertEqual(get_current_version(), "")
 
-    @patch("{{ project_name|lower }}.utils.misc.which")
-    def test_no_git_installed(self, mocked_which):
-        mocked_which.return_value = False
+
+class FileVersionTestCase(VersionTestCase):
+    def setUp(self):
+        super().setUp()
+
+        # assume git is not installed for this testcase
+        self.mocked_which.return_value = False
+
+        patched_listdir = patch("{{ project_name|lower }}.conf.version.os.listdir")
+        self.mocked_listdir = patched_listdir.start()
+
+    @patch("builtins.open", new_callable=mock_open, read_data="commit-hash")
+    def test_simple(self, mock_file):
+        self.mocked_listdir.return_value = (
+            "master", "main", "foo"
+        )
+
+        self.assertEqual(get_current_version(), "commit-hash")
+
+    def test_non_existing_dir(self):
+        self.mocked_listdir.side_effect = FileNotFoundError
+
+        self.assertEqual(get_current_version(), "")
+
+    def test_empty_dir(self):
+        self.mocked_listdir.return_value = []
+
+        self.assertEqual(get_current_version(), "")
+
+    def test_head_not_found(self):
+        self.mocked_listdir.return_value = ("foo", "bar", "foobar")
 
         self.assertEqual(get_current_version(), "")
