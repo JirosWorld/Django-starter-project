@@ -18,6 +18,11 @@ BASE_DIR = os.path.abspath(
     os.path.join(DJANGO_PROJECT_DIR, os.path.pardir, os.path.pardir)
 )
 
+#
+# Core Django settings
+#
+# SITE_ID = os.getenv("SITE_ID", default=1)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
@@ -47,7 +52,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "django.contrib.sessions",
-    # Note: If enabled, at least one Site object is required
+    # NOTE: If enabled, at least one Site object is required and 
+    # uncomment SITE_ID above.
     # 'django.contrib.sites',
     "django.contrib.messages",
     "django.contrib.staticfiles",
