@@ -9,7 +9,7 @@ os.environ.setdefault("ENVIRONMENT", "production")
 # NOTE: watch out for multiple projects using the same cache!
 os.environ.setdefault("CACHE_DEFAULT", "127.0.0.1:6379/2")
 
-from .includes.base import *  # noqa, isort:skip
+from .includes.base import *  # noqa isort:skip
 
 # Database performance
 for db_config in DATABASES.values():
