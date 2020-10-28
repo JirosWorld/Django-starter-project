@@ -1,15 +1,17 @@
 import os
 import warnings
 
-from .base import *
+os.environ.setdefault("DEBUG", "no")
+os.environ.setdefault("ENVIRONMENT", "jenkins")
+os.environ.setdefault("SECRET_KEY", "for-testing-purposes-only")
+os.environ.setdefault("ALLOWED_HOSTS", "")
 
-#
-# Standard Django settings.
-#
+os.environ.setdefault("DB_USER", "jenkins")
+os.environ.setdefault("DB_PASSWORD", "jenkins")
+# PostgreSQL 9.6: 5432 (default for Jenkins)
+os.environ.setdefault("DB_PORT", "5432")
 
-DEBUG = False
-
-ADMINS = ()
+from .includes.base import *  # noqa isort:skip
 
 
 def get_db_name(prefix):
@@ -22,43 +24,17 @@ def get_db_name(prefix):
     return "{}_{}_{}".format(prefix, job[:lim], build)
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "{{ project_name|lower }}",
-        # The database account jenkins/jenkins is always present for testing.
-        "USER": "jenkins",
-        "PASSWORD": "jenkins",
-        # Empty for localhost through domain sockets or '127.0.0.1' for
-        # localhost through TCP.
-        "HOST": "",
-        # Empty for the default port. For testing, we use the following ports
-        # for different databases. The default port is set to the latest
-        # Debian stable database version.
-        #
-        # PostgreSQL 9.6: 5432 (default for Jenkins)
-        "PORT": "",
-        "TEST": {"NAME": get_db_name("test_{{ project_name|lower }}")},
-    }
-}
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = "for-testing-purposes-only"
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+DATABASES["default"]["TEST"] = {"NAME": get_db_name("test_{{ project_name|lower }}")}
 
 LOGGING["loggers"].update(
-    {"django": {"handlers": ["django"], "level": "WARNING", "propagate": True,},}
+    {
+        "django": {
+            "handlers": ["django"],
+            "level": "WARNING",
+            "propagate": True,
+        },
+    }
 )
-
-#
-# Custom settings
-#
-
-# Show active environment in admin.
-ENVIRONMENT = "jenkins"
 
 #
 # Django-axes
@@ -70,11 +46,13 @@ AXES_BEHIND_REVERSE_PROXY = (
 # in memory cache and django-axes don't get along.
 # https://django-axes.readthedocs.io/en/latest/configuration.html#known-configuration-problems
 CACHES = {
-    "default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache",},
-    "axes_cache": {"BACKEND": "django.core.cache.backends.dummy.DummyCache",},
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    },
+    "axes": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    },
 }
-
-AXES_CACHE = "axes_cache"
 
 ELASTIC_APM["DEBUG"] = True
 
