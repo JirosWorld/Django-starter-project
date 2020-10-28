@@ -324,7 +324,7 @@ FIXTURE_DIRS = (os.path.join(DJANGO_PROJECT_DIR, "fixtures"),)
 # Custom settings
 #
 PROJECT_NAME = "{{ project_name|lower }}"
-ENVIRONMENT = None
+ENVIRONMENT = config("ENVIRONMENT", "")
 SHOW_ALERT = True
 
 ##############################
@@ -404,7 +404,7 @@ if SENTRY_DSN:
 # Elastic APM
 
 ELASTIC_APM = {
-    "SERVICE_NAME": "{{ project_name }}",
+    "SERVICE_NAME": f"{{ project_name }} {ENVIRONMENT}",
     "SECRET_TOKEN": config("ELASTIC_APM_SECRET_TOKEN", "default"),
     "SERVER_URL": config("ELASTIC_APM_SERVER_URL", "http://example.com"),
 }
