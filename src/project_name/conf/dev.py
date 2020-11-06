@@ -13,7 +13,7 @@ os.environ.setdefault("DB_PASSWORD", "{{ project_name|lower }}"),
 
 os.environ.setdefault("ENVIRONMENT", "development")
 
-from .includes.base import *  # noqa isort:skip
+from .base import *  # noqa isort:skip
 
 # Feel free to switch dev to sqlite3 for simple projects,
 # os.environ.setdefault("DB_ENGINE", "django.db.backends.sqlite3")
@@ -104,6 +104,6 @@ warnings.filterwarnings(
 
 # Override settings with local settings.
 try:
-    from .includes.local import *  # noqa
+    from .local import *  # noqa
 except ImportError:
     pass

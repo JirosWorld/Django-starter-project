@@ -11,7 +11,7 @@ os.environ.setdefault("DB_PASSWORD", "jenkins")
 # PostgreSQL 9.6: 5432 (default for Jenkins)
 os.environ.setdefault("DB_PORT", "5432")
 
-from .includes.base import *  # noqa isort:skip
+from .base import *  # noqa isort:skip
 
 
 def get_db_name(prefix):
