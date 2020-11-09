@@ -25,6 +25,7 @@ local.py
 /log/*.log*
 /log/nginx/*.log*
 .env
+/celerybeat/
 
 # Static files
 src/{{ project_name|lower }}/static/bundles/
