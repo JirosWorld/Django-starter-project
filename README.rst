@@ -36,6 +36,13 @@ code, like ``maykinmedia``:
 
     $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,html,gitignore,json,ini,js,sh,cfg,yml,example --name Dockerfile <project_name> .
 
+Create an empty Git repository
+
+.. code-block:: bash
+
+    $ git init
+
+
 You'll need pip-compile to generate the pinned versions of the requirements:
 
 .. code-block:: bash
@@ -51,7 +58,6 @@ the repository:
 
 .. code-block:: bash
 
-    $ git init
     $ git remote add origin git@bitbucket.org:maykinmedia/<repo>.git
     $ git add --all
     $ git commit -m "Initial project layout."
