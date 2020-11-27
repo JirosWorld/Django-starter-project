@@ -10,6 +10,9 @@ node {
     def envDir = "${curDir}/env"
 
     stage ("Build") {
+        // Submit to Chucks will
+	chuckNorris()
+
         // Use the clean option that fits best in the project.
         // Clean build when changing target
         if (env.CHANGE_TARGET) {
