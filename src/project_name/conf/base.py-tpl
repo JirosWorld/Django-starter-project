@@ -402,9 +402,12 @@ if SENTRY_DSN:
     )
 
 # Elastic APM
+ELASTIC_APM_SERVER_URL = os.getenv('ELASTIC_APM_SERVER_URL', None)
+if not ELASTIC_APM_SERVER_URL:
+    ELASTIC_APM_ENABLED = False
 
 ELASTIC_APM = {
     "SERVICE_NAME": f"{{ project_name }} {ENVIRONMENT}",
     "SECRET_TOKEN": config("ELASTIC_APM_SECRET_TOKEN", "default"),
-    "SERVER_URL": config("ELASTIC_APM_SERVER_URL", "http://example.com"),
+    "SERVER_URL": ELASTIC_APM_SERVER_URL,
 }
