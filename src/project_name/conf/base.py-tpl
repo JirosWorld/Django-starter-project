@@ -405,6 +405,7 @@ if SENTRY_DSN:
 ELASTIC_APM_SERVER_URL = os.getenv('ELASTIC_APM_SERVER_URL', None)
 if not ELASTIC_APM_SERVER_URL:
     ELASTIC_APM_ENABLED = False
+    ELASTIC_APM_SERVER_URL = 'http://localhost:8200'
 
 ELASTIC_APM = {
     "SERVICE_NAME": f"{{ project_name }} {ENVIRONMENT}",
