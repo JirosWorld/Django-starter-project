@@ -67,4 +67,4 @@ def placekitten_src(width=800, height=600):
 
 @register.simple_tag
 def version():
-    return settings.VERSION_TAG
+    return settings.RELEASE
