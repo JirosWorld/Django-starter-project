@@ -13,9 +13,16 @@
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
 {% templatetag openblock %} block branding {% templatetag closeblock %}
+    {% templatetag openblock %} version as build {% templatetag closeblock %}
     <h1 id="site-name">
         <a href="{% templatetag openblock %} url 'admin:index' {% templatetag closeblock %}">
             {% templatetag openvariable %} site_header|default:_('Administration') {% templatetag closevariable %}
+
+            {% templatetag openblock %} if build {% templatetag closeblock %}
+                <span class="version">
+                    ({% templatetag openvariable %} build {% templatetag closevariable %})
+                </span>
+            {% templatetag openblock %} endif {% templatetag closeblock %}
         </a>
     </h1>
 {% templatetag openblock %} endblock {% templatetag closeblock %}
@@ -26,17 +33,4 @@
 {% templatetag openblock %} block messages {% templatetag closeblock %}
     {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
     {% templatetag openvariable %} block.super {% templatetag closevariable %}
-{% templatetag openblock %} endblock {% templatetag closeblock %}
-
-{% templatetag openblock %} block footer {% templatetag closeblock %}
-    <div id="footer">
-        {% templatetag openblock %} version as build {% templatetag closeblock %}
-        {% templatetag openblock %} if build {% templatetag closeblock %}
-            <div class="version">
-                <span class="version__text">
-                    {% templatetag openvariable %} build {% templatetag closevariable %}
-                </span>
-            </div>
-        {% templatetag openblock %} endif {% templatetag closeblock %}
-    </div>
 {% templatetag openblock %} endblock {% templatetag closeblock %}

@@ -1,4 +1,4 @@
-{% templatetag openblock %} load staticfiles hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load static hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en" class="view {% templatetag openblock %} block view_class {% templatetag closeblock %}view--{% templatetag openvariable %} request.resolver_match.namespaces|join:'-' {% templatetag closevariable %}-{% templatetag openvariable %} request.resolver_match.url_name {% templatetag closevariable %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
     <head>
         <meta charset="utf-8">
