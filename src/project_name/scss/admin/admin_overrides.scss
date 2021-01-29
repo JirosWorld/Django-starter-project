@@ -1,3 +1,5 @@
+@import '../_settings';
+
 /* Colors */
 $color_primary: #79aec8;
 $color_primary_dark: #417690;
@@ -170,6 +172,5 @@ div.breadcrumbs {
 }
 
 .version {
-  padding: 10px;
-  text-align: center;
+  font-size: $typography-font-size-text-small;
 }
