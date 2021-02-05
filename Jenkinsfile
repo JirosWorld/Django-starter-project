@@ -32,9 +32,10 @@ node {
         checkout scm
 
         // Hard way of determining the Django settings path.
+	// Might break if you have multiple directories in src
         if (!djangoSettings) {
             djangoSettings = sh(
-                script: 'projectFolder=`cd src; ls -d */`; echo "${projectFolder%?}.conf.jenkins"',
+                script: 'projectFolder=`cd src; ls -d */ | head -n 1`; echo "${projectFolder%?}.conf.jenkins"',
                 returnStdout: true
             )
         }
