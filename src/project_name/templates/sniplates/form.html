@@ -1,27 +1,27 @@
-{% extends 'sniplates/django.html' %}
-{% load sniplates staticfiles i18n %}
+{% templatetag openblock %} extends 'sniplates/django.html' {% templatetag closeblock %}
+{% templatetag openblock %} load sniplates staticfiles i18n {% templatetag closeblock %}
 
 
-{% block _label %}
-{% if label %}
-    <label class="label{% if help_text %} label--tooltip{% endif %}{% if label_classes %} {{ label_classes }}{% endif %}" for="{{ id_for_label }}">
+{% templatetag openblock %} block _label {% templatetag closeblock %}
+{% templatetag openblock %} if label {% templatetag closeblock %}
+    <label class="label{% templatetag openblock %} if help_text {% templatetag closeblock %} label--tooltip{% templatetag openblock %} endif {% templatetag closeblock %}{% templatetag openblock %} if label_classes {% templatetag closeblock %} {{ label_classes }}{% templatetag openblock %} endif {% templatetag closeblock %}" for="{{ id_for_label }}">
         {{ label }}
     </label>
-{% endif %}
-{% endblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block _errors %}
-{% if errors %}
-    {% for error in errors %}
+{% templatetag openblock %} block _errors {% templatetag closeblock %}
+{% templatetag openblock %} if errors {% templatetag closeblock %}
+    {% templatetag openblock %} for error in errors {% templatetag closeblock %}
         <span class="notification notification--error notification--complete {{ error_position }}" title="{{ error }}">{{ error }}</span>
-    {% endfor %}
-{% endif %}
-{% endblock %}
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block input %}
-{% with input_type=input_type|default:"text" %}
+{% templatetag openblock %} block input {% templatetag closeblock %}
+{% templatetag openblock %} with input_type=input_type|default:"text" {% templatetag closeblock %}
 <input type="{{ input_type }}"
     name="{{ html_name }}"
     id="{{ id }}"
@@ -29,74 +29,74 @@
     class="input {{ css_classes }} {{ errors|yesno:'input--error,' }}"
     {{ widget.attrs|flatattrs }}
     {{ required|yesno:"required," }}
-    {% if autofocus %}autofocus{% endif %}
-    {% if accept %}accept="{{ accept }}"{% endif %}
-    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    {% templatetag openblock %} if autofocus {% templatetag closeblock %}autofocus{% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if accept {% templatetag closeblock %}accept="{{ accept }}"{% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if placeholder {% templatetag closeblock %}placeholder="{{ placeholder }}"{% templatetag openblock %} endif {% templatetag closeblock %}
 >
-{% endwith %}
-{% endblock %}
+{% templatetag openblock %} endwith {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block TextInput %}
-{% reuse "_label" %}
-{% reuse "input" %}
+{% templatetag openblock %} block TextInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" {% templatetag closeblock %}
 
-{% if not no_error %}
-    {% reuse "_errors" %}
-{% endif %}
-{% endblock %}
-
-
-{% block EmailInput %}
-{% reuse "_label" %}
-{% reuse "input" input_type="email" %}
-{% reuse "_errors" %}
-{% endblock %}
+{% templatetag openblock %} if not no_error {% templatetag closeblock %}
+    {% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block NumberInput %}
-{% reuse "_label" %}
-{% reuse "input" input_type="number" raw_value=value %}
-{% reuse "_errors" %}
-{% endblock %}
+{% templatetag openblock %} block EmailInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="email" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block URLInput %}
-{% reuse "_label" %}
-{% reuse "input" input_type="url" %}
-{% reuse "_errors" %}
-{% endblock %}
+{% templatetag openblock %} block NumberInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="number" raw_value=value {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block PasswordInput %}
-{% reuse "_label" %}
-{% reuse "input" input_type="password" value="" %}
-{% reuse "_errors" %}
-{% endblock %}
+{% templatetag openblock %} block URLInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="url" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block Textarea %}
-{% reuse "_label" %}
+{% templatetag openblock %} block PasswordInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="password" value="" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block Textarea {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
 <textarea name="{{ html_name }}" id="{{ id }}"
     class="input {{ css_classes }} {{ errors|yesno:'input--error,' }}"
     {{ required|yesno:"required," }}
-    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    {% templatetag openblock %} if placeholder {% templatetag closeblock %}placeholder="{{ placeholder }}"{% templatetag openblock %} endif {% templatetag closeblock %}
     {{ widget.attrs|flatattrs }}
 >{{ raw_value|default:'' }}</textarea>
-{% reuse "_errors" %}
-{% endblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 
-{% block RadioButton %}
+{% templatetag openblock %} block RadioButton {% templatetag closeblock %}
 <div id="{{ id }}" class="radio-buttons">
-    {% for val, display in choices %}
+    {% templatetag openblock %} for val, display in choices {% templatetag closeblock %}
         <div class="radio-buttons__container">
-            <input name="{{ html_name }}" class="radio-buttons__input" type="radio" id="{{ id}}_{{ forloop.counter0 }}" value="{{ val }}" {% if val == value|default:"" %}checked{% endif %}>
+            <input name="{{ html_name }}" class="radio-buttons__input" type="radio" id="{{ id}}_{{ forloop.counter0 }}" value="{{ val }}" {% templatetag openblock %} if val == value|default:"" {% templatetag closeblock %}checked{% templatetag openblock %} endif {% templatetag closeblock %}>
             <label class="radio-buttons__label" for="{{ id }}_{{ forloop.counter0 }}">
                 {{ display }}
             </label>
         </div>
-    {% endfor %}
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
 </div>
-{% reuse "_errors" %}
-{% endblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
