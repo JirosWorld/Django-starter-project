@@ -95,6 +95,10 @@ INSTALLED_APPS = [
     # 'django.contrib.sites',
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Admin auth
+    "two_factor",
+
     # Optional applications.
     "ordered_model",
     "django_admin_index",
@@ -391,6 +395,10 @@ HIJACK_ALLOW_GET_REQUESTS = True
 #
 SENTRY_DSN = config("SENTRY_DSN", None)
 RELEASE = config("VERSION_TAG", "VERSION_TAG not set")
+
+# Two factor auth
+LOGIN_URL = 'two_factor:login'
+LOGIN_REDIRECT_URL = 'admin:index'
 
 if SENTRY_DSN:
     SENTRY_CONFIG = {
