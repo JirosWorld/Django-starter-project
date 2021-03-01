@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 from django.utils.html import format_html
 
 register = template.Library()
@@ -62,3 +63,8 @@ def placekitten_src(width=800, height=600):
         {% templatetag openblock %} include 'components/image/image.html' with mobile_src=mobile_src src=src alt='placekitten' only {% templatetag closeblock %}
     """
     return "//placekitten.com/{}/{}".format(width, height)
+
+
+@register.simple_tag
+def version():
+    return settings.RELEASE
