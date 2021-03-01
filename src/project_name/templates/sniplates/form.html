@@ -1,0 +1,102 @@
+{% templatetag openblock %} extends 'sniplates/django.html' {% templatetag closeblock %}
+{% templatetag openblock %} load sniplates staticfiles i18n {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block _label {% templatetag closeblock %}
+{% templatetag openblock %} if label {% templatetag closeblock %}
+    <label class="label{% templatetag openblock %} if help_text {% templatetag closeblock %} label--tooltip{% templatetag openblock %} endif {% templatetag closeblock %}{% templatetag openblock %} if label_classes {% templatetag closeblock %} {% templatetag openvariable %} label_classes {% templatetag closevariable %}{% templatetag openblock %} endif {% templatetag closeblock %}" for="{% templatetag openvariable %} id_for_label {% templatetag closevariable %}">
+        {% templatetag openvariable %} label {% templatetag closevariable %}
+    </label>
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block _errors {% templatetag closeblock %}
+{% templatetag openblock %} if errors {% templatetag closeblock %}
+    {% templatetag openblock %} for error in errors {% templatetag closeblock %}
+        <span class="notification notification--error notification--complete {% templatetag openvariable %} error_position {% templatetag closevariable %}" title="{% templatetag openvariable %} error {% templatetag closevariable %}">{% templatetag openvariable %} error {% templatetag closevariable %}</span>
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block input {% templatetag closeblock %}
+{% templatetag openblock %} with input_type=input_type|default:"text" {% templatetag closeblock %}
+<input type="{% templatetag openvariable %} input_type {% templatetag closevariable %}"
+    name="{% templatetag openvariable %} html_name {% templatetag closevariable %}"
+    id="{% templatetag openvariable %} id {% templatetag closevariable %}"
+    value="{% templatetag openvariable %} raw_value|default:'' {% templatetag closevariable %}"
+    class="input {% templatetag openvariable %} css_classes {% templatetag closevariable %} {% templatetag openvariable %} errors|yesno:'input--error,' {% templatetag closevariable %}"
+    {% templatetag openvariable %} widget.attrs|flatattrs {% templatetag closevariable %}
+    {% templatetag openvariable %} required|yesno:"required," {% templatetag closevariable %}
+    {% templatetag openblock %} if autofocus {% templatetag closeblock %}autofocus{% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if accept {% templatetag closeblock %}accept="{% templatetag openvariable %} accept {% templatetag closevariable %}"{% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if placeholder {% templatetag closeblock %}placeholder="{% templatetag openvariable %} placeholder {% templatetag closevariable %}"{% templatetag openblock %} endif {% templatetag closeblock %}
+>
+{% templatetag openblock %} endwith {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block TextInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" {% templatetag closeblock %}
+
+{% templatetag openblock %} if not no_error {% templatetag closeblock %}
+    {% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block EmailInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="email" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block NumberInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="number" raw_value=value {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block URLInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="url" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block PasswordInput {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "input" input_type="password" value="" {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block Textarea {% templatetag closeblock %}
+{% templatetag openblock %} reuse "_label" {% templatetag closeblock %}
+<textarea name="{% templatetag openvariable %} html_name {% templatetag closevariable %}" id="{% templatetag openvariable %} id {% templatetag closevariable %}"
+    class="input {% templatetag openvariable %} css_classes {% templatetag closevariable %} {% templatetag openvariable %} errors|yesno:'input--error,' {% templatetag closevariable %}"
+    {% templatetag openvariable %} required|yesno:"required," {% templatetag closevariable %}
+    {% templatetag openblock %} if placeholder {% templatetag closeblock %}placeholder="{% templatetag openvariable %} placeholder {% templatetag closevariable %}"{% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openvariable %} widget.attrs|flatattrs {% templatetag closevariable %}
+>{% templatetag openvariable %} raw_value|default:'' {% templatetag closevariable %}</textarea>
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+
+{% templatetag openblock %} block RadioButton {% templatetag closeblock %}
+<div id="{% templatetag openvariable %} id {% templatetag closevariable %}" class="radio-buttons">
+    {% templatetag openblock %} for val, display in choices {% templatetag closeblock %}
+        <div class="radio-buttons__container">
+            <input name="{% templatetag openvariable %} html_name {% templatetag closevariable %}" class="radio-buttons__input" type="radio" id="{% templatetag openvariable %} id{% templatetag closevariable %}_{% templatetag openvariable %} forloop.counter0 {% templatetag closevariable %}" value="{% templatetag openvariable %} val {% templatetag closevariable %}" {% templatetag openblock %} if val == value|default:"" {% templatetag closeblock %}checked{% templatetag openblock %} endif {% templatetag closeblock %}>
+            <label class="radio-buttons__label" for="{% templatetag openvariable %} id {% templatetag closevariable %}_{% templatetag openvariable %} forloop.counter0 {% templatetag closevariable %}">
+                {% templatetag openvariable %} display {% templatetag closevariable %}
+            </label>
+        </div>
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
+</div>
+{% templatetag openblock %} reuse "_errors" {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
