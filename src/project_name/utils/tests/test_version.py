@@ -1,4 +1,3 @@
-import os
 from subprocess import CalledProcessError
 from unittest import skip
 from unittest.mock import mock_open, patch
@@ -11,17 +10,18 @@ from {{project_name|lower}}.conf.utils import get_current_version
 
 class VersionTestCase(TestCase):
     def setUp(self):
-        patched_subprocess = patch("{{ project_name|lower }}.conf.version.check_output")
+        patched_subprocess = patch("{{ project_name|lower }}.conf.utils.check_output")
         self.mocked_subprocess = patched_subprocess.start()
 
-        patched_which = patch("{{ project_name|lower }}.conf.version.which")
+        patched_which = patch("{{ project_name|lower }}.conf.utils.which")
         self.mocked_which = patched_which.start()
 
-    @patch.dict(os.environ, {"VERSION_TAG": "foobar"})
+    @patch.dict("os.environ", {"VERSION_TAG": "foobar"})
     def test_version_tag_set(self):
         self.assertEqual(get_current_version(), "foobar")
 
 
+@patch.dict("os.environ", {"VERSION_TAG": ""})
 class GitVersionTestCase(VersionTestCase):
     def setUp(self):
         super().setUp()
@@ -78,6 +78,7 @@ class GitVersionTestCase(VersionTestCase):
         self.assertEqual(get_current_version(), "")
 
 
+@patch.dict("os.environ", {"VERSION_TAG": ""})
 class FileVersionTestCase(VersionTestCase):
     def setUp(self):
         super().setUp()
@@ -85,7 +86,7 @@ class FileVersionTestCase(VersionTestCase):
         # assume git is not installed for this testcase
         self.mocked_which.return_value = False
 
-        patched_listdir = patch("{{ project_name|lower }}.conf.version.os.listdir")
+        patched_listdir = patch("{{ project_name|lower }}.conf.utils.os.listdir")
         self.mocked_listdir = patched_listdir.start()
 
     @patch("builtins.open", new_callable=mock_open, read_data="commit-hash")
