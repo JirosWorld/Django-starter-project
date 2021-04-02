@@ -57,7 +57,7 @@ node {
     stage ("Install frontend requirements") {
         sh """
             npm ci
-            ./node_modules/gulp/bin/gulp.js build
+            npm run build --production --sourcemap
            """
 
         withEnv(["SECRET_KEY=test_key"]) {
@@ -126,14 +126,13 @@ node {
         def testsError = null
 
         try {
-            sh "xvfb-run -a --server-args='-screen 0, 1920x1200x16' ./node_modules/gulp/bin/gulp.js test"
+            sh "xvfb-run -a --server-args='-screen 0, 1920x1200x16' npm test"
         }
         catch(err) {
             testsError = err
             currentBuild.result = "FAILURE"
         }
         finally {
-            sh "./node_modules/gulp/bin/gulp.js lint"
             junit "reports/jstests/junit.xml"
 
             if (testsError) {

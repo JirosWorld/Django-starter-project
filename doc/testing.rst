@@ -54,10 +54,10 @@ test-runner, and you need to install it globally if you have never done so::
 
     $ sudo npm install -g karma
 
-By default, the tests are run against PhantomJS and Chrome/Chromium. To run
+By default, the tests are run against Chrome/Chromium. To run
 the tests, execute::
 
-    $ gulp test
+    $ npm test
 
 If you want to target a single browser, you can run karma directly::
 

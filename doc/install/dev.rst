@@ -24,7 +24,7 @@ Quick start
 
     $ source env/bin/activate  # or, workon <env> if you use virtualenvwrapper
     $ npm install
-    $ gulp sass
+    $ npm run build
     $ python src/manage.py collectstatic --link
     $ python src/manage.py migrate
 
