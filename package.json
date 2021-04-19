@@ -8,9 +8,9 @@
   },
   "scripts": {
     "build": "npm run bundle",
-    "bundle": "./node_modules/.bin/webpack",
-    "test": "./node_modules/.bin/karma start",
-    "watch": "./node_modules/.bin/webpack -w"
+    "bundle": "webpack",
+    "test": "karma start",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
