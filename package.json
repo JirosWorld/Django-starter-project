@@ -7,7 +7,6 @@
     "doc": "doc"
   },
   "scripts": {
-    "start": "source env/bin/activate && python src/manage.py runserver & npm run watch",
     "build": "npm run bundle",
     "bundle": "./node_modules/.bin/webpack",
     "test": "./node_modules/.bin/karma start",
