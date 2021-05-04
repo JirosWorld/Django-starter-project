@@ -4,6 +4,7 @@ import warnings
 os.environ.setdefault("DEBUG", "no")
 os.environ.setdefault("ENVIRONMENT", "jenkins")
 os.environ.setdefault("SECRET_KEY", "for-testing-purposes-only")
+os.environ.setdefault("IS_HTTPS", "no")
 os.environ.setdefault("ALLOWED_HOSTS", "")
 
 os.environ.setdefault("DB_USER", "jenkins")
