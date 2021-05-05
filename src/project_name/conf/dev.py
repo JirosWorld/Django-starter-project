@@ -68,9 +68,6 @@ CACHES = {
 # Library settings
 #
 
-ADMIN_INDEX_SHOW_REMAINING_APPS = True
-ADMIN_INDEX_AUTO_CREATE_APP_GROUP = True
-
 ELASTIC_APM["DEBUG"] = True
 
 # Django debug toolbar
