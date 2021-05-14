@@ -409,6 +409,7 @@ LOGIN_REDIRECT_URL = 'admin:index'
 if SENTRY_DSN:
     SENTRY_CONFIG = {
         "dsn": SENTRY_DSN,
+        "environment": ENVIRONMENT,
         "release": RELEASE,
     }
 
