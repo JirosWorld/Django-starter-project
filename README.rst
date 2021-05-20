@@ -24,7 +24,7 @@ libraries:
 
 .. code-block:: bash
 
-    $ virtualenv env or virtualenv --python=/usr/bin/python3.7 env
+    $ python -m venv env
     $ source env/bin/activate
     $ pip install django
 
