@@ -3,20 +3,28 @@
 .git
 .svn
 .idea/
+.vscode/
 .sass-cache/
 *.db
 *.pyc
 __pycache__
 *~
+*.mo
 
 # Javascript libraries
 /node_modules/
 
+# Generated files
+/docs/_build
+
 # Coverage reports
 /reports/
 /htmlcov/
+.coverage
 
 # Environment
+#/deployment/app.*.yml
+#/deployment/hosts.*
 local.py
 /env/
 /media/
@@ -24,8 +32,7 @@ local.py
 /mail/
 /log/*.log*
 /log/nginx/*.log*
-.env
-/celerybeat/
+/.env
 
 # Static files
 src/{{ project_name|lower }}/static/bundles/
