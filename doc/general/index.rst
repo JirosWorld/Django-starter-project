@@ -23,15 +23,8 @@ It's role is to "orchestrate" child components.
 
 To compile SASS to CSS run::
 
-    $ gulp sass
+    $ npm run build
 
-To create a new component run ::
-
-    $ gulp create-component --name my-compoment-name --scss
-
-To create a new view run ::
-
-    $ gulp create-view --name my-compoment-name --scss
 
 JavaScript
 ==========
@@ -45,15 +38,8 @@ SASS.
 
 Compiling ES6 to ES5::
 
-    $ gulp js
+    $ npm run build
 
-To create a new component run ::
-
-    $ gulp create-component --name my-compoment-name --js
-
-To create a new view run ::
-
-    $ gulp create-view --name my-compoment-name --js
 
 All third party libraries should be installed using npm::
 

@@ -56,8 +56,8 @@ Javascript
 * Match component (file)names to Django template blocks.
 * Write (object oriented) `ES6`_ or newer.
 * No dialects (typescript/coffeescript).
-* Use a bundler (jspm or webpack) to manage dependencies/transpiling.
-* gulp is our task runner (manage.py for frontend).
+* Use a bundler (webpack) to manage dependencies/transpiling.
+* "npm run" is our task runner (manage.py for frontend).
 * Keep the JS source in the `static` folder per Django app.
 * Respect the `coding style <coding_style_frontend>`.
 * If it makes sense to divert, divert.

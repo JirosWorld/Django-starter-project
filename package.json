@@ -7,9 +7,10 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "gulp test",
-    "build": "gulp build",
-    "watch": "gulp watch"
+    "build": "npm run bundle",
+    "bundle": "webpack",
+    "test": "karma start",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -30,15 +31,7 @@
     "chai": "latest",
     "css-loader": "latest",
     "cssnano": "latest",
-    "gulp": "latest",
-    "gulp-file": "latest",
-    "gulp-hub": "latest",
-    "gulp-if": "latest",
-    "gulp-jshint": "latest",
-    "gulp-jshint-jslint-file-reporter": "latest",
     "istanbul-instrumenter-loader": "latest",
-    "jshint": "latest",
-    "jshint-stylish": "latest",
     "karma": "latest",
     "karma-chrome-launcher": "latest",
     "karma-coverage": "latest",

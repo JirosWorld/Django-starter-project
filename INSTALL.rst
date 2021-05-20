@@ -47,7 +47,7 @@ development machine.
        $ git clone git@bitbucket.org:maykinmedia/{{ project_name|lower }}.git
        $ cd {{ project_name|lower }}
 
-3. Install all required libraries.
+3. Install all required (backend) libraries.
    **Tip:** You can use the ``bootstrap.py`` script to install the requiments
    and set the proper settings in ``manage.py``. Or, perform the steps
    manually:
@@ -58,14 +58,12 @@ development machine.
        $ source env/bin/activate
        $ pip install -r requirements/dev.txt
 
-4. Install the front-end CLI tool `gulp`_ if you've never installed them
-   before and install the frontend libraries:
+4. Install all required (frontend) libraries and build static files.
 
    .. code-block:: bash
 
-       $ npm install -g gulp
        $ npm install
-       $ gulp sass
+       $ npm run build
 
 5. Activate your virtual environment and create the statics and database:
 
@@ -97,13 +95,6 @@ development machine.
 ``src/{{ project_name|lower }}/conf/local.py``. You can base this file on the
 example file included in the same directory.
 
-**Note:** You can run watch-tasks to compile `Sass`_ to CSS and `ECMA`_ to JS
-using `gulp`_. By default this will compile the files if they change.
-
-.. _ECMA: https://ecma-international.org/
-.. _Sass: https://sass-lang.com/
-.. _gulp: https://gulpjs.com/
-
 
 Update installation
 -------------------
@@ -124,7 +115,7 @@ When updating an existing installation:
        $ git pull
        $ pip install -r requirements/dev.txt
        $ npm install
-       $ gulp sass
+       $ npm run build
 
 3. Update the statics and database:
 
