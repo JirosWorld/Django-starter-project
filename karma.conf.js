@@ -36,6 +36,7 @@ const configuration = function (config) {
             paths.jsSpecEntry
         ],
 
+        singleRun: true,
         preprocessors: preprocessors,
 
         webpack: webpackConfig,
