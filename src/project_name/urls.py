@@ -10,6 +10,8 @@ from django.views.generic.base import TemplateView
 from two_factor.admin import AdminSiteOTPRequired
 from two_factor.urls import urlpatterns as tf_urls
 
+from {{ project_name|lower }}.accounts.views.password_reset import PasswordResetView
+
 handler500 = "{{ project_name|lower }}.utils.views.server_error"
 admin.site.site_header = "{{ project_name|lower }} admin"
 admin.site.site_title = "{{ project_name|lower }} admin"
@@ -22,7 +24,7 @@ admin.site.__class__ = AdminSiteOTPRequired
 urlpatterns = [
     path(
         "admin/password_reset/",
-        auth_views.PasswordResetView.as_view(),
+        PasswordResetView.as_view(),
         name="admin_password_reset",
     ),
     path(
