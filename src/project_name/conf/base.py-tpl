@@ -320,7 +320,7 @@ SESSION_COOKIE_SECURE = IS_HTTPS
 SESSION_COOKIE_HTTPONLY = True
 
 CSRF_COOKIE_SECURE = IS_HTTPS
-CSRF_FAILURE_VIEW = 'vips.accounts.views.csrf_failure'
+CSRF_FAILURE_VIEW = '{{ project_name|lower }}.accounts.views.csrf_failure'
 
 X_FRAME_OPTIONS = "DENY"
 
