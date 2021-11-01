@@ -80,7 +80,7 @@ USER maykin
 
 ARG COMMIT_HASH
 ENV GIT_SHA=${COMMIT_HASH}
-ENV DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
+ENV PYTHONUNBUFFERED=1 DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
 
 ARG SECRET_KEY=dummy
 
