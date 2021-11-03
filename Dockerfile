@@ -73,7 +73,7 @@ COPY --from=frontend-build /app/src/{{ project_name|lower }}/static /app/src/{{ 
 COPY ./src /app/src
 
 RUN useradd -M -u 1000 maykin
-RUN chown -R maykin /app
+RUN chown -R maykin:maykin /app
 
 # drop privileges
 USER maykin
