@@ -78,6 +78,7 @@ div.breadcrumbs {
 
 /* Important is used because Django templates include their own style, after ours */
 #changelist-filter {
+  min-height: 100vh; /* hack to get changelist_view with search styled properly */
   a:focus, a:hover {
     color: $color_link !important;
   }
@@ -173,4 +174,18 @@ div.breadcrumbs {
 
 .version {
   font-size: $typography-font-size-text-small;
+}
+
+/* hack to get changelist_view with search styled properly */
+#content {
+  #changelist {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 16px;
+  }
+
+  #toolbar,
+  .xfull {
+    grid-column: 1/ 3;
+  }
 }
