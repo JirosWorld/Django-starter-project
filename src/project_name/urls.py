@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.apps import apps
 from django.conf import settings
 from django.conf.urls.static import static
@@ -7,21 +8,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.generic.base import TemplateView
 
-from two_factor.admin import AdminSiteOTPRequired
-from two_factor.urls import urlpatterns as tf_urls
-
 from {{ project_name|lower }}.accounts.views.password_reset import PasswordResetView
 
 handler500 = "{{ project_name|lower }}.utils.views.server_error"
 admin.site.site_header = "{{ project_name|lower }} admin"
 admin.site.site_title = "{{ project_name|lower }} admin"
 admin.site.index_title = "Welcome to the {{ project_name|lower }} admin"
-
-# This will cause users not to be able to login any longer without the OTP setup. There are some
-# issues in this package that need to be resolved.
-admin.site.__class__ = AdminSiteOTPRequired
-
-admin.site.enabled_nav_sidebar = settings.ENABLE_ADMIN_NAV_SIDEBAR
 
 urlpatterns = [
     path(
@@ -36,7 +28,6 @@ urlpatterns = [
     ),
     path("admin/hijack/", include("hijack.urls")),
     path("admin/", admin.site.urls),
-    path("admin/", include(tf_urls)),
     path(
         "reset/<uidb64>/<token>/",
         auth_views.PasswordResetConfirmView.as_view(),
@@ -48,7 +39,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     # Simply show the master template.
-    path("", TemplateView.as_view(template_name="master.html")),
+    path("", TemplateView.as_view(template_name="master.html"), name="root"),
 ]
 
 # NOTE: The staticfiles_urlpatterns also discovers static files (ie. no need to run collectstatic). Both the static

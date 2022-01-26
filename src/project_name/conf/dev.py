@@ -96,6 +96,8 @@ DEBUG_TOOLBAR_PANELS = [
     "ddt_api_calls.panels.APICallsPanel",
 ]
 
+TWO_FACTOR_PATCH_ADMIN = False
+
 # THOU SHALT NOT USE NAIVE DATETIMES
 warnings.filterwarnings(
     "error",

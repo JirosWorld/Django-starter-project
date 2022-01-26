@@ -1,5 +1,5 @@
 {% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
-{% templatetag openblock %} load i18n static hijack_tags utils {% templatetag closeblock %}
+{% templatetag openblock %} load i18n static utils {% templatetag closeblock %}
 
 {% templatetag openblock %} block title {% templatetag closeblock %}
 {% templatetag openvariable %} title {% templatetag closevariable %} | {% templatetag openvariable %} site_title|default:_('Administration') {% templatetag closevariable %}
@@ -8,7 +8,6 @@
 {% templatetag openblock %} block extrastyle {% templatetag closeblock %}
     {% templatetag openvariable %} block.super {% templatetag closevariable %}
 
-    <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" />
     <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'bundles/admin_overrides.css' {% templatetag closeblock %}">
 
     <link href="{% templatetag openblock %} static 'ico/favicon.svg' {% templatetag closeblock %}" sizes="any" rel="icon" type="image/svg+xml" />
@@ -33,10 +32,19 @@
     </h1>
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% templatetag openblock %} block nav-global {% templatetag closeblock %}
+{% templatetag openblock %} block userlinks {% templatetag closeblock %}
+    {% templatetag openblock %} if site_url {% templatetag closeblock %}
+        <a href="{% templatetag openvariable %} site_url {% templatetag closevariable %}">{% templatetag openvariable %} settings.SITE_TITLE {% templatetag closevariable %}</a> /
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} url 'admin:two_factor:profile' as 2fa_profile_url {% templatetag closeblock %}
+    {% templatetag openblock %} if 2fa_profile_url {% templatetag closeblock %}
+        <a href="{% templatetag openvariable %} 2fa_profile_url {% templatetag closevariable %}">{% templatetag openblock %} trans "View 2fa profile" {% templatetag closeblock %}</a> /
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if user.has_usable_password {% templatetag closeblock %}
+    <a href="{% templatetag openblock %} url 'admin:password_change' {% templatetag closeblock %}">{% templatetag openblock %} trans 'Change password' {% templatetag closeblock %}</a> /
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+    <a href="{% templatetag openblock %} url 'admin:logout' {% templatetag closeblock %}">{% templatetag openblock %} trans 'Log out' {% templatetag closeblock %}</a>
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% templatetag openblock %} block messages {% templatetag closeblock %}
-    {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
-    {% templatetag openvariable %} block.super {% templatetag closevariable %}
+{% templatetag openblock %} block nav-global {% templatetag closeblock %}
 {% templatetag openblock %} endblock {% templatetag closeblock %}

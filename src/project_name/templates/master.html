@@ -1,4 +1,4 @@
-{% templatetag openblock %} load static hijack_tags {% templatetag closeblock %}<!DOCTYPE html>
+{% templatetag openblock %} load static {% templatetag closeblock %}<!DOCTYPE html>
 <html lang="en" class="view {% templatetag openblock %} block view_class {% templatetag closeblock %}view--{% templatetag openvariable %} request.resolver_match.namespaces|join:'-' {% templatetag closevariable %}-{% templatetag openvariable %} request.resolver_match.url_name {% templatetag closevariable %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
     <head>
         <meta charset="utf-8">
@@ -10,12 +10,10 @@
         <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" sizes="16x16" rel="icon" type="image/png" />
         <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" rel="shortcut icon">
         <link href="{% templatetag openblock %} static 'bundles/{{ project_name }}-css.css' {% templatetag closeblock %}" media="all" rel="stylesheet" />
-        <link href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
         {% templatetag openblock %} block extra_css {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
     </head>
 
     <body class="view__body">
-        {% templatetag openblock %} hijack_notification {% templatetag closeblock %}
         <main>
             {% templatetag openblock %} block content {% templatetag closeblock %}
                 Override <code>{% templatetag openblock %} verbatim {% templatetag closeblock %}{% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endverbatim {% templatetag closeblock %}</code>
