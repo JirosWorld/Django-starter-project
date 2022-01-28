@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <title>{% templatetag openblock %} block title {% templatetag closeblock %}{{ project_name|title }}{% templatetag openblock %} endblock {% templatetag closeblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% templatetag openblock %} static 'ico/favicon.svg' {% templatetag closeblock %}" sizes="any" rel="icon" type="image/svg+xml" />
+        <link href="{% templatetag openblock %} static 'ico/favicon-96x96.png' {% templatetag closeblock %}" sizes="96x96" rel="icon" type="image/png" />
+        <link href="{% templatetag openblock %} static 'ico/favicon-32x32.png' {% templatetag closeblock %}" sizes="32x32" rel="icon" type="image/png" />
+        <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" sizes="16x16" rel="icon" type="image/png" />
         <link href="{% templatetag openblock %} static 'ico/favicon.png' {% templatetag closeblock %}" rel="shortcut icon">
         <link href="{% templatetag openblock %} static 'bundles/{{ project_name }}-css.css' {% templatetag closeblock %}" media="all" rel="stylesheet" />
         <link href="{% templatetag openblock %} static 'hijack/hijack-styles.css' {% templatetag closeblock %}" rel="stylesheet" type="text/css" />
