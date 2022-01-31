@@ -3,14 +3,14 @@ Generic admin styling overrides.
 
 DO NOT PUT ANY TARGET APP-SPECIFIC RULES HERE.
 */
-@import "./_vars";
+@import "./vars";
 
 /* Overrides */
 body {
   overflow-y: scroll;
 
   &.change-form {
-    line-height: 1.15; // bootstrap reboot overrides this otherwise, which is pulled in by formio
+    line-height: 1.15;
   }
 }
 
@@ -132,38 +132,40 @@ a.button {
   color: $color_lightest;
   /* border: 2px solid $color_dark; */
 }
-.button:active,
-input[type="submit"]:active,
-input[type="button"]:active,
-.button:focus,
-input[type="submit"]:focus,
-input[type="button"]:focus,
-.utton:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover {
-  background: $color_primary_dark;
+
+.button,
+input[type="submit"],
+input[type="button"] {
+  &:active,
+  &:focus,
+  &:hover {
+    background: $color_primary_dark;
+  }
 }
-.button.default,
-input[type="submit"].default,
-.submit-row input.default {
-  background: $color_primary_dark;
-}
-.button.default:active,
-input[type="submit"].default:active,
-.button.default:focus,
-input[type="submit"].default:focus,
-.button.efault:hover,
-input[type="submit"].default:hover {
-  background: $color_darkest;
+
+.button,
+input[type="submit"],
+.submit-row input {
+  &.default {
+    background: $color_primary_dark;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background: $color_darkest;
+    }
+  }
 }
 
 .delete-confirmation {
   form {
-    input[type="submit"] {
-    }
+
+    input[type="submit"] { }
+
     .cancel-link {
       background: $color_primary_light;
       color: $color_lightest;
+
       &:active,
       &:focus,
       &:hover {
@@ -190,6 +192,7 @@ input[type="submit"].default:hover {
       &:active {
         background: $color_primary !important;
       }
+
       &:focus,
       &:hover {
         background: $color_primary_dark !important;
@@ -211,6 +214,7 @@ input[type="submit"].default:hover {
   a:active {
     background: $color_primary !important;
   }
+
   a:focus,
   a:hover {
     background: $color_primary_dark !important;
@@ -225,8 +229,7 @@ input[type="submit"].default:hover {
 
 /* Icons */
 .addlink {
-  background: url("../img/admin/plus-square-regular.svg") 0 0/14px 14px
-    no-repeat;
+  background: url("../img/admin/plus-square-regular.svg") 0 0/14px 14px no-repeat;
 }
 .changelink,
 .inlinechangelink {
@@ -239,8 +242,7 @@ input[type="submit"].default:hover {
   background: url("../img/admin/clock-regular.svg") 0 0/14px 14px no-repeat !important;
 }
 .datetimeshortcuts .date-icon {
-  background: url("../img/admin/calendar-alt-regular.svg") 0 0/14px 14px
-    no-repeat !important;
+  background: url("../img/admin/calendar-alt-regular.svg") 0 0/14px 14px no-repeat !important;
 }
 
 /* Footer */
@@ -302,20 +304,6 @@ input[type="submit"].default:hover {
 /**
  * Help text mouseover
  */
-div.help:hover {
-  text-indent: inherit;
-  width: auto;
-  background-image: none;
-  background-color: $color-tooltip-background;
-  border: 1px solid $color-tooltip-border;
-  color: $color-tooltip-text;
-  padding: 5px 5px 3px 5px !important;
-  max-width: 300px;
-  height: auto !important;
-  margin-top: 2px !important;
-  z-index: 10;
-}
-
 div.help {
   cursor: help;
   width: 16px;
@@ -328,6 +316,20 @@ div.help {
   margin-top: 6px !important;
   position: absolute;
   text-indent: -9999px;
+
+  &:hover {
+    text-indent: inherit;
+    width: auto;
+    background-image: none;
+    background-color: $color-tooltip-background;
+    border: 1px solid $color-tooltip-border;
+    color: $color-tooltip-text;
+    padding: 5px 5px 3px 5px !important;
+    max-width: 300px;
+    height: auto !important;
+    margin-top: 2px !important;
+    z-index: 10;
+  }
 }
 
 .related-widget-wrapper ~ div.help {
