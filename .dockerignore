@@ -6,5 +6,11 @@ docker-compose*
 .vscode
 env/
 local.py
-media/
-private_media/
+/doc/_build/
+
+/htmlcov
+.coverage
+
+/static/
+/media/
+/private_media/
