@@ -129,10 +129,10 @@ def main():
     if os.name == 'posix':
         os.environ['TMPDIR'] = '/var/tmp/'
         pip_path = os.path.join(virtualenv, 'bin', 'pip')
-        cmd_tpl = '{pip} install -r requirements/{target}.txt'
+        cmd_tpl = '{pip} install --exists-action=b -r requirements/{target}.txt'
     elif os.name == 'nt':
         pip_path = os.path.join(virtualenv, 'Scripts', 'pip')
-        cmd_tpl = '{pip} install -r requirements\\{target}.txt'
+        cmd_tpl = '{pip} install --exists-action=b -r requirements\\{target}.txt'
     return call(cmd_tpl.format(pip=pip_path, target=args.target), shell=True)
 
 if __name__ == '__main__':

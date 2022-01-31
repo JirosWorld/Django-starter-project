@@ -49,7 +49,7 @@ node {
         sh """
             . ${envDir}/bin/activate
             pip install pip --upgrade
-            pip install -r requirements/ci.txt
+            pip install --exists-action=w -r requirements/ci.txt
             deactivate
           """
     }
