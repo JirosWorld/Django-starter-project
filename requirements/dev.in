@@ -2,6 +2,8 @@
 
 # Helpers
 pip-tools
+bump2version
+gitpython
 
 # Code formatting
 black
