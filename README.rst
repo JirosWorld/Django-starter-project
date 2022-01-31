@@ -103,7 +103,7 @@ Below you'll see the actual project README template.
 :Version: 0.1.0
 :Source: https://bitbucket.org/maykinmedia/{{ project_name|lower }}
 :Keywords: ``<keywords>``
-:PythonVersion: 3.7
+:PythonVersion: 3.9
 
 |build-status| |requirements|
 
