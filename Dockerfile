@@ -58,12 +58,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 COPY ./bin/docker_start.sh /start.sh
+# Uncomment if you use celery
+# COPY ./bin/celery_worker.sh /celery_worker.sh
+# COPY ./bin/celery_beat.sh /celery_beat.sh
+# COPY ./bin/celery_flower.sh /celery_flower.sh
 RUN mkdir /app/log
 RUN mkdir /app/media
+
+VOLUME ["/app/log", "/app/media"]
 
 # copy backend build deps
 COPY --from=backend-build /usr/local/lib/python3.8 /usr/local/lib/python3.8
 COPY --from=backend-build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
+# Uncomment if you use celery
+# COPY --from=backend-build /usr/local/bin/celery /usr/local/bin/celery
 COPY --from=backend-build /app/src/ /app/src/
 
 # copy frontend build statics
@@ -79,13 +87,24 @@ RUN chown -R maykin:maykin /app
 USER maykin
 
 ARG COMMIT_HASH
-ENV GIT_SHA=${COMMIT_HASH}
-ENV PYTHONUNBUFFERED=1 DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
+ARG RELEASE=latest
+
+ENV RELEASE=${RELEASE} \
+    GIT_SHA=${COMMIT_HASH} \
+    PYTHONUNBUFFERED=1 \
+    DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
 
 ARG SECRET_KEY=dummy
 
-# Run collectstatic, so the result is already included in the image
-RUN python src/manage.py collectstatic --noinput
+LABEL org.label-schema.vcs-ref=$COMMIT_HASH \
+      org.label-schema.vcs-url="https://bitbucket.org/maykinmedia/{{ project_name|lower }}" \
+      org.label-schema.version=$RELEASE \
+      org.label-schema.name="{{ project_name }}"
+
+# Run collectstatic and compilemessages, so the result is already included in
+# the image
+RUN python src/manage.py collectstatic --noinput \
+    && python src/manage.py compilemessages
 
 EXPOSE 8000
 CMD ["/start.sh"]
