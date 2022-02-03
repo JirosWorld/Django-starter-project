@@ -444,5 +444,6 @@ if not ELASTIC_APM_SERVER_URL:
 
 # Subpath (optional)
 # This environment variable can be configured during deployment.
-if SUBPATH := config("SUBPATH", None):
+SUBPATH = config("SUBPATH", None)
+if SUBPATH:
     SUBPATH = f"/{SUBPATH.strip('/')}"
