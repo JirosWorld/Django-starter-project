@@ -1,7 +1,7 @@
+from time import time
+
 from django.core.cache import caches
 from django.core.exceptions import PermissionDenied
-
-from time import time
 
 
 class ThrottleMixin:

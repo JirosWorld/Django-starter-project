@@ -1,6 +1,11 @@
-from src.project_name.utils.validators import validate_charfield_entry, validate_postal_code, validate_phone_number
 from django.core.exceptions import ValidationError
 from django.test import TestCase
+
+from {{ project_name|lower }}.utils.validators import (
+    validate_charfield_entry,
+    validate_phone_number,
+    validate_postal_code,
+)
 
 
 class ValidatorsTestCase(TestCase):
