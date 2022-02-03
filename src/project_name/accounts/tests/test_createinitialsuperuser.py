@@ -27,7 +27,8 @@ class CreateInitialSuperuserTests(TestCase):
 
         sent_mail = mail.outbox[0]
         self.assertEqual(
-            sent_mail.subject, f"Your admin user for {settings.PROJECT_NAME} (example.com)"
+            sent_mail.subject,
+            f"Your admin user for {settings.PROJECT_NAME} (example.com)",
         )
         self.assertEqual(sent_mail.recipients(), ["support@maykinmedia.nl"])
 
@@ -51,6 +52,7 @@ class CreateInitialSuperuserTests(TestCase):
 
         sent_mail = mail.outbox[0]
         self.assertEqual(
-            sent_mail.subject, f"Your admin user for {settings.PROJECT_NAME} (unknown url)"
+            sent_mail.subject,
+            f"Your admin user for {settings.PROJECT_NAME} (unknown url)",
         )
         self.assertEqual(sent_mail.recipients(), ["support@maykinmedia.nl"])

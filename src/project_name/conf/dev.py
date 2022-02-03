@@ -3,7 +3,9 @@ import warnings
 
 os.environ.setdefault("DEBUG", "yes")
 os.environ.setdefault("ALLOWED_HOSTS", "*")
-os.environ.setdefault("SECRET_KEY", "{{ secret_key }}")
+os.environ.setdefault(
+    "SECRET_KEY", "{{ secret_key }}"
+)
 os.environ.setdefault("IS_HTTPS", "no")
 os.environ.setdefault("VERSION_TAG", "dev")
 

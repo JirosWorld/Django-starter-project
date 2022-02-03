@@ -10,7 +10,7 @@ from django.contrib.auth.management.commands.createsuperuser import (
 from django.core.mail import send_mail
 from django.urls import reverse
 
-PASSWORD_FROM_ENV_SUPPORTED = (django.VERSION[:2] > (2, 2))
+PASSWORD_FROM_ENV_SUPPORTED = django.VERSION[:2] > (2, 2)
 
 
 class Command(BaseCommand):
@@ -34,11 +34,11 @@ class Command(BaseCommand):
         parser.add_argument(
             "--email-password-reset",
             action="store_true",
-            help="Send a password reset e-mail after user creation."
+            help="Send a password reset e-mail after user creation.",
         )
         parser.add_argument(
             "--domain",
-            help="Domain the app is deployed on. Falls back to settings.ALLOWED_HOSTS[0]."
+            help="Domain the app is deployed on. Falls back to settings.ALLOWED_HOSTS[0].",
         )
 
     def handle(self, **options):
@@ -81,11 +81,15 @@ class Command(BaseCommand):
                 default_host = ""
             domain = options["domain"] or default_host
 
-            pw_reset_link = f"https://{domain}{password_reset_path}" if domain else "unknown url"
+            pw_reset_link = (
+                f"https://{domain}{password_reset_path}" if domain else "unknown url"
+            )
             send_mail(
                 f"Your admin user for {settings.PROJECT_NAME} ({domain or 'unknown url'})",
-                (f"Credentials for project: {settings.PROJECT_NAME}\n\n"
-                 f"Username: {username}\nPassword reset link: {pw_reset_link}"),
+                (
+                    f"Credentials for project: {settings.PROJECT_NAME}\n\n"
+                    f"Username: {username}\nPassword reset link: {pw_reset_link}"
+                ),
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
                 fail_silently=False,
