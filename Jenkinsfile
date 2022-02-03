@@ -11,7 +11,7 @@ node {
 
     stage ("Build") {
         // Submit to Chucks will
-	chuckNorris()
+        chuckNorris()
 
         // Use the clean option that fits best in the project.
         // Clean build when changing target
@@ -32,7 +32,7 @@ node {
         checkout scm
 
         // Hard way of determining the Django settings path.
-	// Might break if you have multiple directories in src
+        // Might break if you have multiple directories in src
         if (!djangoSettings) {
             djangoSettings = sh(
                 script: 'projectFolder=`cd src; ls -d */ | head -n 1`; echo "${projectFolder%?}.conf.jenkins"',
@@ -174,12 +174,3 @@ node {
             ]
         )
     }
-
-// Enable for SonarQube
-//  stage("Analysis") {
-//    def scannerHome = tool "SonarQube Scanner 2.8";
-//    withSonarQubeEnv("Jenkins Scanner") {
-//      sh "${scannerHome}/bin/sonar-scanner"
-//    }
-//  }
-}
