@@ -8,7 +8,7 @@ gitpython
 # Code formatting
 black
 isort
-flake8
+# flake8 -> pins importlib-metadata < 4.3 on Python < 3.10, which conflicts with other packages
 
 # Debug tooling
 django-debug-toolbar
