@@ -339,6 +339,7 @@ FIXTURE_DIRS = (os.path.join(DJANGO_PROJECT_DIR, "fixtures"),)
 PROJECT_NAME = "{{ project_name|lower }}"
 ENVIRONMENT = config("ENVIRONMENT", "")
 SHOW_ALERT = True
+ENABLE_ADMIN_NAV_SIDEBAR = config("ENABLE_ADMIN_NAV_SIDEBAR", default=False)
 
 if "GIT_SHA" in os.environ:
     GIT_SHA = config("GIT_SHA", "")

@@ -21,6 +21,8 @@ admin.site.index_title = "Welcome to the {{ project_name|lower }} admin"
 # issues in this package that need to be resolved.
 admin.site.__class__ = AdminSiteOTPRequired
 
+admin.site.enabled_nav_sidebar = settings.ENABLE_ADMIN_NAV_SIDEBAR
+
 urlpatterns = [
     path(
         "admin/password_reset/",
