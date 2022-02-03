@@ -27,6 +27,7 @@ __pycache__
 #/deployment/hosts.*
 local.py
 /env/
+/venv/
 /media/
 /static/
 /mail/
