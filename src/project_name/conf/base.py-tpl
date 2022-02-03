@@ -313,8 +313,8 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 # LOGIN_REDIRECT_URL = reverse_lazy("admin:index")
 
 # With 2FA factor auth
-LOGIN_URL = reverse_lazy('two_factor:login')
-LOGIN_REDIRECT_URL = reverse_lazy('admin:index')
+LOGIN_URL = reverse_lazy("two_factor:login")
+LOGIN_REDIRECT_URL = reverse_lazy("admin:index")
 
 #
 # SECURITY settings
