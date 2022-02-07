@@ -14,7 +14,7 @@ django-hijack
 django-redis
 django-rosetta
 django-sniplates
-django-two-factor-auth
+maykin-django-two-factor-auth
 phonenumbers
 
 # API libraries
