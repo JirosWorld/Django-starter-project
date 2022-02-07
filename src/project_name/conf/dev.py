@@ -3,7 +3,10 @@ import warnings
 
 os.environ.setdefault("DEBUG", "yes")
 os.environ.setdefault("ALLOWED_HOSTS", "*")
-os.environ.setdefault("SECRET_KEY", "{{ secret_key }}")
+os.environ.setdefault(
+    "SECRET_KEY",
+    "{{ secret_key }}",
+)
 os.environ.setdefault("IS_HTTPS", "no")
 os.environ.setdefault("VERSION_TAG", "dev")
 
@@ -12,6 +15,7 @@ os.environ.setdefault("DB_USER", "{{ project_name|lower }}"),
 os.environ.setdefault("DB_PASSWORD", "{{ project_name|lower }}"),
 
 os.environ.setdefault("ENVIRONMENT", "development")
+os.environ.setdefault("TWO_FACTOR_PATCH_ADMIN", "no")
 
 from .base import *  # noqa isort:skip
 
@@ -93,8 +97,6 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.profiling.ProfilingPanel",
     "ddt_api_calls.panels.APICallsPanel",
 ]
-
-os.environ.setdefault("TWO_FACTOR_PATCH_ADMIN", "False")
 
 # This can be removed as soon as the next version (after 3.2.4) of django-debug-toolbar is released. It's fixed there.
 SILENCED_SYSTEM_CHECKS = ["debug_toolbar.W006"]
