@@ -47,7 +47,7 @@ You'll need pip-compile to generate the pinned versions of the requirements:
 
 .. code-block:: bash
 
-    $ pip install pip setuptools --upgrade (optionally)
+    $ pip install 'pip<22' setuptools --upgrade (optionally)
     $ pip install pip-tools
     $ ./bin/compile_dependencies.sh
 

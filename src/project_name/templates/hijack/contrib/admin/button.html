@@ -1,0 +1,11 @@
+{% templatetag openblock %} load i18n hijack {% templatetag closeblock %}
+{% templatetag openblock %} if request.user|can_hijack:another_user {% templatetag closeblock %}
+  <button type="button" class="button" data-hijack-user="{% templatetag openvariable %} another_user.pk {% templatetag closevariable %}"
+          data-hijack-next="{% templatetag openvariable %} next {% templatetag closevariable %}" data-hijack-url="{% templatetag openblock %} url 'hijack:acquire' {% templatetag closeblock %}">
+    {% templatetag openblock %} if is_user_admin {% templatetag closeblock %}
+      {% templatetag openblock %} trans 'hijack'|upper {% templatetag closeblock %}
+    {% templatetag openblock %} else {% templatetag closeblock %}
+      {% templatetag openblock %} blocktrans {% templatetag closeblock %}Hijack {% templatetag openvariable %} username {% templatetag closevariable %}{% templatetag openblock %} endblocktrans {% templatetag closeblock %}
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+  </button>
+{% templatetag openblock %} endif {% templatetag closeblock %}
