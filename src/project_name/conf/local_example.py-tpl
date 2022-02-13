@@ -12,3 +12,6 @@ DATABASES = {
         "PORT": "",  # Set to empty string for default.
     }
 }
+
+TWO_FACTOR_FORCE_OTP_ADMIN = False
+TWO_FACTOR_PATCH_ADMIN = False
