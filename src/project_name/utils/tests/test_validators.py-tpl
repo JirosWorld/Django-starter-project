@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
+from django.utils.translation import gettext as _
 
 from {{ project_name|lower }}.utils.validators import (
     validate_charfield_entry,
@@ -20,7 +21,7 @@ class ValidatorsTestCase(TestCase):
         """
         self.assertRaisesMessage(
             ValidationError,
-            "Uw invoer bevat een ongeldig teken: '",
+            _("The provided value contains an invalid character: %s") % "'",
             validate_charfield_entry,
             "let's fail",
         )
@@ -57,7 +58,7 @@ class ValidatorsTestCase(TestCase):
         for invalid_postal_code in invalid_postal_codes:
             self.assertRaisesMessage(
                 ValidationError,
-                "Ongeldige postcode",
+                _("Invalid postal code."),
                 validate_postal_code,
                 invalid_postal_code,
             )
@@ -81,7 +82,7 @@ class ValidatorsTestCase(TestCase):
         for invalid_phone_number in invalid_phone_numbers:
             self.assertRaisesMessage(
                 ValidationError,
-                "Het opgegeven mobiele telefoonnummer is ongeldig.",
+                _("Invalid mobile phonenumber."),
                 validate_phone_number,
                 invalid_phone_number,
             )
