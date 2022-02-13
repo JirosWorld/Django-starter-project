@@ -31,7 +31,6 @@
     "chai": "latest",
     "css-loader": "latest",
     "cssnano": "latest",
-    "istanbul-instrumenter-loader": "latest",
     "karma": "latest",
     "karma-chrome-launcher": "latest",
     "karma-coverage": "latest",
