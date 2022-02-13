@@ -26,7 +26,7 @@ libraries:
 
     $ python -m venv env
     $ source env/bin/activate
-    $ pip install django
+    $ pip install "django<3.3"  # Latest LTS version (3.2.x)
 
 Start a new Django project, named ``<project_name>``, using the template. It
 can be usefull to use a ``<project_name>`` that serves as namespace in your
@@ -64,9 +64,7 @@ the repository:
     $ git push origin master
 
 You'll now have a starting point for your new project. Continue to the
-installation instructions below and start at step 3.
-
-To start the project, you can continue to the Installation section, bullet 3.
+installation instructions (INSTALL.rst) and start at step 3.
 
 
 Additions

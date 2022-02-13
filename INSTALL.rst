@@ -65,11 +65,10 @@ development machine.
        $ npm install
        $ npm run build
 
-5. Activate your virtual environment and create the statics and database:
+5. Collect statics and create the initial database tables:
 
    .. code-block:: bash
 
-       $ source env/bin/activate
        $ python src/manage.py collectstatic --link
        $ python src/manage.py migrate
 
