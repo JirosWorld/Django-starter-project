@@ -15,6 +15,7 @@ os.environ.setdefault("DB_USER", "{{ project_name|lower }}"),
 os.environ.setdefault("DB_PASSWORD", "{{ project_name|lower }}"),
 
 os.environ.setdefault("ENVIRONMENT", "development")
+os.environ.setdefault("TWO_FACTOR_FORCE_OTP_ADMIN", "no")
 os.environ.setdefault("TWO_FACTOR_PATCH_ADMIN", "no")
 
 from .base import *  # noqa isort:skip

@@ -310,13 +310,9 @@ AUTHENTICATION_BACKENDS = [
 SESSION_COOKIE_NAME = "{{ project_name|lower }}_sessionid"
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
-# Without 2FA
-# LOGIN_URL = reverse_lazy("admin:login")
-# LOGIN_REDIRECT_URL = reverse_lazy("admin:index")
-
-# With 2FA factor auth
-LOGIN_URL = reverse_lazy("two_factor:login")
+LOGIN_URL = reverse_lazy("admin:login")
 LOGIN_REDIRECT_URL = reverse_lazy("admin:index")
+LOGOUT_REDIRECT_URL = reverse_lazy("admin:index")
 
 #
 # SECURITY settings
@@ -374,6 +370,9 @@ RELEASE = config("RELEASE", GIT_SHA)
 ADMIN_INDEX_SHOW_REMAINING_APPS = False
 ADMIN_INDEX_AUTO_CREATE_APP_GROUP = False
 ADMIN_INDEX_SHOW_REMAINING_APPS_TO_SUPERUSERS = True
+ADMIN_INDEX_DISPLAY_DROP_DOWN_MENU_CONDITION_FUNCTION = (
+    "{{ project_name|lower }}.utils.django_two_factor_auth.should_display_dropdown_menu"
+)
 
 #
 # DJANGO-AXES (4.0+)
@@ -409,6 +408,12 @@ IPWARE_META_PRECEDENCE_ORDER = (
     "HTTP_VIA",
     "REMOTE_ADDR",
 )
+
+#
+# Maykin fork of DJANGO-TWO-FACTOR-AUTH
+#
+TWO_FACTOR_FORCE_OTP_ADMIN = config("TWO_FACTOR_FORCE_OTP_ADMIN", default=not DEBUG)
+TWO_FACTOR_PATCH_ADMIN = config("TWO_FACTOR_PATCH_ADMIN", default=True)
 
 #
 # DJANGO-HIJACK
