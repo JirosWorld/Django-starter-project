@@ -15,7 +15,7 @@ services:
     build: .
     environment:
       - DJANGO_SETTINGS_MODULE={{ project_name|lower }}.conf.docker
-      - SECRET_KEY=${SECRET_KEY:-{{ secret_key }}}
+      - SECRET_KEY=${SECRET_KEY:-{{ secret_key|cut:"$" }}}
     ports:
       - 8000:8000
     depends_on:
