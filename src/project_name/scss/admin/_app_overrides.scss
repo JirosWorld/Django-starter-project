@@ -8,67 +8,49 @@
 /**
  * DJANGO ADMIN INDEX
  */
+:root {
+  --djai-tab-bg: var(--primary); // no fallback to default admin vars
+  --djai-tab-bg--active: var(--breadcrumbs-bg);
+  --djai-tab-bg--hover: #{$color-primary-dark};
+  --djai-tab-fg--active: var(--secondary);
+  --djai-dropdown-bg--active: #{$color-primary-dark};
+  --djai-dropdown-bg--hover: #{$color-primary-dark};
+}
 
-.dropdown-menu,
-div#container .dropdown-menu {
-  /* Override for Environment banner */
-  top: 48px;
+.djai-dropdown-menu {
+  // by default, the header has 40px padding on both sides. To make the border stretch
+  // full width, set negative margins and positive paddings.
+  $djai-padding: 40px;
+  $djai-border-width: 8px;
+
+  margin-left: -$djai-padding;
+  margin-right: -$djai-padding;
+  padding-left: $djai-padding;
+  padding-right: $djai-padding;
+
   /* Added to attach body */
-  border-bottom: 8px solid $color_secondary;
-}
+  border-bottom: $djai-border-width solid $color_secondary;
+  // remove the border height from the breadcrumbs padding
+  @at-root #header + .breadcrumbs {
+    padding-top: 10px - $djai-border-width;  // 10px is original django value
 
-.breadcrumbs {
-  top: 48px !important;
-}
+    /* uncomment for sticky breadcrumbs. note that you probably want to tweak the 'top' value */
+    // position: sticky;
+    // top: 84px + $djai-border-width;
+    // z-index: 2; // must be higher than the following content z-index (set to 1 by admin-index)
 
-/* Integration into color scheme */
-.dropdown-menu {
-  background-color: $color_primary;
-
-  .dropdown-menu__item,
-  .dropdown-menu__item:link,
-  .dropdown-menu__item:visited {
-    color: $color_lightest;
-
-    &.dropdown-menu__item--active {
-      background-color: $color_secondary;
-      text-decoration: none;
-      color: $color_primary;
-
-      &:hover {
-        color: $color_lightest;
-      }
-    }
-
-    &:hover {
-      background-color: $color_primary_dark;
-    }
+    // @at-root #container #header {
+    //   z-index: 3; // admin-index sets z-index of 2 on header, breadcrumbs follow -> must be > breadcrumbs z-index
+    // }
   }
 
-  .dropdown-menu__drop {
-    background-color: $color_primary;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  & &__drop {
+    min-width: 250px !important;
   }
 
-  .dropdown-menu__link,
-  .dropdown-menu__link:link,
-  .dropdown-menu__link:visited {
-    color: $color_lightest;
-
-    &:hover {
-      background-color: $color_primary_dark;
-    }
-
-    &.dropdown-menu__link--active {
-      background-color: $color_primary_dark;
-      text-decoration: none;
-    }
-  }
 }
-/* Override for wider dropdown */
-.dropdown-menu .dropdown-menu__drop {
-  min-width: 250px;
-}
+
+// TODO: check environment banner
 
 /**
  * DJANGO-BETTER-ADMIN-ARRAYFIELD
