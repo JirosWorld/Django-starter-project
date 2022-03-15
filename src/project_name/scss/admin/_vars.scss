@@ -22,3 +22,7 @@ $color-tooltip-text: #000;
 
 /* Dimensions */
 $input-field-size: 20em; // django-original: 20em;
+
+/* Responsive breakpoints used int the Django admin */
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1025px;
