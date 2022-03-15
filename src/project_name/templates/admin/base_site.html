@@ -34,7 +34,13 @@
 
 {% templatetag openblock %} block userlinks {% templatetag closeblock %}
     {% templatetag openblock %} if site_url {% templatetag closeblock %}
-        <a href="{% templatetag openvariable %} site_url {% templatetag closevariable %}">{% templatetag openvariable %} settings.SITE_TITLE {% templatetag closevariable %}</a> /
+    <a href="{% templatetag openvariable %} site_url {% templatetag closevariable %}">
+      {% templatetag openblock %} if settings.SITE_TITLE {% templatetag closeblock %}
+        {% templatetag openvariable %} settings.SITE_TITLE {% templatetag closevariable %}
+      {% templatetag openblock %} else {% templatetag closeblock %}
+        {% templatetag openblock %} trans 'View site' {% templatetag closeblock %}
+      {% templatetag openblock %} endif {% templatetag closeblock %}
+    </a> /
     {% templatetag openblock %} endif {% templatetag closeblock %}
     {% templatetag openblock %} url 'admin:two_factor:profile' as 2fa_profile_url {% templatetag closeblock %}
     {% templatetag openblock %} if 2fa_profile_url {% templatetag closeblock %}
