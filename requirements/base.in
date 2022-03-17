@@ -5,6 +5,8 @@ pytz  # handle timezones
 python-dotenv  # environment variables for secrets
 python-decouple  # processing of envvar configs
 
+wrapt < 1.14  # pulled in via django-redis, 1.14 is not compatible with astroid (pulled in via pylint)
+
 # Framework libraries
 django ~= 3.2
 django-admin-index
