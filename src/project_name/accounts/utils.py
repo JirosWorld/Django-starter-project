@@ -47,7 +47,7 @@ def validate_max_permissions(
 
 def validate_max_user_permissions(current_user: User, target_user: User):
     """
-    Validate that the ``target_user`` permissions are  never more than the
+    Validate that the ``target_user`` permissions are never more than the
     permissions of the ``current_user``.
     """
     validate_max_permissions(
