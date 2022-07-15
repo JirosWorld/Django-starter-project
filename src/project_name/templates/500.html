@@ -190,7 +190,7 @@ body {
 
         <div class="inner cover">
           <h1 class="cover-heading">Sorry, a server error has occurred (500)</h1>
-          <p class="lead">We have been automatically notified about the problem and will investigate as soon as possible.</p>
+          <p class="lead">Please try again. If the problem persists please contact us to resolve the problem.</p>
           {% templatetag openblock %} if request.sentry.id {% templatetag closeblock %}
             <p>If you need assistance, you may reference this error as
             <strong>{% templatetag openvariable %} request.sentry.id {% templatetag closevariable %}</strong>.</p>
