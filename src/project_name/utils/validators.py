@@ -19,7 +19,9 @@ def validate_charfield_entry(value, allow_apostrophe=False):
 
     for char in invalid_chars:
         if char in value:
-            raise ValidationError(_("Uw invoer bevat een ongeldig teken: %s") % char)
+            raise ValidationError(
+                _("The provided value contains an invalid character: %s") % char
+            )
     return value
 
 
@@ -27,7 +29,7 @@ def validate_phone_number(value):
     try:
         int(value.strip().lstrip("0+").replace("-", "").replace(" ", ""))
     except (ValueError, TypeError):
-        raise ValidationError(_("Het opgegeven mobiele telefoonnummer is ongeldig."))
+        raise ValidationError(_("Invalid mobile phonenumber."))
 
     return value
 
@@ -47,5 +49,5 @@ class CustomRegexValidator(RegexValidator):
 
 
 validate_postal_code = CustomRegexValidator(
-    regex="^[1-9][0-9]{3} ?[a-zA-Z]{2}$", message=_("Ongeldige postcode")
+    regex="^[1-9][0-9]{3} ?[a-zA-Z]{2}$", message=_("Invalid postal code.")
 )
