@@ -2,7 +2,6 @@ import os
 import warnings
 
 os.environ.setdefault("DEBUG", "no")
-os.environ.setdefault("ENVIRONMENT", "jenkins")
 os.environ.setdefault("SECRET_KEY", "for-testing-purposes-only")
 os.environ.setdefault("IS_HTTPS", "no")
 os.environ.setdefault("ALLOWED_HOSTS", "")
@@ -11,6 +10,11 @@ os.environ.setdefault("DB_USER", "jenkins")
 os.environ.setdefault("DB_PASSWORD", "jenkins")
 # PostgreSQL 9.6: 5432 (default for Jenkins)
 os.environ.setdefault("DB_PORT", "5432")
+
+os.environ.setdefault("ENVIRONMENT", "jenkins")
+# disable 2 FA in tests
+os.environ.setdefault("TWO_FACTOR_FORCE_OTP_ADMIN", "no")
+os.environ.setdefault("TWO_FACTOR_PATCH_ADMIN", "no")
 
 from .base import *  # noqa isort:skip
 

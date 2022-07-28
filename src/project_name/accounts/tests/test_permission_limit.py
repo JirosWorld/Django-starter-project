@@ -33,8 +33,7 @@ class PasswordResetViewTests(TestCase):
             self.more_perms_staff_user.user_permissions.add(p)
 
     def _change_user(self, target_user, as_user):
-        result = self.client.force_login(as_user)
-        self.assertTrue(result)
+        self.client.force_login(as_user)
 
         response = self.client.post(
             reverse("admin:accounts_user_change", args=(target_user.pk,)),
@@ -72,8 +71,7 @@ class PasswordResetViewTests(TestCase):
         self.assertEqual(response.status_code, 302, response.content)
 
     def _change_password_page(self, target_user, as_user):
-        result = self.client.force_login(as_user)
-        self.assertTrue(result)
+        self.client.force_login(as_user)
 
         change_password_url = "{}{}/password/".format(
             reverse("admin:accounts_user_changelist"), target_user.pk
