@@ -6,7 +6,7 @@ django-jenkins
 django-webtest
 factory-boy
 freezegun
-pep8
+pycodestyle
 pylint
 pyquery  # integrates with webtest
 requests-mock
