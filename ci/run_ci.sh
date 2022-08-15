@@ -13,7 +13,7 @@ python -V
 
 echo "[INIT] Start new Django project based on template"
 env/bin/pip install django
-mkdir foo
+mkdir -p foo
 django-admin startproject \
     --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip  \
     --extension=py,rst,html,gitignore,json,ini,js,sh,cfg,yml,example \
@@ -48,6 +48,5 @@ echo "[JENKINS] Execute Jenkins script"
   --project-apps-tests \
   --verbosity 2 \
   --noinput \
-  --pep8-rcfile=.pep8# \
   --coverage-rcfile=.coveragerc \
   --enable-coverage

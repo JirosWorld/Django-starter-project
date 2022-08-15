@@ -3,6 +3,7 @@
 
 FROM python:3.9-bullseye
 ENV PYTHONUNBUFFERED 1
+ARG USERID=1000
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
@@ -17,8 +18,13 @@ WORKDIR /ci
 
 COPY ./run_ci.sh /ci/run_ci.sh
 
-RUN useradd -M -u 1000 maykin \
+RUN useradd -m -u $USERID maykin \
     && chown -R maykin:maykin /ci
+
+# drop privileges
+USER maykin
+
+ENV DB_HOST=/var/run/postgresql
 
 # !! Ensure that:
 #

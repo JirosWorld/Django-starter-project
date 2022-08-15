@@ -12,20 +12,23 @@ cd $project_root/ci
 
 # build image for CI
 docker build . \
+    --build-arg USERID=$UID \
     --tag $IMAGE_NAME
 
 # run container for tests
-rm myproject/.gitkeep
+rm -f myproject/.gitkeep
 docker run \
     --rm \
     -v /var/run/postgresql/:/var/run/postgresql/:rw \
-    -v $project_root/ci/myproject:/ci/myproject
+    -v $project_root/ci/myproject:/ci/myproject:rw \
+    --user $UID \
     $IMAGE_NAME
 
 # check docker build for project
 cd myproject
 
 echo "[DOCKER] Run 'docker build'"
+cd foo
 npm install
 # without buildkit you get file permission issues on the VOLUME instruction
 # we also can't use docker-compose build since the compose version (1.21) is too old

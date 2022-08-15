@@ -35,6 +35,7 @@ code, like ``maykinmedia``:
 .. code-block:: bash
 
     $ django-admin startproject --template=https://bitbucket.org/maykinmedia/default-project/get/master.zip --extension=py,rst,html,gitignore,json,ini,js,sh,cfg,yml,example --name Dockerfile <project_name> .
+    $ rm -rf ci/  # only used for jenkins CI
 
 Create an empty Git repository
 
