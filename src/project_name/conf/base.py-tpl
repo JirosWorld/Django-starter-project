@@ -250,7 +250,7 @@ LOGGING = {
         "project": {
             "level": "DEBUG",
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": LOGGING_DIR / "openobjects.log",
+            "filename": LOGGING_DIR / "{{ project_name|lower }}.log",
             "formatter": "verbose",
             "maxBytes": 1024 * 1024 * 10,  # 10 MB
             "backupCount": 10,
