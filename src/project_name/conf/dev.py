@@ -62,6 +62,8 @@ LOGGING["loggers"].update(
     }
 )
 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
 # in memory cache and django-axes don't get along.
 # https://django-axes.readthedocs.io/en/latest/configuration.html#known-configuration-problems
 CACHES = {
@@ -98,9 +100,6 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.profiling.ProfilingPanel",
     "ddt_api_calls.panels.APICallsPanel",
 ]
-
-# This can be removed as soon as the next version (after 3.2.4) of django-debug-toolbar is released. It's fixed there.
-SILENCED_SYSTEM_CHECKS = ["debug_toolbar.W006"]
 
 # THOU SHALT NOT USE NAIVE DATETIMES
 warnings.filterwarnings(

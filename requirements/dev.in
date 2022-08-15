@@ -7,7 +7,7 @@ gitpython
 
 # Code formatting
 black
-isort
+isort[colors]
 # flake8 -> pins importlib-metadata < 4.3 on Python < 3.10, which conflicts with other packages
 
 # Debug tooling

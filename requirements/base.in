@@ -11,11 +11,9 @@ wrapt < 1.14  # pulled in via django-redis, 1.14 is not compatible with astroid 
 django ~= 3.2
 django-admin-index
 django-axes
-django-choices
 django-hijack
 django-redis
 django-rosetta
-django-sniplates
 maykin-django-two-factor-auth
 phonenumbers
 
