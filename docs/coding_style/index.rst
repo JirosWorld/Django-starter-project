@@ -13,8 +13,8 @@ HTML
 ----
 
 * Write semantic HTML before styling.
-* Style your HTML, don’t HTML your style.
-* Don’t put content in ``master.html``, only put boilerplate/scaffolding here.
+* Style your HTML, don't HTML your style.
+* Don't put content in ``master.html``, only put boilerplate/scaffolding here.
 * Use `inclusion tags`_ for reusable components and blocks otherwise.
 * Wrap components/logical page blocks/standalone sections in ``{% templatetag openblock %} block {% templatetag closeblock %}`` tags.
 * Respect the `coding style <coding_style_frontend>`.
@@ -32,7 +32,7 @@ CSS/SASS
 * Maximum 1 BEM block per sass file.
 * Only select using (BEM) class names (``.block__element``), avoid using tag/id
   (Matching id's breaks reusability, matching tags breaks flexibility).
-* WYSIWYG is an exception (customers don’t type content__heading--primary).
+* WYSIWYG is an exception (customers don't type content__heading--primary).
 * The Block (**B**EM) cannot set margin on itself, only on children. This avoids
   spacing issues.
 * Use Neat mixins for (responsive) grids. Avoid complex overdoing mixins (e.g. Bourbon).
