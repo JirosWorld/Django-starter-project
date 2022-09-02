@@ -33,7 +33,7 @@ JavaScript code is written in ECMAScript 2015 (ES6) and transpiled using webpack
 and babel. Therefore, all non-compiled code is placed outside the static directory
 into ``src/{{ project_name|lower }}/js/``.
 
-We write modules for every component/view matching the BEM structure provides by
+We write modules for every component/view matching the BEM structure provided by
 SASS.
 
 Compiling ES6 to ES5::
