@@ -41,7 +41,7 @@ node {
         }
 
         if (!installed) {
-            sh "virtualenv ${envDir} --no-site-packages -p python3"
+            sh "virtualenv ${envDir} -p python3"
         }
     }
 
