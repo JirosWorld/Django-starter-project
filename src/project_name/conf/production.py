@@ -11,9 +11,12 @@ os.environ.setdefault("CACHE_DEFAULT", "127.0.0.1:6379/2")
 
 from .base import *  # noqa isort:skip
 
-# Database performance
+# Make use of persistent connections for better database performance
+# If not specified database connections are closed at the end of each request
 for db_config in DATABASES.values():
-    db_config["CONN_MAX_AGE"] = 60  # Lifetime of a database connection for performance.
+    db_config["CONN_MAX_AGE"] = config(
+        "DB_CONN_MAX_AGE", default=0
+    )  # Lifetime of a database connection in seconds
 
 # Caching sessions.
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
