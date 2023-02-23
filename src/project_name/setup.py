@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 
 def setup_env():
     # load the environment variables containing the secrets/config
-    dotenv_path = Path(__file__).resolve().parent.parent / ".env"
+    dotenv_path = Path(__file__).resolve().parent.parent.parent / ".env"
     load_dotenv(dotenv_path)
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ project_name|lower }}.conf.dev")
