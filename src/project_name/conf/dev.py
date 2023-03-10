@@ -10,9 +10,9 @@ os.environ.setdefault(
 os.environ.setdefault("IS_HTTPS", "no")
 os.environ.setdefault("VERSION_TAG", "dev")
 
-os.environ.setdefault("DB_NAME", "{{ project_name|lower }}"),
-os.environ.setdefault("DB_USER", "{{ project_name|lower }}"),
-os.environ.setdefault("DB_PASSWORD", "{{ project_name|lower }}"),
+os.environ.setdefault("DB_NAME", "{{ project_name|lower }}")
+os.environ.setdefault("DB_USER", "{{ project_name|lower }}")
+os.environ.setdefault("DB_PASSWORD", "{{ project_name|lower }}")
 
 os.environ.setdefault("ENVIRONMENT", "development")
 os.environ.setdefault("TWO_FACTOR_FORCE_OTP_ADMIN", "no")
